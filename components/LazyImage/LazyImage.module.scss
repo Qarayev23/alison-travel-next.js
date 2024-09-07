@@ -4,6 +4,10 @@
     position: relative;
     height: 100%;
     width: 100%;
+
+    &.show {
+        background: $border-color;
+    }
 }
 
 .hidden {
@@ -16,10 +20,7 @@
     justify-content: center;
     height: 100%;
     border-radius: rem(8);
-
-    &.show {
-        background: $border-color;
-    }
+    background: $border-color;
 
     &.search {
         span {

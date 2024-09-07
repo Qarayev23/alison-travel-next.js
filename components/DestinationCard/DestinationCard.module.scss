@@ -6,6 +6,7 @@
       height: rem(320);
       border-radius: rem(8);
       overflow: hidden;
+      background: $border-color;
 
       img {
          object-fit: cover;

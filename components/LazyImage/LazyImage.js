@@ -11,11 +11,13 @@ const LazyImage = ({ src, alt, sizes, className, type }) => {
   }, [src]);
 
   return (
-    <div className={styles.container}>
+    <div className={`
+       ${styles.container}  
+       ${isLoading ? styles.show : ''}
+      `}>
       {isLoading && <div
         className={`
         ${styles.spinner}
-        ${isLoading ? styles.show : ''}
         ${type === 'search' ? styles.search : ''}
          `}>
         <ClipLoader color="#E63561" />

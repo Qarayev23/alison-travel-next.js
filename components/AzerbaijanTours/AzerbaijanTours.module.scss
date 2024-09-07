@@ -33,6 +33,7 @@
             border-radius: rem(8);
             position: relative;
             flex-shrink: 0;
+            background: $border-color;
 
             img {
                 object-fit: cover;

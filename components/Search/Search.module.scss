@@ -196,6 +196,8 @@
             border-radius: 50%;
             position: relative;
             flex-shrink: 0;
+            background: $border-color;
+
 
             img {
                 object-fit: cover;
@@ -206,7 +208,7 @@
         &__text {
             font-size: rem(16);
             line-height: rem(24);
-            font-weight: 700;
+            font-weight: 600;
             color: $black;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -329,8 +331,8 @@
             }
 
             &__text {
-                font-size: rem(14);
-                line-height: rem(20);
+                font-size: rem(12);
+                line-height: rem(16);
             }
 
             &__more {
