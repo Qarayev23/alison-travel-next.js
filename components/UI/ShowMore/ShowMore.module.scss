@@ -15,10 +15,18 @@
     color: $black-2;
     margin: auto;
     margin-top: rem(24);
-    padding: rem(11) rem(14);
+    padding: rem(14) rem(22);
 
-    
+    img {
+        width: rem(16);
+        height: rem(16);
+    }
+
     &:hover {
         border-color: $gray;
+    }
+
+    @media screen and (max-width: 700px) {
+        padding: rem(10) rem(14);
     }
 }

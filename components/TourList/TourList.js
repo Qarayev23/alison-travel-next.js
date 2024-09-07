@@ -17,7 +17,7 @@ const TourList = () => {
                         Array.from({ length: 12 }).map((_, i) => <TourCard key={i} />)
                     }
                 </div>
-                <ShowMore text='See all' />
+                <ShowMore />
             </div>
         </div>
     )

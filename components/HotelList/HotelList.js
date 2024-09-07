@@ -40,7 +40,6 @@ const HotelList = () => {
                         <HotelCard />
                         <HotelCard />
                     </div>
-                    <ShowMore text='See all' />
                 </div>
                 <div className="hotelList__slider">
                     <Swiper
@@ -82,6 +81,7 @@ const HotelList = () => {
                         <SvgArrowRight />
                     </button>
                 </div>
+                <ShowMore />
             </div>
         </div>
     )

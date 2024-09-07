@@ -27,7 +27,7 @@ const LazyImage = ({ src, alt, sizes, className, type }) => {
         alt={alt}
         sizes={sizes}
         fill
-        onLoadingComplete={() => setIsLoading(false)}
+        onLoad={() => setIsLoading(false)}
         className={`${isLoading ? styles.hidden : ''} ${className ? className : ''}`}
         key={`${src}`}
       />
