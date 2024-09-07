@@ -1,0 +1,33 @@
+@import "@/assets/styles/utilities";
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: rem(9);
+    margin-top: rem(16);
+
+    &__item {
+        &:last-of-type {
+            .breadcrumb__link {
+                color: $deactive-color;
+                cursor: initial;
+                pointer-events: none;
+
+                svg {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: rem(9);
+        font-size: rem(14);
+        line-height: rem(16);
+        font-weight: 700;
+        font-family: $font-family-secondary;
+        color: $gray;
+    }
+}

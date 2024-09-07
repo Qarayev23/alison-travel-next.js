@@ -1,0 +1,100 @@
+@import "@/assets/styles/utilities";
+
+.tour {
+    margin-top: rem(8);
+
+    &__title {
+        font-size: rem(32);
+        line-height: rem(40);
+        font-weight: 700;
+        margin-bottom: rem(8);
+    }
+
+    &__heading {
+        display: flex;
+        align-items: center;
+        gap: rem(20);
+        margin-bottom: rem(24);
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            svg {
+                width: rem(20);
+                height: rem(20);
+            }
+
+            &__text {
+                font-size: rem(14);
+                line-height: rem(24);
+            }
+        }
+
+        &__rating {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            &__value {
+                font-size: rem(14);
+                line-height: rem(24);
+                font-weight: 500;
+            }
+
+            &__text {
+                font-size: rem(14);
+                line-height: rem(24);
+            }
+
+            img {
+                width: rem(20);
+                height: rem(19);
+            }
+        }
+    }
+
+    &__images {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+
+        &__left {
+            width: rem(752);
+            height: rem(400);
+            flex-shrink: 0;
+
+            &__item {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                border-radius: rem(16);
+
+                img {
+                    object-fit: cover;
+                    border-radius: rem(16);
+                }
+            }
+        }
+
+        &__right {
+            display: flex;
+            flex-wrap: wrap;
+            flex-grow: 1;
+            gap: rem(8);
+
+            &__item {
+                width: calc(50% - rem(4));
+                height: rem(196);
+                position: relative;
+                border-radius: rem(16);
+
+                img {
+                    object-fit: cover;
+                    border-radius: rem(16);
+                }
+            }
+        }
+    }
+}
