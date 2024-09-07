@@ -7,6 +7,7 @@ import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 import SvgArrowRight from '@/assets/icons/ArrowRight';
 import TourCard from '../TourCard/TourCard';
 import ShowMore from '../UI/ShowMore/ShowMore';
+import LazyImage from '../LazyImage/LazyImage';
 
 const AzerbaijanTours = () => {
     const swiperRef = useRef(null);
@@ -80,7 +81,7 @@ const AzerbaijanTours = () => {
                 </Swiper>
                 <div className={styles.tour__detail}>
                     <div className={styles.tour__detail__img}>
-                        <Image src="/images/tour-1.svg" fill alt='' />
+                        <LazyImage src="/images/tour-1.svg" alt='' />
                     </div>
                     <div className={styles.tour__content}>
                         <h3 className={styles.tour__title}>Gabala</h3>

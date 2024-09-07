@@ -2,15 +2,15 @@ import Link from 'next/link'
 import styles from './HotelCard.module.scss'
 import Image from 'next/image';
 import SvgHeart from '@/assets/icons/Heart';
+import LazyImage from '../LazyImage/LazyImage';
 
 const HotelCard = () => {
     return (
         <Link href='/' className={styles.card}>
             <div className={styles.card__top}>
-                <Image
+                <LazyImage
                     src='https://www.alisontravelgroup.com/uploads/e31dac66c74c92e4adb9.webp'
                     alt=''
-                    fill
                 />
                 <div className={styles.card__top__content}>
                     <button

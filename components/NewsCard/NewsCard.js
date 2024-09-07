@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import styles from './NewsCard.module.scss'
-import Image from 'next/image';
+import LazyImage from '../LazyImage/LazyImage';
 
 const NewsCard = () => {
     return (
         <Link href='/' className={styles.card}>
             <div className={styles.card__img}>
-                <Image
+                <LazyImage
                     src='https://www.alisontravelgroup.com/uploads/3982f9f947c1813d4281.webp'
                     alt=''
-                    fill
                 />
             </div>
             <div className={styles.card__content}>

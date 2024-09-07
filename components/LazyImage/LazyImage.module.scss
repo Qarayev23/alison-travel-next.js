@@ -1,0 +1,45 @@
+@import "@/assets/styles/utilities";
+
+.container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: rem(8);
+
+    &.show {
+        background: $border-color;
+    }
+
+    &.search {
+        span {
+            height: rem(15) !important;
+            width: rem(15) !important;
+        }
+    }
+
+    span {
+        height: rem(55) !important;
+        width: rem(55) !important;
+        margin: 0 !important;
+    }
+
+    @media (max-width: 700px) {
+        &.search {
+            span {
+                height: rem(13) !important;
+                width: rem(13) !important;
+            }
+        }
+    }
+}

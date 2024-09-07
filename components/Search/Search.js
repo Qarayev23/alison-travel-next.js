@@ -4,15 +4,16 @@ import SvgHotels from '@/assets/icons/Hotels'
 import SvgTransfers from '@/assets/icons/Transfers'
 import SvgSearch from '@/assets/icons/Search'
 import SvgDailyTours from '@/assets/icons/DailyTours'
-import { useState } from 'react'
-import Image from 'next/image'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import SvgArrowRight from '@/assets/icons/ArrowRight'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import LazyImage from '../LazyImage/LazyImage'
 
 const Search = () => {
     const [value, setValue] = useState("")
     const [isFocus, setIsFocus] = useState(false)
+    const inputRef = useRef()
 
     const handleFocus = () => {
         setIsFocus((prev) => !prev)
@@ -20,6 +21,10 @@ const Search = () => {
 
     const handleChange = (e) => {
         setValue(e.target.value)
+    }
+
+    const focusInput = () => {
+        inputRef.current.focus()
     }
 
     return (
@@ -76,10 +81,11 @@ const Search = () => {
                         </div>
                         <div className={styles.search__field}>
                             <div className={`${styles.search__field__left} ${value ? styles.active : ""}`}>
-                                <span className={styles.search__field__icon} onClick={handleFocus}>
+                                <span className={styles.search__field__icon} onClick={focusInput}>
                                     <SvgSearch />
                                 </span>
                                 <input
+                                    ref={inputRef}
                                     type="text"
                                     className={styles.search__field__input}
                                     onFocus={handleFocus}
@@ -96,7 +102,11 @@ const Search = () => {
                                     <li className={styles.autocomplete__item}>
                                         <Link href='/' className={styles.autocomplete__link}>
                                             <span className={styles.autocomplete__img}>
-                                                <Image src="https://www.alisontravelgroup.com/uploads/193e836144ed6b0a2296.webp" alt="Holidays" fill />
+                                                <LazyImage
+                                                    src="https://www.alisontravelgroup.com/uploads/193e836144ed6b0a2296.webp"
+                                                    alt=""
+                                                    type="search"
+                                                />
                                             </span>
                                             <span className={styles.autocomplete__text}>A luxurious New Year's tour package in Azerbaijan</span>
                                         </Link>
@@ -104,7 +114,11 @@ const Search = () => {
                                     <li className={styles.autocomplete__item}>
                                         <Link href='/' className={styles.autocomplete__link}>
                                             <span className={styles.autocomplete__img}>
-                                                <Image src="https://www.alisontravelgroup.com/uploads/40fbcf7b2def78973793.webp" alt="Holidays" fill />
+                                                <LazyImage
+                                                    src="https://www.alisontravelgroup.com/uploads/40fbcf7b2def78973793.webp"
+                                                    alt=""
+                                                    type="search"
+                                                />
                                             </span>
                                             <span className={styles.autocomplete__text}>Baku: Icheri Sheher walking tour package
                                             </span>
@@ -113,7 +127,11 @@ const Search = () => {
                                     <li className={styles.autocomplete__item}>
                                         <Link href='/' className={styles.autocomplete__link}>
                                             <span className={styles.autocomplete__img}>
-                                                <Image src="https://www.alisontravelgroup.com/uploads/447c35f5e28d0ada8886.webp" alt="Holidays" fill />
+                                                <LazyImage
+                                                    src="https://www.alisontravelgroup.com/uploads/447c35f5e28d0ada8886.webp"
+                                                    alt=""
+                                                    type="search"
+                                                />
                                             </span>
                                             <span className={styles.autocomplete__text}>Great Azerbaijan tour package</span>
                                         </Link>
@@ -121,7 +139,11 @@ const Search = () => {
                                     <li className={styles.autocomplete__item}>
                                         <Link href='/' className={styles.autocomplete__link}>
                                             <span className={styles.autocomplete__img}>
-                                                <Image src="https://www.alisontravelgroup.com/uploads/193e836144ed6b0a2296.webp" alt="Holidays" fill />
+                                                <LazyImage
+                                                    src="https://www.alisontravelgroup.com/uploads/193e836144ed6b0a2296.webp"
+                                                    alt=""
+                                                    type="search"
+                                                />
                                             </span>
                                             <span className={styles.autocomplete__text}>A luxurious New Year's tour package in Azerbaijan</span>
                                         </Link>
@@ -129,7 +151,11 @@ const Search = () => {
                                     <li className={styles.autocomplete__item}>
                                         <Link href='/' className={styles.autocomplete__link}>
                                             <span className={styles.autocomplete__img}>
-                                                <Image src="https://www.alisontravelgroup.com/uploads/40fbcf7b2def78973793.webp" alt="Holidays" fill />
+                                                <LazyImage
+                                                    src="https://www.alisontravelgroup.com/uploads/40fbcf7b2def78973793.webp"
+                                                    alt=""
+                                                    type="search"
+                                                />
                                             </span>
                                             <span className={styles.autocomplete__text}>Baku: Icheri Sheher walking tour package
                                             </span>

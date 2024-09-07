@@ -2,15 +2,15 @@ import Link from 'next/link'
 import styles from './TourCard.module.scss'
 import Image from 'next/image'
 import SvgHeart from '@/assets/icons/Heart'
+import LazyImage from '../LazyImage/LazyImage'
 
 const TourCard = () => {
     return (
         <Link href='/' className={styles.card}>
             <div className={styles.card__top}>
-                <Image
+                <LazyImage
                     src='/images/tour-1.svg'
                     alt=''
-                    fill
                 />
                 <div className={styles.card__top__content}>
                     <span className={styles.card__top__content__text}>Best seller</span>
