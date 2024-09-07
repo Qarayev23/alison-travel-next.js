@@ -1,0 +1,349 @@
+@import "@/assets/styles/utilities";
+
+.search {
+    margin-top: rem(56);
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title {
+        font-size: rem(48);
+        line-height: rem(56);
+        font-weight: 700;
+        margin-bottom: rem(48);
+        color: $black-2;
+    }
+
+    &__form {
+        width: rem(842);
+    }
+
+    &__tab {
+        border-bottom: rem(1) solid $border-color;
+
+        &__item {
+            display: flex;
+            width: fit-content;
+
+            input {
+                display: none;
+
+                &:checked+label {
+                    color: $red;
+                    border-color: $red;
+                }
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                gap: rem(8);
+                cursor: pointer;
+                font-size: rem(16);
+                line-height: rem(16);
+                font-weight: 700;
+                border-bottom: rem(1) solid transparent;
+                font-family: $font-family-secondary;
+                padding-bottom: rem(13);
+
+                &.active {
+                    color: $red;
+                    border-color: $red;
+                }
+
+                svg {
+                    width: rem(20);
+                    height: rem(20);
+                }
+            }
+        }
+    }
+
+    &__field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(16);
+        margin-top: rem(16);
+        padding: rem(8);
+        box-shadow: 0px 8px 40px -8px #0F0F0F14;
+        border-radius: rem(50);
+        border: rem(1) solid $border-color;
+        position: relative;
+
+        &__left {
+            display: flex;
+            flex-grow: 1;
+            position: relative;
+
+            &::after {
+                content: "Place to go, things to do, daily tours...";
+                position: absolute;
+                left: rem(65);
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: rem(16);
+                line-height: rem(24);
+                color: $gray;
+                font-family: $font-family-main;
+                pointer-events: none;
+            }
+
+            &.active {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(48);
+            height: rem(48);
+            border-radius: 50%;
+            background-color: $gray-2;
+            margin-right: rem(16);
+            flex-shrink: 0;
+
+            svg {
+                width: rem(24);
+                height: rem(24);
+            }
+        }
+
+        &__input {
+            font-size: rem(16);
+            line-height: rem(24);
+            border: none;
+            flex-grow: 1;
+            color: $gray;
+            height: rem(48);
+            font-family: $font-family-main;
+        }
+
+        &__btn {
+            background-color: $red;
+            padding: rem(16) rem(32);
+            border-radius: rem(90);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: $font-family-secondary;
+            font-weight: 700;
+            font-size: rem(16);
+            line-height: rem(16);
+            color: $white;
+
+            &:hover {
+                background-color: $dark-red;
+            }
+        }
+    }
+
+    .autocomplete {
+        position: absolute;
+        left: 0;
+        top: calc(100% + rem(5));
+        width: 100%;
+        background-color: $white;
+        box-shadow: 0px 8px 40px -8px #0F0F0F14;
+        border: rem(1) solid $border-color;
+        border-radius: rem(12);
+        display: none;
+        @include fadeIn();
+        z-index: 8;
+
+        &.show {
+            display: block;
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            padding: rem(16);
+        }
+
+        &__item {
+            &:last-of-type {
+                .autocomplete__link {
+                    border: none;
+                }
+            }
+        }
+
+        &__link {
+            display: flex;
+            align-items: center;
+            gap: rem(15);
+            padding: rem(10);
+            border-bottom: rem(1) solid $border-color;
+            transition: none;
+
+            &:hover {
+                background-color: rgb(242, 242, 242);
+                border-radius: rem(8);
+            }
+        }
+
+        &__img {
+            width: rem(42);
+            height: rem(42);
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+
+            img {
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+
+        &__text {
+            font-size: rem(16);
+            line-height: rem(24);
+            font-weight: 700;
+            color: $black;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        &__more {
+            box-shadow: 0 -3px 8px #0000000d;
+
+            &__link {
+                font-size: rem(16);
+                line-height: rem(24);
+                font-weight: 700;
+                color: $black;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: $font-family-secondary;
+                padding: rem(16);
+
+                svg {
+                    width: rem(20);
+                    height: rem(16);
+                    color: #4b4b4b;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-top: rem(40);
+
+        &__title {
+            display: none;
+        }
+
+        &__form {
+            width: 100%
+        }
+
+        &__tab {
+            margin-right: rem(-20);
+
+            &__item {
+                label {
+                    padding-bottom: rem(20);
+                }
+            }
+        }
+
+        &__field {
+            flex-direction: column;
+            margin-top: rem(24);
+            padding: rem(8) rem(16) rem(16) rem(16);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 5px;
+            border-radius: rem(12);
+
+            &__left {
+                width: 100%;
+                border-bottom: rem(1) solid $border-color;
+
+                &::after {
+                    content: "Places to visit, hotels";
+                    left: rem(42);
+                    font-weight: 500;
+                    font-size: rem(14);
+                }
+            }
+
+            &__right {
+                width: 100%;
+            }
+
+            &__icon {
+                background-color: transparent;
+                margin-right: 0;
+                width: rem(40);
+
+                svg {
+                    width: rem(20);
+                    height: rem(20);
+                }
+            }
+
+            &__input {
+                font-size: rem(14);
+                padding-left: rem(2);
+            }
+
+            &__btn {
+                width: 100%;
+                padding: rem(12) rem(16);
+                font-family: $font-family-secondary;
+                font-size: rem(14);
+            }
+        }
+
+        .autocomplete {
+            top: rem(56);
+
+            &__list {
+                padding: rem(5) rem(10);
+            }
+
+            &__link {
+                gap: rem(12);
+                background-color: $white !important;
+            }
+
+            &__img {
+                width: rem(36);
+                height: rem(36);
+
+                img {
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+
+            &__text {
+                font-size: rem(14);
+                line-height: rem(20);
+            }
+
+            &__more {
+                &__link {
+                    font-size: rem(14);
+                    line-height: rem(20);
+                    padding: rem(10) rem(16);
+
+                    svg {
+                        width: rem(18);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,236 @@
+html {
+    font-size: calc(10 * 100vw/375);
+
+    @media screen and (min-width: 700px) {
+        font-size: calc(10 * 100vw/1440);
+    }
+}
+
+body {
+    position: relative;
+    height: 100%;
+    color: $black;
+    background-color: $white;
+    font-family: $font-family-main;
+}
+
+.section-title {
+    font-size: rem(32);
+    line-height: rem(40);
+    font-weight: 700;
+    color: $black-2;
+
+    @media screen and (max-width: 700px) {
+        font-size: rem(20);
+        line-height: rem(24);
+        margin-bottom: rem(2);
+    }
+}
+
+.section-text {
+    font-size: rem(16);
+    font-weight: 500;
+    line-height: rem(24);
+    color: $gray;
+    margin-bottom: rem(24);
+
+    @media screen and (max-width: 700px) {
+        font-size: rem(14);
+        line-height: rem(24);
+    }
+}
+
+.search__tab__slider {
+    .swiper {
+        &-wrapper {
+            justify-content: center;
+        }
+
+        &-slide {
+            width: auto !important;
+            margin-right: rem(32) !important;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        .swiper {
+            &-wrapper {
+                justify-content: flex-start;
+            }
+
+            &-slide {
+                margin-right: rem(24) !important;
+            }
+        }
+    }
+}
+
+.destination__slider {
+    position: relative;
+
+    .swiper-slide {
+        width: rem(302);
+        margin-right: rem(24);
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-right: rem(-20);
+
+        .swiper-slide {
+            width: rem(272) !important;
+            margin-right: rem(16) !important;
+        }
+    }
+}
+
+.dailyTours__slider {
+    position: relative;
+
+    .swiper-slide {
+        width: rem(308);
+        margin-right: rem(16);
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-right: rem(-20);
+    }
+}
+
+.azerbaijanTour__slider {
+    position: relative;
+
+    .swiper-slide {
+        width: rem(308);
+        margin-right: rem(16);
+    }
+
+    @media screen and (max-width: 700px) {
+        display: none;
+    }
+}
+
+.review__slider {
+    position: relative;
+
+    .swiper-slide {
+        width: rem(416);
+        margin-right: rem(16);
+    }
+
+    .custom-arrow {
+        top: rem(120);
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-right: rem(-20);
+
+        .swiper-slide {
+            width: rem(312) !important;
+        }
+    }
+}
+
+.news__slider {
+    position: relative;
+
+    .swiper-slide {
+        width: rem(308);
+        margin-right: rem(16);
+    }
+
+    .custom-arrow {
+        top: rem(180);
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-right: rem(-20);
+    }
+}
+
+.hotelList__slider {
+    position: relative;
+
+    .swiper-slide {
+        width: rem(308);
+        margin-right: rem(16);
+    }
+
+    @media screen and (max-width: 700px) {
+        display: none;
+    }
+}
+
+.tour__btn__list {
+    margin-bottom: rem(40);
+
+    .swiper {
+        &-slide {
+            width: auto !important;
+            margin-right: rem(8) !important;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-right: rem(-20) !important;
+        margin-bottom: rem(32);
+    }
+}
+
+.custom-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777E91;
+    position: absolute;
+    top: rem(164);
+    transform: translateY(-50%);
+    z-index: 1;
+    width: rem(40);
+    height: rem(40);
+    border: rem(2) solid $border-color;
+    border-radius: 50%;
+    background: $white;
+
+    svg {
+        width: rem(14);
+        height: rem(9);
+    }
+
+    &-prev {
+        left: rem(-20);
+    }
+
+    &-next {
+        right: rem(-20);
+    }
+
+    @media screen and (max-width: 700px) {
+        display: none;
+    }
+}
+
+.swiper {
+    margin-left: rem(-5) !important;
+    margin-right: rem(-5) !important;
+    padding-left: rem(5) !important;
+    padding-right: rem(5) !important;
+
+    &-button-disabled {
+        cursor: initial;
+    
+        svg {
+            opacity: 0.5;
+        }
+    }
+    
+    &-slide {
+        height: initial !important;
+    }
+
+    @media screen  and (max-width: 700px) {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}

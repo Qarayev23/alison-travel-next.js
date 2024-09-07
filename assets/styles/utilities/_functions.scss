@@ -1,0 +1,9 @@
+@function rem($value, $base: 10) {
+    @if type-of($value)==number {
+        @return $value / $base +rem;
+    }
+
+    @else {
+        @return $value;
+    }
+}

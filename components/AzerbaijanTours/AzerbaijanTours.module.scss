@@ -1,0 +1,108 @@
+@import "@/assets/styles/utilities";
+
+.tour {
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: rem(12) rem(24);
+        border-radius: rem(4);
+        background-color: $white;
+        border: rem(1) solid $border-color;
+        font-family: $font-family-secondary;
+        font-weight: 700;
+        font-size: rem(16);
+        line-height: rem(16);
+        color: $black-2;
+
+        &.active {
+            background-color: $black-3;
+            color: $white;
+            border: rem(1) solid $black-3;
+        }
+    }
+
+    &__detail {
+        display: flex;
+        gap: rem(48);
+        margin-bottom: rem(40);
+
+        &__img {
+            width: rem(396);
+            height: rem(320);
+            border-radius: rem(8);
+            position: relative;
+            flex-shrink: 0;
+
+            img {
+                object-fit: cover;
+                border-radius: rem(8);
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__title {
+        font-size: rem(32);
+        line-height: rem(40);
+        font-weight: 700;
+        margin-bottom: rem(8);
+        color: $black-2;
+    }
+
+    &__desc {
+        font-size: rem(14);
+        line-height: rem(24);
+        margin-bottom: rem(16);
+    }
+
+    &__includes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(16) rem(24);
+    }
+
+    &__include {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+        font-size: rem(16);
+        line-height: rem(24);
+        font-weight: 500;
+
+        img {
+            width: rem(24);
+            height: rem(24);
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    @media screen and (max-width: 700px) {
+        &__detail {
+            display: none;
+        }
+
+        &__btn {
+            padding: rem(8) rem(24);
+            font-size: rem(14);
+        }
+
+        .mobile {
+            display: block;
+        }
+    }
+}

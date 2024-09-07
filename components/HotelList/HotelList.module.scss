@@ -1,0 +1,32 @@
+@import "@/assets/styles/utilities";
+
+.hotel {
+    background: $gray-2;
+    padding-bottom: rem(48);
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    @media screen and (max-width: 700px) {
+        .mobile {
+            display: block;
+        }
+
+        &__list {
+            a {
+                display: none;
+
+                &:nth-child(-n+4) {
+                    display: flex;
+                }
+            }
+        }
+    }
+}

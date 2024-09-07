@@ -1,0 +1,285 @@
+@import "@/assets/styles/utilities";
+
+.header {
+    border-bottom: rem(1) solid $border-color;
+
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: rem(12) 0;
+
+        &__right {
+            display: flex;
+            align-items: center;
+            gap: rem(24);
+        }
+
+        &__fav {
+            position: relative;
+            display: flex;
+
+            svg {
+                width: rem(22);
+                height: rem(18);
+                color: $gray;
+                fill-rule: evenodd;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: rem(-2);
+                right: rem(-3);
+                width: rem(10);
+                height: rem(10);
+                background-color: $green;
+                border-radius: 50%;
+                transform: translate(50%, -50%);
+            }
+        }
+
+        &__logo {
+            width: rem(105);
+            height: rem(56);
+            position: relative;
+            flex-shrink: 0;
+
+            img {
+                object-fit: contain;
+            }
+        }
+
+        &__links {
+            &__mob {
+                display: none;
+                flex-direction: column;
+            }
+        }
+
+        &__list {
+            display: flex;
+            gap: rem(24);
+        }
+
+        &__link {
+            font-weight: 700;
+            font-size: rem(14);
+            line-height: rem(16);
+            font-family: $font-family-secondary;
+            color: $black;
+
+            &:hover {
+                color: $red;
+            }
+        }
+
+        .lang {
+            position: relative;
+
+            &__btn {
+                display: flex;
+                align-items: center;
+                gap: rem(10);
+
+                img {
+                    width: rem(15) !important;
+                    height: rem(15) !important;
+                }
+
+                &__text {
+                    font-weight: 700;
+                    font-size: rem(14);
+                    line-height: rem(16);
+                    font-family: $font-family-secondary;
+                    color: $gray;
+                }
+            }
+
+            &__dropdown {
+                position: absolute;
+                top: rem(25);
+                right: rem(-12);
+                background-color: $white;
+                border-radius: rem(8);
+                padding: rem(12);
+                display: none;
+                flex-direction: column;
+                gap: rem(12);
+                box-shadow: 0px 7px 8px rgba(156, 156, 156, 0.25);
+                @include fadeIn();
+
+                &.show {
+                    display: flex;
+                }
+
+                &__btn {
+                    font-weight: 700;
+                    font-size: rem(14);
+                    line-height: rem(16);
+                    font-family: $font-family-secondary;
+                    color: $black;
+
+                    &:hover {
+                        color: $green;
+                    }
+                }
+            }
+        }
+    }
+
+    .navMob {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        padding: rem(12) 0;
+
+        &__menu {
+            display: flex;
+        }
+
+        &__logo {
+            display: flex;
+        }
+
+        &__call {
+            display: flex;
+        }
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 8;
+        display: none;
+    }
+
+    @media (max-width: 700px) {
+        .nav {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            width: rem(301);
+            height: 100%;
+            flex-direction: column;
+            align-items: baseline;
+            justify-content: flex-start;
+            padding: rem(24) rem(48);
+            background-color: $white;
+            z-index: 9;
+            transition: 0.3s;
+            box-shadow: 0px 64px 64px -48px #0F0F0F14;
+            border-right: rem(1) solid $border-color;
+            overflow-y: auto;
+
+            &__right {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: rem(24);
+                border-bottom: rem(1) solid $border-color;
+                margin-bottom: rem(40);
+                width: 100%;
+            }
+
+            &__logo {
+                margin: 0 auto;
+            }
+
+            &__links {
+                order: 1;
+
+                &__desk {
+                    display: none;
+                }
+
+                &__mob {
+                    display: flex;
+                }
+            }
+
+            &__list {
+                flex-direction: column;
+                gap: rem(8);
+
+                &__title {
+                    display: flex;
+                    font-size: rem(14);
+                    line-height: rem(16);
+                    font-weight: 700;
+                    font-family: $font-family-secondary;
+                    margin-bottom: rem(16);
+                    color: $black-3;
+                }
+
+                &:last-of-type {
+                    margin-top: rem(24);
+                }
+            }
+
+            &__link {
+                font-weight: 500;
+                font-size: rem(14);
+                line-height: rem(24);
+                font-family: $font-family-main;
+                color: $gray;
+            }
+
+            &.show {
+                left: 0;
+            }
+
+            &__fav {
+                &::after {
+                    background-color: $red;
+                }
+            }
+
+            .lang {
+                display: flex;
+                width: 100%;
+                border-top: rem(1) solid $border-color;
+                border-bottom: rem(1) solid $border-color;
+                padding: rem(23) 0;
+                margin-top: rem(24);
+
+                &__btn {
+                    align-items: flex-start;
+
+                    &__text {
+                        color: $green;
+                    }
+                }
+
+                &__dropdown {
+                    position: static;
+                    display: flex;
+                    box-shadow: none;
+                    flex-direction: row;
+                    padding: 0;
+                    gap: rem(16);
+                    margin-left: rem(16);
+
+                    &__btn {
+                        color: $gray;
+                    }
+                }
+            }
+        }
+
+        .navMob {
+            display: flex;
+        }
+
+        .overlay {
+            @include fadeIn();
+
+            &.show {
+                display: block;
+            }
+        }
+    }
+}

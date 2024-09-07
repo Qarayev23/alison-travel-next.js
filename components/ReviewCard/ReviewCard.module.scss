@@ -1,0 +1,66 @@
+@import "@/assets/styles/utilities";
+
+.card {
+    border: rem(1) solid $border-color;
+    border-radius: 8px;
+    padding: rem(24);
+    border-radius: rem(8);
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        font-size: rem(20);
+        font-weight: 500;
+        line-height: rem(28);
+        color: $black-3;
+    }
+
+    &__location {
+        display: flex;
+        align-items: center;
+        gap: rem(6);
+        margin-bottom: rem(12);
+
+        img {
+            width: rem(16);
+            height: rem(12);
+            border-radius: rem(2);
+        }
+
+        &__text {
+            font-size: rem(12);
+            line-height: rem(16);
+            color: $black-2;
+        }
+    }
+
+    &__desc {
+        font-size: rem(12);
+        line-height: rem(20);
+        margin-bottom: rem(24);
+        color: $black;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__stars {
+        display: flex;
+        gap: rem(3);
+
+        img {
+            width: rem(14);
+            height: rem(13);
+        }
+    }
+
+    &__date {
+        font-size: rem(12);
+        line-height: rem(20);
+        color: $gray;
+    }
+}

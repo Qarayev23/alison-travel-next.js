@@ -1,0 +1,24 @@
+@import "@/assets/styles/utilities";
+
+.showMore {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: auto;
+    gap: rem(12);
+    border: rem(2) solid $border-color;
+    border-radius: rem(90);
+    font-size: rem(16);
+    line-height: rem(16);
+    font-weight: 700;
+    font-family: $font-family-secondary;
+    color: $black-2;
+    margin: auto;
+    margin-top: rem(24);
+    padding: rem(11) rem(14);
+
+    
+    &:hover {
+        border-color: $gray;
+    }
+}

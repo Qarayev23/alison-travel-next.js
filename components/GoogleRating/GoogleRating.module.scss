@@ -1,0 +1,63 @@
+@import "@/assets/styles/utilities";
+
+.googleRating {
+    margin: rem(48) 0;
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(30);
+        background-color: #F8F8F9;
+        padding: rem(11) 0;
+        border-radius: rem(8);
+    }
+
+    &__icon {
+        img {
+            object-fit: contain;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: rem(10);
+    }
+
+    &__star {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+
+        &__icons {
+            display: flex;
+            align-items: flex-end;
+            gap: rem(8);
+        }
+
+        &__value {
+            font-size: rem(16);
+            line-height: rem(16);
+            font-weight: 600;
+            margin-top: rem(2);
+        }
+    }
+
+    &__text {
+        font-size: rem(12);
+        line-height: rem(12);
+        font-weight: 500;
+        color: $gray;
+        letter-spacing: rem(-0.2);
+    }
+
+    @media screen and (max-width: 700px) {
+        margin: rem(32) 0;
+
+        &__wrapper {
+            gap: rem(20);
+        }
+    }
+}

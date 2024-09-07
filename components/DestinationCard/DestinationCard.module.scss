@@ -1,0 +1,57 @@
+@import "@/assets/styles/utilities";
+
+.card {
+   &__img {
+      position: relative;
+      height: rem(320);
+      border-radius: rem(8);
+      overflow: hidden;
+
+      img {
+         object-fit: cover;
+         border-radius: rem(8);
+         transition: 0.3s;
+
+         &:hover {
+            transform: scale(1.1);
+         }
+      }
+   }
+
+   &__footer {
+      display: flex;
+      align-items: center;
+      gap: rem(16);
+      background-color: $gray-2;
+      width: fit-content;
+      margin: rem(20) auto 0;
+      padding: rem(12) rem(20);
+      border-radius: rem(8);
+
+      img {
+         border-radius: rem(2);
+         width: rem(28);
+         height: rem(20);
+      }
+   }
+
+   &__title {
+      font-size: rem(16);
+      line-height: rem(24);
+      font-weight: 500;
+      color: $black-2;
+   }
+
+   @media screen and (max-width: 700px) {
+      &__img {
+         height: rem(294);
+      }
+
+      &__footer {
+         gap: rem(8);
+         margin: rem(16) auto 0;
+         padding: rem(12) rem(20);
+         border-radius: rem(8);
+      }
+   }
+}

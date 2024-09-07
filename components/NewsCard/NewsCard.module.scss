@@ -1,0 +1,89 @@
+@import "@/assets/styles/utilities";
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: rem(1) solid $border-color;
+    border-radius: rem(8);
+    position: relative;
+    height: 100%;
+
+    &__img {
+        position: relative;
+        height: rem(240);
+        border-top-left-radius: rem(8);
+        border-top-right-radius: rem(8);
+        overflow: hidden;
+
+        &:hover {
+            img {
+                transform: scale(1.05);
+            }
+        }
+
+        img {
+            border-top-left-radius: rem(8);
+            border-top-right-radius: rem(8);
+            object-fit: cover;
+            transition: 0.3s;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: rem(24);
+        flex-grow: 1;
+        border-bottom-left-radius: rem(8);
+        border-bottom-right-radius: rem(8);
+        background: $white;
+    }
+
+    &__title {
+        font-size: rem(16);
+        line-height: rem(24);
+        font-weight: 500;
+        margin-bottom: rem(16);
+        color: $black-3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__desc {
+        font-size: rem(14);
+        line-height: rem(24);
+        color: $black;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: rem(16);
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__date {
+        font-size: rem(12);
+        line-height: rem(20);
+        color: $gray;
+    }
+
+    &__readMore {
+        font-size: rem(12);
+        line-height: rem(20);
+        font-weight: 500;
+        color: #3B71FE;
+    }
+}
