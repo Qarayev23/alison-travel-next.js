@@ -36,7 +36,7 @@ const AzerbaijanTours = () => {
                 <Swiper
                     slidesPerView='auto'
                     spaceBetween="0"
-                    className='tour__btn__list'
+                    className='tour__btn__slider'
                 >
                     <SwiperSlide>
                         <button className={`${styles.tour__btn} ${styles.active}`}>

@@ -5,6 +5,24 @@
     align-items: center;
     gap: rem(9);
     margin-top: rem(16);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: rem(4);
+    
+    &::-webkit-scrollbar-track {
+        background: $border-color;
+        border-radius: rem(4);
+    }
+
+    &::-webkit-scrollbar {
+        height: rem(3);
+        border-radius: rem(4);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $gray;
+        border-radius: rem(4);
+    }
 
     &__item {
         &:last-of-type {
@@ -29,5 +47,6 @@
         font-weight: 700;
         font-family: $font-family-secondary;
         color: $gray;
+        white-space: nowrap;
     }
 }

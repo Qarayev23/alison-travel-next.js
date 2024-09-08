@@ -109,6 +109,11 @@
             align-items: center;
             gap: rem(8);
 
+            img {
+                width: rem(16);
+                height: rem(16);
+            }
+
             span {
                 font-size: rem(12);
                 line-height: rem(20);
