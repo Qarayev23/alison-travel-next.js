@@ -12,6 +12,8 @@ import 'swiper/css/pagination';
 import 'react-image-lightbox/style.css';
 import styles from './TourDetail.module.scss';
 import ItineraryAccordion from '@/components/ItineraryAccordion/ItineraryAccordion';
+import HotelOptions from '@/components/HotelOptions/HotelOptions';
+import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAccordion';
 
 const TourDetail = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -222,7 +224,9 @@ const TourDetail = () => {
                   </ul>
                 </div>
               </div>
-              {/* <ItineraryAccordion /> */}
+              <ItineraryAccordion />
+              <HotelOptions />
+              <GoodToKnowAccordion />
             </div>
             <div className={styles.card}></div>
           </div>

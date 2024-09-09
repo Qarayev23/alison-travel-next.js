@@ -153,7 +153,7 @@
             display: flex;
             align-items: center;
             gap: rem(16);
-            padding-top: rem(16);
+            padding-top: rem(14);
             margin-top: rem(16);
             border-top: rem(1) solid $border-color;
 
@@ -207,6 +207,7 @@
         gap: rem(48);
         justify-content: space-between;
         margin-top: rem(48);
+        margin-bottom: rem(48);
     }
 
     &__include {
@@ -255,6 +256,18 @@
     @media screen and (max-width: 700px) {
         margin-top: rem(12);
 
+        &__wrapper {
+            flex-direction: column;
+        }
+
+        &__content{
+            width: 100%;
+        }
+
+        &__card {
+            display: none;
+        }
+
         &__title {
             font-size: rem(24);
             line-height: rem(32);
@@ -290,7 +303,7 @@
                 font-size: rem(18);
                 line-height: rem(20);
             }
-    
+
             &__list {
                 gap: rem(20);
             }

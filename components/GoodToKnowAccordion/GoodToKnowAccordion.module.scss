@@ -1,0 +1,65 @@
+@import "@/assets/styles/utilities";
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: rem(32);
+    position: relative;
+    padding-top: rem(40);
+
+    &__item {
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(20);
+
+        &.active {
+            .accordion__icon {
+                transform: rotate(45deg);
+            }
+        }
+
+        &__text {
+            font-size: rem(16);
+            font-weight: 500;
+            line-height: rem(24);
+            text-align: start;
+            color: $black-2;
+        }
+    }
+
+    &__icon {
+        transition: .3s;
+        display: flex;
+        padding: 0 rem(2);
+
+        img {
+            width: rem(12);
+            height: rem(12);
+        }
+    }
+
+    &__container {
+        padding-left: rem(52);
+        padding-right: rem(44);
+        transition: height .3s;
+    }
+
+    &__content {
+        font-size: rem(14);
+        line-height: rem(24);
+        color: $black-2;
+    }
+
+    @media screen and (max-width: 700px) {
+        &__container {
+            padding-right: 0;
+        }
+    }
+}

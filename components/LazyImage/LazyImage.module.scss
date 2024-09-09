@@ -28,6 +28,13 @@
         }
     }
 
+    &.hotel {
+        span {
+            height: rem(25) !important;
+            width: rem(25) !important;
+        }
+    }
+
     span {
         height: rem(55) !important;
         width: rem(55) !important;

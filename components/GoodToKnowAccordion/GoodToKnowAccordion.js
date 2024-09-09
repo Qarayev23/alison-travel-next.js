@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
-import styles from "./ItineraryAccordion.module.scss";
+import styles from "./GoodToKnowAccordion.module.scss";
 
 const data = [
     {
@@ -25,7 +25,7 @@ const data = [
     }
 ];
 
-const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
+const AccordionItem = ({ question, answer, isOpen, onClick }) => {
     const contentHeight = useRef();
 
     return (
@@ -34,22 +34,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
                 className={`${styles.accordion__btn} ${isOpen ? styles.active : ""}`}
                 onClick={onClick}
             >
-                <div className={styles.accordion__btn__left}>
-                    {
-                        index === 0 ? (
-                            <span className={`${styles.accordion__btn__icon__img}`}>
-                                <Image src="/images/marker.svg" width={16} height={16} alt="Marker" />
-                            </span>
-                        ) : index === data.length - 1 ? (
-                            <span className={`${styles.accordion__btn__icon__img}`}>
-                                <Image src="/images/routing.svg" width={16} height={16} alt="Routing" />
-                            </span>
-                        ) : (
-                            <span className={`${styles.accordion__btn__icon}`} />
-                        )
-                    }
-                    <p className={styles.accordion__btn__text}>{question}</p>
-                </div>
+                <p className={styles.accordion__btn__text}>{question}</p>
                 <span className={styles.accordion__icon}>
                     <Image src="/images/close.svg" width={12} height={12} alt="Close" />
                 </span>
@@ -72,7 +57,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
     );
 };
 
-const ItineraryAccordion = () => {
+const GoodToKnowAccordion = () => {
     const [activeIndex, setActiveIndex] = useState(null);
 
     const handleItemClick = (index) => {
@@ -81,7 +66,7 @@ const ItineraryAccordion = () => {
 
     return (
         <>
-            <h2 className="section-title">Itinerary</h2>
+            <h2 className="section-title">Good to know</h2>
             <div className={styles.accordion}>
                 {data.map((item, index) => (
                     <AccordionItem
@@ -90,7 +75,6 @@ const ItineraryAccordion = () => {
                         answer={item.answer}
                         isOpen={activeIndex === index}
                         onClick={() => handleItemClick(index)}
-                        index={index}
                     />
                 ))}
             </div>
@@ -99,4 +83,4 @@ const ItineraryAccordion = () => {
     );
 };
 
-export default ItineraryAccordion;
+export default GoodToKnowAccordion;
