@@ -3,13 +3,19 @@
 .accordion {
     display: flex;
     flex-direction: column;
-    gap: rem(32);
     position: relative;
-    padding-top: rem(40);
+    padding-top: rem(32);
 
     &__item {
         overflow: hidden;
         position: relative;
+        border-bottom: 1px solid $border-color;
+
+        &:first-of-type {
+            .accordion__btn {
+                padding-top: 0;
+            }
+        }
     }
 
     &__btn {
@@ -18,6 +24,7 @@
         align-items: center;
         justify-content: space-between;
         gap: rem(20);
+        padding: rem(16) 0;
 
         &.active {
             .accordion__icon {
@@ -46,7 +53,6 @@
     }
 
     &__container {
-        padding-left: rem(52);
         padding-right: rem(44);
         transition: height .3s;
     }
@@ -58,6 +64,8 @@
     }
 
     @media screen and (max-width: 700px) {
+        padding-top: rem(30);
+
         &__container {
             padding-right: 0;
         }

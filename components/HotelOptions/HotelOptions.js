@@ -29,7 +29,7 @@ const HotelOptions = () => {
                 className={styles.collapse__slider}
             >
                 {data.map(item => (
-                    <SwiperSlide className={styles.collapse__item}>
+                    <SwiperSlide className={styles.collapse__item} key={item.id}>
                         <input type="radio" id={item.id} defaultChecked={selected === item.id} name="radio" onChange={() => handleClick(item.id)} />
                         <label htmlFor={item.id} className={styles.collapse__label}>
                             <div className={styles.collapse__label__icon}>
@@ -58,7 +58,7 @@ const HotelOptions = () => {
                     <div className={styles.collapse__content__wrapper}>
                         {
                             Array.from({ length: 3 }).map((_, index) => (
-                                <Link href='/' className={styles.collapse__content__item}>
+                                <Link href='/' className={styles.collapse__content__item} key={index}>
                                     <div className={styles.collapse__content__item__img}>
                                         <LazyImage
                                             src='https://www.alisontravelgroup.com/uploads/b753eec1c847ecdb828f.webp'

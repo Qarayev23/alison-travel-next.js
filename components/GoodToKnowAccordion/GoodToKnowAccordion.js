@@ -4,24 +4,24 @@ import styles from "./GoodToKnowAccordion.module.scss";
 
 const data = [
     {
-        question: "Day 1: Arrive in Tbilisi. Transfer to hotel",
+        question: "What are the top places to visit in Georgia Tbilisi?",
         answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
+            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
     },
     {
-        question: "Day 2: Full day Tbilisi city tour",
+        question: "What are the top places to visit in Georgia Tbilisi?",
         answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
+            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
     },
     {
-        question: "Day 3: Day excursion to Kakheti region",
+        question: "What are the top places to visit in Georgia Tbilisi?",
         answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
+            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
     },
     {
-        question: "Day 4: Full day tour to Uplistikhe and Borjomi",
+        question: "What are the top places to visit in Georgia Tbilisi?",
         answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
+            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
     }
 ];
 
