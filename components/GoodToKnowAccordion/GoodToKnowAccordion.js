@@ -79,7 +79,6 @@ const GoodToKnowAccordion = () => {
                 ))}
             </div>
         </>
-
     );
 };
 
