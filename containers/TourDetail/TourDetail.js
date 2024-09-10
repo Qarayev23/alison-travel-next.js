@@ -14,12 +14,14 @@ import styles from './TourDetail.module.scss';
 import ItineraryAccordion from '@/components/ItineraryAccordion/ItineraryAccordion';
 import HotelOptions from '@/components/HotelOptions/HotelOptions';
 import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAccordion';
+import BookingCard from '@/components/BookingCard/BookingCard';
+import BottomBar from '@/components/BottomBar/BottomBar';
 
 const TourDetail = () => {
+  const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  // Array of images for the lightbox
   const images = [
     'https://www.alisontravelgroup.com/uploads/ab9be6ba240a235c2b3a.jpg',
     'https://www.alisontravelgroup.com/uploads/68c188654044732f1dc2.jpeg',
@@ -27,6 +29,10 @@ const TourDetail = () => {
     'https://www.alisontravelgroup.com/uploads/88db133dbf8eea19c973.jpg',
     'https://www.alisontravelgroup.com/uploads/43e0b08722ba290d991e.jpg',
   ];
+
+  const handleShow = () => {
+    setIsShow(!isShow);
+  };
 
   return (
     <>
@@ -93,7 +99,6 @@ const TourDetail = () => {
               onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
             />
           )}
-
           <div className={styles.tour__wrapper}>
             <div className={styles.tour__content}>
               <h2 className='section-title'>Overview</h2>
@@ -228,9 +233,16 @@ const TourDetail = () => {
               <HotelOptions />
               <GoodToKnowAccordion />
             </div>
-            <div className={styles.card}></div>
+            <div className={styles.card}>
+              <BookingCard />
+            </div>
           </div>
         </div>
+        <BottomBar />
+        <div className={`${styles.bottomBar} ${isShow ? styles.hide : ''}`}>
+          <BookingCard />
+        </div>
+        <div className={`${styles.overlay} ${isShow ? styles.show : ''}`} />
       </div>
     </>
   );

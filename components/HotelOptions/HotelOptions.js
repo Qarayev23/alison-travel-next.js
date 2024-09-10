@@ -33,7 +33,7 @@ const HotelOptions = () => {
                         <input type="radio" id={item.id} defaultChecked={selected === item.id} name="radio" onChange={() => handleClick(item.id)} />
                         <label htmlFor={item.id} className={styles.collapse__label}>
                             <div className={styles.collapse__label__icon}>
-                                <Image src='/images/option.svg' width={32} height={32} alt='Home' />
+                                <Image src='/images/option.svg' width={32} height={32} alt='Option' />
                                 <span>{item.title.charAt(0)}</span>
                             </div>
                             <div className={styles.collapse__label__content}>

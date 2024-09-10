@@ -1,0 +1,129 @@
+@import "@/assets/styles/utilities";
+
+.bottomBar {
+    position: fixed;
+    box-shadow: 0px 64px 64px -48px #0F0F0F14;
+    border: rem(1) solid $border-color;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background: $white;
+    padding: rem(24) rem(16);
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(10);
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+    }
+
+    &__up {
+        width: rem(32);
+        height: rem(32);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: rem(2) solid $border-color;
+    }
+
+    &__name {
+        display: flex;
+        align-items: center;
+        gap: rem(4);
+        margin-bottom: rem(4);
+
+        &__icon {
+            position: relative;
+            display: flex;
+
+            img {
+                width: rem(16);
+                height: rem(16);
+            }
+
+            span {
+                color: $black-2;
+                font-size: rem(7);
+                line-height: rem(7);
+                font-weight: 600;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        &__text {
+            color: $black-2;
+            font-size: rem(12);
+            line-height: rem(20);
+            font-weight: 600;
+        }
+    }
+
+    &__price {
+        display: flex;
+        align-items: flex-end;
+
+        &__old {
+            color: $deactive-color;
+            font-size: rem(16);
+            line-height: rem(24);
+            font-weight: 500;
+            text-decoration: line-through;
+            margin-right: rem(8);
+        }
+
+        &__original {
+            color: $black-2;
+            font-size: rem(16);
+            line-height: rem(24);
+            font-weight: 600;
+            margin-right: rem(4);
+        }
+
+        &__person {
+            color: $gray;
+            font-size: rem(12);
+            line-height: rem(20);
+        }
+    }
+
+    &__duration {
+        font-size: rem(12);
+        line-height: rem(20);
+        color: $gray;
+    }
+
+    &__button {
+        padding: rem(16);
+        background-color: $red;
+        color: $white;
+        border-radius: rem(90);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(12);
+        font-size: rem(16);
+        line-height: rem(16);
+        font-weight: 700;
+        font-family: $font-family-secondary;
+
+        &:hover {
+            background-color: $dark-red;
+        }
+
+        img {
+            width: rem(16);
+            height: rem(16);
+        }
+    }
+}
