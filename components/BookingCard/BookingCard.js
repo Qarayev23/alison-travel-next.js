@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import styles from './BookingCard.module.scss'
+import AngleUp from '@/assets/icons/AngleUp'
 
-const BookingCard = () => {
+const BookingCard = ({handleShow}) => {
     return (
         <div className={styles.card}>
             <div className={styles.card__name}>
@@ -71,6 +72,9 @@ const BookingCard = () => {
                     </div>
                 </div>
             </div>
+            <button className={styles.card__close} onClick={handleShow}>
+                <AngleUp />
+            </button>
         </div>
     )
 }

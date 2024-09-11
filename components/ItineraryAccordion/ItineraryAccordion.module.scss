@@ -71,7 +71,7 @@
 
         &.active {
             .accordion__icon {
-                transform: rotate(45deg);
+                transform: rotate(90deg);
             }
         }
 
@@ -133,6 +133,7 @@
         transition: .3s;
         display: flex;
         padding: 0 rem(2);
+        transform: rotate(45deg);
 
         img {
             width: rem(12);

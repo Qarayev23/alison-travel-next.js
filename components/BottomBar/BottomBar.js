@@ -2,12 +2,12 @@ import AngleUp from '@/assets/icons/AngleUp'
 import Image from 'next/image'
 import styles from './BottomBar.module.scss'
 
-const BottomBar = () => {
+const BottomBar = ({ isHide, handleShow }) => {
     return (
-        <div className={styles.bottomBar}>
+        <div className={`${styles.bottomBar} ${isHide ? styles.hide : ""}`}>
             <div className={styles.bottomBar__wrapper}>
                 <div className={styles.bottomBar__left}>
-                    <button className={styles.bottomBar__up}>
+                    <button className={styles.bottomBar__open} onClick={handleShow}>
                         <AngleUp />
                     </button>
                     <div className={styles.bottomBar__content}>

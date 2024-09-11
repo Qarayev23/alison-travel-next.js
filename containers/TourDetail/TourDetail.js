@@ -16,6 +16,7 @@ import HotelOptions from '@/components/HotelOptions/HotelOptions';
 import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAccordion';
 import BookingCard from '@/components/BookingCard/BookingCard';
 import BottomBar from '@/components/BottomBar/BottomBar';
+import Comment from '@/components/Comment/Comment';
 
 const TourDetail = () => {
   const [isShow, setIsShow] = useState(false);
@@ -237,12 +238,16 @@ const TourDetail = () => {
               <BookingCard />
             </div>
           </div>
+          <Comment />
         </div>
-        <BottomBar />
-        <div className={`${styles.bottomBar} ${isShow ? styles.hide : ''}`}>
-          <BookingCard />
+        <BottomBar isHide={isShow} handleShow={handleShow} />
+        <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
+          <BookingCard handleShow={handleShow} />
         </div>
-        <div className={`${styles.overlay} ${isShow ? styles.show : ''}`} />
+        <div
+          className={`${styles.overlay} ${isShow ? styles.show : ''}`}
+          onClick={handleShow}
+        />
       </div>
     </>
   );

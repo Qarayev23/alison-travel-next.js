@@ -7,7 +7,7 @@ import LazyImage from '../LazyImage/LazyImage';
 
 const data = [
     { id: 'economy', title: 'Economy', content: 'Piazza Boutique Hotel' },
-    { id: 'standard', title: 'Standard', content: 'Piazza Boutique Hotel ' },
+    { id: 'standard', title: 'Standard', content: 'Piazza Boutique Hotel' },
     { id: 'premium', title: 'Premium', content: 'Piazza Boutique Hotel' },
     { id: 'luxury', title: 'Luxury', content: 'Piazza Boutique Hotel' },
 ]

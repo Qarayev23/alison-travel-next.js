@@ -7,9 +7,15 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 9;
+    z-index: 7;
     background: $white;
-    padding: rem(24) rem(16);
+    padding: rem(23) rem(16);
+    transition: 0.3s ease-in-out;
+    display: none;
+
+    &.hide {
+        bottom: -100%;
+    }
 
     &__wrapper {
         display: flex;
@@ -24,7 +30,7 @@
         gap: rem(8);
     }
 
-    &__up {
+    &__open {
         width: rem(32);
         height: rem(32);
         border-radius: 50%;
@@ -125,5 +131,9 @@
             width: rem(16);
             height: rem(16);
         }
+    }
+
+    @media screen and (max-width: 700px) {
+        display: block;
     }
 }

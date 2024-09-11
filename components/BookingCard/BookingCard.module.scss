@@ -209,11 +209,32 @@
         }
     }
 
+    &__close {
+        width: rem(32);
+        height: rem(32);
+        margin: auto;
+        margin-top: rem(20);
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        border: rem(2) solid $border-color;
+        display: none;
+
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+
     @media screen and (max-width: 700px) {
         height: fit-content;
         width: 100%;
         border-radius: 0;
         border-top-left-radius: rem(24);
         border-top-right-radius: rem(24);
+        padding-bottom: rem(24);
+
+        &__close {
+            display: flex;
+        }
     }
 }
