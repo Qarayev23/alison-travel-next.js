@@ -14,6 +14,11 @@ body {
     font-family: $font-family-main;
 }
 
+input,
+textarea {
+    font-family: $font-family-main;
+}
+
 .section-title {
     font-size: rem(32);
     line-height: rem(40);
@@ -38,6 +43,28 @@ body {
         font-size: rem(14);
         line-height: rem(24);
     }
+}
+
+.g-input {
+    border: rem(2) solid $border-color;
+    border-radius: rem(24);
+    height: rem(48);
+    padding: rem(14) rem(16);
+    font-size: rem(14);
+    line-height: rem(24);
+    color: $gray;
+    width: 100%;
+}
+
+.g-textarea {
+    border: rem(2) solid $border-color;
+    border-radius: rem(24);
+    padding: rem(14) rem(16);
+    height: rem(160) !important;
+    font-size: rem(14);
+    line-height: rem(24);
+    color: $gray;
+    width: 100% !important;
 }
 
 .search__tab__slider {
@@ -245,5 +272,46 @@ body {
         margin-right: 0 !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
+    }
+}
+
+.react-responsive-modal-container {
+    padding: rem(16);
+}
+
+.react-responsive-modal {
+    &-modal {
+        margin: rem(15) 0 !important;
+        max-width: rem(464) !important;
+        width: 100% !important;
+        box-shadow: 0px 64px 64px -48px #0F0F0F14 !important;
+        border-radius: rem(16) !important;
+        padding: rem(32) rem(56) !important;
+        overflow-y: initial !important;
+    }
+
+    &-closeButton {
+        top: rem(-12) !important;
+        right: rem(-12) !important;
+        box-shadow: 0px 8px 16px -8px #0F0F0F1A !important;
+        width: rem(32) !important;
+        height: rem(32) !important;
+        border-radius: 50% !important;
+        background: $white !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        svg {
+            width: rem(20) !important;
+            height: rem(20) !important;
+            fill: $gray !important;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        &-modal {
+            padding: rem(32) rem(16) !important;
+        }
     }
 }

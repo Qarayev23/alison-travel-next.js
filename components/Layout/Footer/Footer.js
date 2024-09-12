@@ -1,10 +1,15 @@
+"use client"
 import Image from 'next/image'
 import styles from './Footer.module.scss'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 const Footer = () => {
+    const router = usePathname()
+    const isTourDetail = router.split('/').length === 4 && router.split('/')[1] === 'tours'
+    
     return (
-        <footer className={styles.footer}>
+        <footer className={`${styles.footer} ${isTourDetail ? styles.tourDetail : ''}`}>
             <div className="g-container">
                 <div className={styles.footer__wrapper}>
                     <div className={styles.footer__top}>

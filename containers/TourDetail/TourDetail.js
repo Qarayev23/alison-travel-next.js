@@ -10,6 +10,7 @@ import Lightbox from 'react-image-lightbox';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'react-image-lightbox/style.css';
+import 'react-responsive-modal/styles.css';
 import styles from './TourDetail.module.scss';
 import ItineraryAccordion from '@/components/ItineraryAccordion/ItineraryAccordion';
 import HotelOptions from '@/components/HotelOptions/HotelOptions';
@@ -17,11 +18,16 @@ import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAcco
 import BookingCard from '@/components/BookingCard/BookingCard';
 import BottomBar from '@/components/BottomBar/BottomBar';
 import Comment from '@/components/Comment/Comment';
+import TourCard from '@/components/TourCard/TourCard';
+import ReviewModal from '@/components/ReviewModal/ReviewModal';
 
 const TourDetail = () => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [open, setOpen] = useState(false);
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false)
 
   const images = [
     'https://www.alisontravelgroup.com/uploads/ab9be6ba240a235c2b3a.jpg',
@@ -238,7 +244,19 @@ const TourDetail = () => {
               <BookingCard />
             </div>
           </div>
-          <Comment />
+          <Comment onOpenModal={onOpenModal} />
+        </div>
+        <div className={styles.moreTour}>
+          <div className="g-container">
+            <h3 className="section-title">Azerbaijan best travel tours</h3>
+            <p className="section-text">Discover Azerbaijan</p>
+            <div className={styles.moreTour__list}>
+              <TourCard />
+              <TourCard />
+              <TourCard />
+              <TourCard />
+            </div>
+          </div>
         </div>
         <BottomBar isHide={isShow} handleShow={handleShow} />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
@@ -249,6 +267,7 @@ const TourDetail = () => {
           onClick={handleShow}
         />
       </div>
+      <ReviewModal open={open} onCloseModal={onCloseModal} />
     </>
   );
 };

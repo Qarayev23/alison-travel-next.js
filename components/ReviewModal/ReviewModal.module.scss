@@ -1,0 +1,136 @@
+@import "@/assets/styles/utilities";
+
+.modal {
+    &__title {
+        font-size: rem(32);
+        font-weight: 700;
+        line-height: rem(40);
+        margin-bottom: rem(32);
+        text-align: center;
+        color: $black-3;
+    }
+
+    &__rating {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: rem(32);
+
+        &__text {
+            font-size: rem(14);
+            line-height: rem(24);
+            color: $black-2;
+        }
+
+        &__stars {
+            display: flex;
+            align-items: center;
+            gap: rem(4);
+        }
+
+        &__star {
+            cursor: pointer;
+            display: flex;
+
+            svg{
+                width: rem(20);
+                height: rem(20);
+            }
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+    }
+
+    .upload {
+        &__box {
+            border: rem(2) solid #E6E8EC;
+            display: flex;
+            align-items: center;
+            background: $gray-2;
+            border-radius: rem(24);
+            height: rem(48);
+            padding: 0 rem(22);
+            cursor: pointer;
+        }
+
+        &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(20);
+            height: rem(20);
+            background: #292D32;
+            color: $white;
+            font-size: rem(17);
+            margin-right: rem(12);
+            border-radius: 50%;
+        }
+
+        &__text {
+            font-size: rem(14);
+            font-weight: 500;
+            line-height: rem(24);
+            color: $gray;
+        }
+    }
+
+    .preview {
+        display: flex;
+        margin-top: rem(16);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: rem(8);
+
+        &__image {
+            position: relative;
+            gap: rem(8);
+            height: rem(54);
+
+            img {
+                object-fit: cover;
+                border-radius: rem(8);
+            }
+        }
+    }
+
+    .delete__btn {
+        position: absolute;
+        top: rem(2);
+        right: rem(2);
+        background: $white;
+        width: rem(18);
+        height: rem(18);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: rem(7);
+            height: rem(7);
+        }
+    }
+
+    &__submit {
+        padding: rem(16) rem(24);
+        border-radius: rem(90);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $red;
+        color: $white;
+        font-size: rem(16);
+        line-height: rem(16);
+        font-weight: 700;
+        font-family: $font-family-secondary;
+
+        &:hover {
+            background: $dark-red;
+        }
+    }
+}

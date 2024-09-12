@@ -299,6 +299,19 @@
         }
     }
 
+    .moreTour {
+        margin-top: rem(48);
+        padding-bottom: rem(64);
+        padding-top: rem(48);
+        background: $gray-2;
+
+        &__list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: rem(16);
+        }
+    }
+
     @media screen and (max-width: 700px) {
         margin-top: rem(12);
 
@@ -306,12 +319,23 @@
             display: flex;
         }
 
-        &__wrapper {
-            flex-direction: column;
-        }
-
         .card {
             display: none;
+        }
+
+        .moreTour {
+            margin-top: rem(32);
+            padding-bottom: rem(48);
+            padding-top: rem(32);
+            background: $gray-2;
+
+            &__list {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        &__wrapper {
+            flex-direction: column;
         }
 
         &__content {

@@ -24,9 +24,14 @@ const HotelOptions = () => {
         <div className={styles.collapse}>
             <h2 className="section-title">Hotel Options</h2>
             <Swiper
-                slidesPerView='auto'
+                slidesPerView="auto"
                 spaceBetween="0"
                 className={styles.collapse__slider}
+                breakpoints={{
+                    700: {
+                        slidesPerView: 4,
+                    }
+                }}
             >
                 {data.map(item => (
                     <SwiperSlide className={styles.collapse__item} key={item.id}>
@@ -68,7 +73,7 @@ const HotelOptions = () => {
                                         />
                                     </div>
                                     <div className={styles.collapse__content__item__wrapper}>
-                                        <p className={styles.collapse__content__item__title}>Piazza Boutique Hotel</p>
+                                        <p className={styles.collapse__content__item__title}>Piazza Boutique Hotel {item.title}</p>
                                         <p className={styles.collapse__content__item__location}>Tbilisi, Georgia</p>
                                         <div className={styles.collapse__content__item__rating}>
                                             <Image src='/images/star3.svg' width={20} height={19} alt='Star' />

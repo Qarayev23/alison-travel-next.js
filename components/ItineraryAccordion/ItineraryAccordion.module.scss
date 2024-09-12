@@ -41,6 +41,7 @@
         &:last-of-type {
             .accordion__btn {
                 position: relative;
+
                 &::after {
                     content: '';
                     position: absolute;
@@ -126,6 +127,7 @@
             font-weight: 600;
             line-height: rem(24);
             text-align: start;
+            color: $black;
         }
     }
 
@@ -148,13 +150,36 @@
     }
 
     &__content {
-        font-size: rem(14);
-        line-height: rem(24);
         padding-top: rem(10);
+
+        p {
+            font-size: rem(14);
+            line-height: rem(24);
+        }
+
+        ul {
+            font-size: rem(14);
+            line-height: rem(24);
+            padding-left: rem(16);
+
+            li {
+                list-style: initial;
+            }
+        }
+
+        ol {
+            font-size: rem(14);
+            line-height: rem(24);
+            padding-left: rem(16);
+
+            li {
+                list-style: decimal;
+            }
+        }
     }
 
     @media screen and (max-width: 700px) {
-        &__container{
+        &__container {
             padding-right: 0;
         }
     }

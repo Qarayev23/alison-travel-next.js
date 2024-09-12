@@ -121,6 +121,10 @@
     }
 
     @media screen and (max-width: 700px) {
+        &.tourDetail {
+            padding-bottom: rem(110);
+        }
+        
         &__wrapper {
             gap: rem(16);
             padding-bottom: rem(20);

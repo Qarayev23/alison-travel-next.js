@@ -36,7 +36,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
             >
                 <p className={styles.accordion__btn__text}>{question}</p>
                 <span className={styles.accordion__icon}>
-                    <Image src="/images/close.svg" width={12} height={12} alt="Close" />
+                    <Image src="/images/close.svg" priority width={12} height={12} alt="Close" />
                 </span>
             </button>
 
