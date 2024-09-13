@@ -29,3 +29,13 @@ $font-types: (
     font-display: swap;
   }
 }
+
+@each $type, $weight in $font-types {
+  @font-face {
+    font-family: "Avenir Next";
+    font-weight: $weight;
+    font-style: normal;
+    src: url("/fonts/AvenirNext/AvenirNext-#{$type}.ttf") format("truetype");
+    font-display: swap;
+  }
+}

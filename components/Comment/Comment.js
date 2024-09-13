@@ -110,9 +110,9 @@ const Comment = ({ onOpenModal }) => {
                     </div>
                     <div className={styles.review__list}>
                         <div className={styles.review__item}>
-                            <h4 className={styles.review__item__name}>
+                            <p className={styles.review__item__name}>
                                 Myrtie Runolfsson
-                            </h4>
+                            </p>
                             <div className={styles.review__item__location}>
                                 <Image src="/images/flag.svg" width={16} height={12} alt="Azerbaijan" />
                                 <span>Azerbaijan</span>
@@ -132,9 +132,9 @@ const Comment = ({ onOpenModal }) => {
                             </div>
                         </div>
                         <div className={styles.review__item}>
-                            <h4 className={styles.review__item__name}>
+                            <p className={styles.review__item__name}>
                                 Myrtie Runolfsson
-                            </h4>
+                            </p>
                             <div className={styles.review__item__location}>
                                 <Image src="/images/flag.svg" width={16} height={12} alt="Azerbaijan" />
                                 <span>Azerbaijan</span>
@@ -168,9 +168,9 @@ const Comment = ({ onOpenModal }) => {
                             </div>
                         </div>
                         <div className={styles.review__item}>
-                            <h4 className={styles.review__item__name}>
+                            <p className={styles.review__item__name}>
                                 Myrtie Runolfsson
-                            </h4>
+                            </p>
                             <div className={styles.review__item__location}>
                                 <Image src="/images/flag.svg" width={16} height={12} alt="Azerbaijan" />
                                 <span>Azerbaijan</span>

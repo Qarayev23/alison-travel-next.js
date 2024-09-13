@@ -248,7 +248,7 @@ const TourDetail = () => {
         </div>
         <div className={styles.moreTour}>
           <div className="g-container">
-            <h3 className="section-title">Azerbaijan best travel tours</h3>
+            <h2 className="section-title">Azerbaijan best travel tours</h2>
             <p className="section-text">Discover Azerbaijan</p>
             <div className={styles.moreTour__list}>
               <TourCard />

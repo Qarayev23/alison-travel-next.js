@@ -12,7 +12,7 @@
         &__right {
             display: flex;
             align-items: center;
-            gap: rem(24);
+            gap: rem(18) rem(28);
         }
 
         &__fav {
@@ -29,13 +29,32 @@
             &::after {
                 content: "";
                 position: absolute;
-                top: rem(-2);
+                top: rem(-4);
                 right: rem(-3);
-                width: rem(10);
-                height: rem(10);
+                width: rem(12);
+                height: rem(12);
                 background-color: $green;
                 border-radius: 50%;
                 transform: translate(50%, -50%);
+            }
+        }
+
+        &__b2b {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: rem(2) solid $red;
+            border-radius: rem(90);
+            padding: rem(11) rem(15);
+            font-weight: 700;
+            font-size: rem(14);
+            line-height: rem(16);
+            font-family: $font-family-secondary;
+            color: $red;
+
+            &:hover {
+                background-color: $red;
+                color: $white;
             }
         }
 
@@ -177,12 +196,11 @@
             overflow-y: auto;
 
             &__right {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-bottom: rem(24);
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: rem(18);
                 border-bottom: rem(1) solid $border-color;
-                margin-bottom: rem(40);
-                width: 100%;
+                margin-bottom: rem(30);
             }
 
             &__logo {
@@ -211,7 +229,7 @@
                     line-height: rem(16);
                     font-weight: 700;
                     font-family: $font-family-secondary;
-                    margin-bottom: rem(16);
+                    margin-bottom: rem(10);
                     color: $black-3;
                 }
 
@@ -233,6 +251,8 @@
             }
 
             &__fav {
+                order: 1;
+
                 &::after {
                     background-color: $red;
                 }
@@ -243,7 +263,7 @@
                 width: 100%;
                 border-top: rem(1) solid $border-color;
                 border-bottom: rem(1) solid $border-color;
-                padding: rem(23) 0;
+                padding: rem(18) 0;
                 margin-top: rem(24);
 
                 &__btn {

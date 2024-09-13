@@ -81,7 +81,7 @@ const Navbar = () => {
                                     <Link href='/' className={styles.nav__link}>Cancellation policy</Link>
                                 </li>
                             </ul>
-                            
+
 
                             <ul className={styles.nav__list}>
                                 <li className={styles.nav__list__title}>
@@ -127,6 +127,10 @@ const Navbar = () => {
 
                         <Link href='/' className={styles.nav__fav}>
                             <SvgHeart />
+                        </Link>
+
+                        <Link href='/' className={styles.nav__b2b}>
+                            B2B
                         </Link>
                     </div>
                 </nav>

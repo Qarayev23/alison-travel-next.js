@@ -14,6 +14,15 @@ body {
     font-family: $font-family-main;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-title;
+}
+
 input,
 textarea {
     font-family: $font-family-main;
@@ -24,11 +33,13 @@ textarea {
     line-height: rem(40);
     font-weight: 700;
     color: $black-2;
+    letter-spacing: rem(-0.7);
 
     @media screen and (max-width: 700px) {
         font-size: rem(20);
         line-height: rem(24);
         margin-bottom: rem(2);
+        letter-spacing: initial;
     }
 }
 
