@@ -288,6 +288,10 @@ textarea {
 
 .react-responsive-modal-container {
     padding: rem(16);
+
+    @media screen and (max-width: 700px) {
+        background: $white !important;
+    }
 }
 
 .react-responsive-modal {
@@ -299,6 +303,7 @@ textarea {
         border-radius: rem(16) !important;
         padding: rem(32) rem(56) !important;
         overflow-y: initial !important;
+        background-color: $white !important;
     }
 
     &-closeButton {
@@ -322,7 +327,10 @@ textarea {
 
     @media screen and (max-width: 700px) {
         &-modal {
-            padding: rem(32) rem(16) !important;
+            padding: rem(32) 0 !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+
         }
     }
 }

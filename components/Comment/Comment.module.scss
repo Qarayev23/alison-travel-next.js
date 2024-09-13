@@ -10,6 +10,7 @@
         line-height: rem(32);
         font-weight: 700;
         color: $black-2;
+        font-family: $font-family-title;
     }
 
     &__text {
@@ -163,6 +164,7 @@
                 font-weight: 700;
                 line-height: rem(32);
                 color: $black-2;
+                font-family: $font-family-title;
             }
 
             &__select {
