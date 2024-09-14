@@ -6,4 +6,41 @@
     top: 0;
     height: 100%;
     flex-shrink: 0;
+    box-shadow: 0px 64px 64px -48px #0F0F0F14;
+    border: rem(1) solid $border-color;
+    border-radius: rem(8);
+    background-color: $white;
+    padding: rem(32) rem(24) rem(48) rem(24);
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: rem(24);
+        border-bottom: rem(1) solid $border-color;
+    }
+
+    &__title {
+        font-weight: 700;
+        font-size: rem(16);
+        line-height: rem(16);
+        color: $black-2;
+        text-transform: uppercase;
+    }
+
+    &__reset {
+        display: flex;
+        gap: rem(5);
+        align-items: center;
+        font-family: $font-family-secondary;
+        font-size: rem(14);
+        font-weight: 700;
+        line-height: rem(16);
+        color: $gray;
+
+        svg {
+            width: rem(14);
+            height: rem(14);
+        }
+    }
 }
