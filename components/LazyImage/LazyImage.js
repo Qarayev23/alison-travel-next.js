@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { ClipLoader } from 'react-spinners';
 import styles from './LazyImage.module.scss';
 
 const LazyImage = ({ src, alt, sizes, className, type, borderRadius = "0.8rem" }) => {
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, [src]);
 
   return (
     <div

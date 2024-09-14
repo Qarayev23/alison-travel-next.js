@@ -11,9 +11,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'react-image-lightbox/style.css';
 import 'react-responsive-modal/styles.css';
-import styles from './HotelDetail.module.scss';
-import ItineraryAccordion from '@/components/ItineraryAccordion/ItineraryAccordion';
-import HotelOptions from '@/components/HotelOptions/HotelOptions';
+import styles from './HotelPage.module.scss';
 import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAccordion';
 import BookingCard from '@/components/BookingCard/BookingCard';
 import BottomBar from '@/components/BottomBar/BottomBar';
@@ -22,7 +20,7 @@ import TourCard from '@/components/TourCard/TourCard';
 import ReviewModal from '@/components/ReviewModal/ReviewModal';
 import ShowMore from '@/components/UI/ShowMore/ShowMore';
 
-const HotelDetail = () => {
+const HotelPage = () => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -197,4 +195,4 @@ const HotelDetail = () => {
   );
 };
 
-export default HotelDetail;
+export default HotelPage;

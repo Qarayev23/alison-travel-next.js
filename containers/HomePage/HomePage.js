@@ -8,13 +8,13 @@ import HotelList from '@/components/HotelList/HotelList';
 import NewsList from '@/components/NewsList/NewsList';
 import ReviewList from '@/components/ReviewList/ReviewList';
 import Search from '@/components/Search/Search'
-import TourList from '@/components/TourList/TourList';
 import VisaBanner from '@/components/VisaBanner/VisaBanner';
 import WeProvide from '@/components/WeProvide/WeProvide';
+import HomeTourList from '@/components/HomeTourList/HomeTourList';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-const Home = () => {
+const HomePage = () => {
     return (
         <>
             <Search />
@@ -23,7 +23,7 @@ const Home = () => {
             <AzerbaijanTours />
             <GoogleRating />
             <VisaBanner />
-            <TourList />
+            <HomeTourList />
             <DailyTours />
             <HotelList />
             <ReviewList />
@@ -32,4 +32,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default HomePage

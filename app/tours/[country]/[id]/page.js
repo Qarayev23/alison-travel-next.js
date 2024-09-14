@@ -1,9 +1,8 @@
-import TourDetail from '@/containers/TourDetail/TourDetail'
-import React from 'react'
+import TourDetailPage from "@/containers/TourDetailPage/TourDetailPage"
 
 const Page = () => {
   return (
-    <TourDetail />
+    <TourDetailPage />
   )
 }
 

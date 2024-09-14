@@ -1,7 +1,7 @@
-import Home from "@/containers/Home/Home";
+import HomePage from "@/containers/HomePage/HomePage";
 
-export default function HomePage() {
+export default function Page() {
   return (
-    <Home />
+    <HomePage />
   );
 }

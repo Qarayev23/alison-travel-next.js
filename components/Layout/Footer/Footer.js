@@ -8,7 +8,6 @@ const Footer = () => {
     const router = usePathname()
     const isTourDetail = (router.split('/').length === 4 && router.split('/')[1] === 'tours') ||
         (router.split('/').length === 3 && router.split('/')[1] === 'hotel-bookings')
-console.log(router.split('/').length);
 
     return (
         <footer className={`${styles.footer} ${isTourDetail ? styles.tourDetail : ''}`}>

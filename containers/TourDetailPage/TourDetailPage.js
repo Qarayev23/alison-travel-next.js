@@ -11,7 +11,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'react-image-lightbox/style.css';
 import 'react-responsive-modal/styles.css';
-import styles from './TourDetail.module.scss';
+import styles from './TourDetailPage.module.scss';
 import ItineraryAccordion from '@/components/ItineraryAccordion/ItineraryAccordion';
 import HotelOptions from '@/components/HotelOptions/HotelOptions';
 import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAccordion';
@@ -21,7 +21,7 @@ import Comment from '@/components/Comment/Comment';
 import TourCard from '@/components/TourCard/TourCard';
 import ReviewModal from '@/components/ReviewModal/ReviewModal';
 
-const TourDetail = () => {
+const TourDetailPage = () => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -272,4 +272,4 @@ const TourDetail = () => {
   );
 };
 
-export default TourDetail;
+export default TourDetailPage;
