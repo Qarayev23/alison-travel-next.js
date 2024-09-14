@@ -2,42 +2,50 @@ import Image from 'next/image'
 import styles from './BookingCard.module.scss'
 import AngleUp from '@/assets/icons/AngleUp'
 
-const BookingCard = ({handleShow}) => {
+const BookingCard = ({ handleShow, type }) => {
     return (
         <div className={styles.card}>
-            <div className={styles.card__name}>
-                <div className={styles.card__name__icon}>
-                    <Image src="/images/option.svg" width={32} height={32} alt="Option" />
-                    <span>E</span>
-                </div>
-                <p className={styles.card__name__text}>Economy</p>
-            </div>
+            {
+                type === 'tour' && (
+                    <div className={styles.card__name}>
+                        <div className={styles.card__name__icon}>
+                            <Image src="/images/option.svg" width={32} height={32} alt="Option" />
+                            <span>E</span>
+                        </div>
+                        <p className={styles.card__name__text}>Economy</p>
+                    </div>
+                )
+            }
             <div className={styles.card__price}>
                 <p className={styles.card__price__old}>$119</p>
                 <p className={styles.card__price__original}>$102</p>
-                <p className={styles.card__price__person}>/person</p>
+                <p className={styles.card__price__person}> {type === 'tour' ? '/person' : '/per night'}</p>
             </div>
             <div className={styles.card__rating}>
                 <Image src="/images/star.svg" width={20} height={19} alt="Rating" />
                 <p className={styles.card__rating__text}>4.8</p>
                 <p className={styles.card__rating__reviews}>(120 reviews)</p>
             </div>
-            <div className={styles.card__duration}>
-                <div className={styles.card__duration__item}>
-                    <Image src="/images/line-1.svg" width={24} height={24} alt="Days" />
-                    <div className={styles.card__duration__item__content}>
-                        <p className={styles.card__duration__item__title}>Days</p>
-                        <p className={styles.card__duration__item__number}>5</p>
+            {
+                type === 'tour' && (
+                    <div className={styles.card__duration}>
+                    <div className={styles.card__duration__item}>
+                        <Image src="/images/line-1.svg" width={24} height={24} alt="Days" />
+                        <div className={styles.card__duration__item__content}>
+                            <p className={styles.card__duration__item__title}>Days</p>
+                            <p className={styles.card__duration__item__number}>5</p>
+                        </div>
+                    </div>
+                    <div className={styles.card__duration__item}>
+                        <Image src="/images/line-9.svg" width={24} height={24} alt="Nights" />
+                        <div className={styles.card__duration__item__content}>
+                            <p className={styles.card__duration__item__title}>Nights</p>
+                            <p className={styles.card__duration__item__number}>6</p>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.card__duration__item}>
-                    <Image src="/images/line-9.svg" width={24} height={24} alt="Nights" />
-                    <div className={styles.card__duration__item__content}>
-                        <p className={styles.card__duration__item__title}>Nights</p>
-                        <p className={styles.card__duration__item__number}>6</p>
-                    </div>
-                </div>
-            </div>
+                )
+            }
             <button className={styles.card__button}>
                 Book Now
                 <Image src="/images/basket.svg" width={16} height={16} alt="Basket" />

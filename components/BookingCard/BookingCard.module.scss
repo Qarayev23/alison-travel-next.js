@@ -105,7 +105,7 @@
         border-radius: rem(20);
         display: flex;
         margin-top: rem(24);
-        margin-bottom: rem(24);
+        
 
         &__item {
             display: flex;
@@ -161,6 +161,7 @@
         font-weight: 700;
         font-family: $font-family-secondary;
         width: 100%;
+        margin-top: rem(24);
 
         &:hover {
             background-color: $dark-red;

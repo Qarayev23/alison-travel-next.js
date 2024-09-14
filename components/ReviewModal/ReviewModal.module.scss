@@ -47,7 +47,7 @@
 
     .upload {
         &__box {
-            border: rem(2) solid #E6E8EC;
+            border: rem(2) solid $border-color;
             display: flex;
             align-items: center;
             background: $gray-2;

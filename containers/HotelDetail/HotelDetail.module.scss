@@ -1,6 +1,6 @@
 @import "@/assets/styles/utilities";
 
-.tour {
+.hotel {
     margin-top: rem(8);
 
     &__title {
@@ -151,35 +151,11 @@
 
     &__content {
         width: rem(843);
-
-        &__heading {
-            display: flex;
-            align-items: center;
-            gap: rem(16);
-            padding-top: rem(14);
-            margin-top: rem(16);
-            border-top: rem(1) solid $border-color;
-
-            &__item {
-                display: flex;
-                align-items: center;
-                gap: rem(8);
-
-                img {
-                    width: rem(20);
-                    height: rem(20);
-                }
-
-                span {
-                    font-size: rem(14);
-                    line-height: rem(24);
-                    font-weight: 600;
-                }
-            }
-        }
     }
 
     &__cancel {
+        padding-top: rem(14);
+        border-top: rem(1) solid $border-color;
         display: flex;
         align-items: center;
         gap: rem(8);
@@ -203,6 +179,12 @@
         margin-top: rem(20);
         font-size: rem(16);
         line-height: rem(24);
+        margin-bottom: rem(48);
+
+        p {
+            font-size: rem(16) !important;
+            line-height: rem(24) !important;
+        }
 
         ul {
             font-size: rem(14);
@@ -225,54 +207,44 @@
         }
     }
 
-    &__includes {
-        display: flex;
-        gap: rem(48);
-        justify-content: space-between;
-        margin-top: rem(48);
+    &__facilities {
+        margin-top: rem(32);
         margin-bottom: rem(48);
-    }
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(24) 0;
+        position: relative;
 
-    &__include {
-        &__title {
-            font-size: rem(24);
-            line-height: rem(32);
-            font-weight: 700;
-            margin-bottom: rem(32);
-            color: $black-2;
-        }
-
-        &__list {
-            display: flex;
-            flex-direction: column;
-            gap: rem(24);
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: rem(290);
+            width: rem(1);
+            height: 100%;
+            background: red;
+            background: $border-color;
         }
 
         &__item {
             display: flex;
             gap: rem(16);
+            width: rem(290);
+
+            &:nth-child(2n) {
+                padding-left: rem(80);
+            }
 
             img {
                 width: rem(24);
                 height: rem(24);
             }
+        }
 
-            &__content {
-                display: flex;
-                flex-direction: column;
-                gap: rem(4);
-            }
-
-            &__title {
-                font-size: rem(16);
-                line-height: rem(24);
-                font-weight: 500;
-            }
-
-            &__desc {
-                font-size: rem(12);
-                line-height: rem(20);
-            }
+        &__text {
+            font-size: rem(16);
+            line-height: rem(24);
+            font-weight: 500;
         }
     }
 
@@ -323,7 +295,7 @@
         }
     }
 
-    .moreTour {
+    .moreHotel {
         margin-top: rem(48);
         padding-bottom: rem(64);
         padding-top: rem(48);
@@ -347,7 +319,7 @@
             display: none;
         }
 
-        .moreTour {
+        .moreHotel {
             margin-top: rem(32);
             padding-bottom: rem(48);
             padding-top: rem(32);
@@ -355,6 +327,19 @@
 
             &__list {
                 grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        &__facilities {
+            flex-direction: column;
+
+            &::after {
+                display: none;
+            }
+
+            &__item {
+                width: 100%;
+                padding: 0 !important;
             }
         }
 
@@ -392,22 +377,6 @@
         &__description {
             font-size: rem(14);
             line-height: rem(24);
-        }
-
-        &__includes {
-            flex-direction: column;
-            margin-top: rem(32);
-        }
-
-        &__include {
-            &__title {
-                font-size: rem(18);
-                line-height: rem(20);
-            }
-
-            &__list {
-                gap: rem(20);
-            }
         }
     }
 }

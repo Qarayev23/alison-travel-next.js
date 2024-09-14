@@ -241,7 +241,7 @@ const TourDetail = () => {
               <GoodToKnowAccordion />
             </div>
             <div className={styles.card}>
-              <BookingCard />
+              <BookingCard type="tour" />
             </div>
           </div>
           <Comment onOpenModal={onOpenModal} />
@@ -260,7 +260,7 @@ const TourDetail = () => {
         </div>
         <BottomBar isHide={isShow} handleShow={handleShow} />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
-          <BookingCard handleShow={handleShow} />
+          <BookingCard type="tour" handleShow={handleShow} />
         </div>
         <div
           className={`${styles.overlay} ${isShow ? styles.show : ''}`}
