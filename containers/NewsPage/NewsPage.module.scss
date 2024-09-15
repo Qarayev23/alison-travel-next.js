@@ -1,0 +1,11 @@
+@import "@/assets/styles/utilities";
+ 
+.news {
+    &__list {
+        margin-top: rem(32);
+        margin-bottom: rem(32);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(16);
+    }
+}
