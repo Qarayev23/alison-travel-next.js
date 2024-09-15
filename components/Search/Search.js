@@ -105,7 +105,7 @@ const Search = () => {
                                                 <LazyImage
                                                     src="https://www.alisontravelgroup.com/uploads/193e836144ed6b0a2296.webp"
                                                     alt=""
-                                                    type="search"
+                                                    type="small"
                                                 />
                                             </span>
                                             <span className={styles.autocomplete__text}>A luxurious New Year&apos;s tour package in Azerbaijan</span>
@@ -117,7 +117,7 @@ const Search = () => {
                                                 <LazyImage
                                                     src="https://www.alisontravelgroup.com/uploads/40fbcf7b2def78973793.webp"
                                                     alt=""
-                                                    type="search"
+                                                    type="small"
                                                 />
                                             </span>
                                             <span className={styles.autocomplete__text}>Baku: Icheri Sheher walking tour package
@@ -130,7 +130,7 @@ const Search = () => {
                                                 <LazyImage
                                                     src="https://www.alisontravelgroup.com/uploads/447c35f5e28d0ada8886.webp"
                                                     alt=""
-                                                    type="search"
+                                                    type="small"
                                                 />
                                             </span>
                                             <span className={styles.autocomplete__text}>Great Azerbaijan tour package</span>
@@ -142,7 +142,7 @@ const Search = () => {
                                                 <LazyImage
                                                     src="https://www.alisontravelgroup.com/uploads/193e836144ed6b0a2296.webp"
                                                     alt=""
-                                                    type="search"
+                                                    type="small"
                                                 />
                                             </span>
                                             <span className={styles.autocomplete__text}>A luxurious New Year&apos;s tour package in Azerbaijan</span>
@@ -154,7 +154,7 @@ const Search = () => {
                                                 <LazyImage
                                                     src="https://www.alisontravelgroup.com/uploads/40fbcf7b2def78973793.webp"
                                                     alt=""
-                                                    type="search"
+                                                    type="small"
                                                 />
                                             </span>
                                             <span className={styles.autocomplete__text}>Baku: Icheri Sheher walking tour package

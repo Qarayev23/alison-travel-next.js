@@ -17,8 +17,8 @@ const LazyImage = ({ src, alt, sizes, className, type, borderRadius = "0.8rem" }
         <div
           className={`
             ${styles.spinner}
-            ${type === 'search' ? styles.search : ''}
-            ${type === 'hotel' ? styles.hotel : ''}
+            ${type === 'small' ? styles.small : ''}
+            ${type === 'middle' ? styles.middle : ''}
          `}>
           <ClipLoader color="#E63561" />
         </div>}

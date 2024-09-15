@@ -22,14 +22,14 @@
     justify-content: center;
     height: 100%;
 
-    &.search {
+    &.small {
         span {
             height: rem(15) !important;
             width: rem(15) !important;
         }
     }
 
-    &.hotel {
+    &.middle {
         span {
             height: rem(25) !important;
             width: rem(25) !important;
@@ -43,7 +43,7 @@
     }
 
     @media (max-width: 700px) {
-        &.search {
+        &.small {
             span {
                 height: rem(13) !important;
                 width: rem(13) !important;

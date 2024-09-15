@@ -47,6 +47,7 @@ const Comment = ({ onOpenModal }) => {
                             3 comments
                         </p>
                         <Select
+                            instanceId={'sorting-select'}
                             defaultValue={selectedOption}
                             onChange={setSelectedOption}
                             options={options}
@@ -154,16 +155,16 @@ const Comment = ({ onOpenModal }) => {
                             </div>
                             <div className={styles.review__item__images}>
                                 <div className={styles.review__item__image}>
-                                    <LazyImage src="/images/tour-1.svg" borderRadius='0.8rem' type="hotel" alt="" />
+                                    <LazyImage src="/images/tour-1.svg" type="middle" alt="" />
                                 </div>
                                 <div className={styles.review__item__image}>
-                                    <LazyImage src="/images/tour-1.svg" borderRadius='0.8rem' type="hotel" alt="" />
+                                    <LazyImage src="/images/tour-1.svg" type="middle" alt="" />
                                 </div>
                                 <div className={styles.review__item__image}>
-                                    <LazyImage src="/images/tour-1.svg" borderRadius='0.8rem' type="hotel" alt="" />
+                                    <LazyImage src="/images/tour-1.svg" type="middle" alt="" />
                                 </div>
                                 <div className={styles.review__item__image}>
-                                    <LazyImage src="/images/tour-1.svg" borderRadius='0.8rem' type="hotel" alt="" />
+                                    <LazyImage src="/images/tour-1.svg" type="middle" alt="" />
                                 </div>
                             </div>
                         </div>

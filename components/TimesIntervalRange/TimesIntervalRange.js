@@ -47,6 +47,7 @@ const TimesIntervalRange = () => {
                         key={props.key}
                         onMouseEnter={() => setHoverIndex(index)}
                         onMouseLeave={() => setHoverIndex(null)}
+                        className={styles.timesIntervalRange__thumb}
                         style={{
                             ...props.style,
                             height: '2.4rem',

@@ -29,7 +29,7 @@
     }
 
     &__wrapper {
-        padding: 0 rem(24) rem(48) rem(24);
+        padding: 0 rem(24) rem(32) rem(24);
     }
 
     &__header {
@@ -129,7 +129,7 @@
 
         &__wrapper {
             padding-bottom: rem(24);
-        }        
+        }
 
         &__close {
             svg {
@@ -180,7 +180,7 @@
             color: $white;
             font-family: $font-family-secondary;
 
-            &:hover{
+            &:hover {
                 background-color: $dark-red;
             }
         }

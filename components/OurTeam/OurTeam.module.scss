@@ -1,0 +1,105 @@
+@import "@/assets/styles/utilities";
+
+.ourTeam {
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: rem(32);
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: rem(16);
+        background-color: $gray-2;
+        border-radius: rem(8);
+
+        &__image {
+            width: rem(135);
+            height: rem(135);
+            position: relative;
+            border-radius: rem(8);
+            flex-shrink: 0;
+
+            img {
+                object-fit: cover;
+                border-radius: rem(8);
+            }
+        }
+
+        &__title {
+            margin-bottom: rem(4);
+            font-size: rem(16);
+            font-weight: 500;
+            line-height: rem(20);
+            font-family: $font-family-main;
+            color: $black-2;
+        }
+
+        &__desc {
+            font-size: rem(14);
+            line-height: rem(20);
+            color: $gray;
+            font-weight: 500;
+        }
+
+        &__socials {
+            margin-top: rem(16);
+            display: flex;
+            flex-direction: column;
+            gap: rem(8);
+        }
+    
+        &__social {
+            display: flex;
+            align-items: center;
+            gap: rem(5);
+            font-size: rem(14);
+            line-height: rem(20);
+            color: $gray;
+            font-weight: 500;
+    
+            img {
+                width: rem(20);
+                height: rem(20);
+            }
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        &__list {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        &__item {
+            &__image {
+                width: rem(100);
+                height: rem(100);
+            }
+
+            &__title {
+                font-size: rem(14);
+                line-height: rem(16);
+            }
+
+            &__desc {
+                font-size: rem(12);
+                line-height: rem(16);
+            }
+
+            &__socials {
+                margin-top: rem(8);
+            }
+
+            &__social {
+                font-size: rem(12);
+                line-height: rem(16);
+
+                img{
+                    width: rem(16);
+                    height: rem(16);
+                }
+            }
+        }
+    }
+}

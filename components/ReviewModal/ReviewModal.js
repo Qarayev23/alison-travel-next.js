@@ -71,60 +71,58 @@ const ReviewModal = ({ open, onCloseModal }) => {
                         <input type='text' placeholder='Full name' className="g-input" />
                     </div>
                     <div>
-                        <div className="g-select">
-                            <Select
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
-                                isSearchable={false}
-                                placeholder="Country"
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        border: '0.2rem solid #E6E8EC !important',
-                                        boxShadow: 'none !important',
-                                        borderRadius: '2.4rem',
-                                        width: '100%',
-                                        height: '4.8rem',
+                        <Select
+                            defaultValue={selectedOption}
+                            onChange={setSelectedOption}
+                            options={options}
+                            isSearchable={false}
+                            placeholder="Country"
+                            styles={{
+                                control: (baseStyles, state) => ({
+                                    ...baseStyles,
+                                    border: '0.2rem solid #E6E8EC !important',
+                                    boxShadow: 'none !important',
+                                    borderRadius: '2.4rem',
+                                    width: '100%',
+                                    height: '4.8rem',
+                                    "div": {
                                         "div": {
-                                            "div": {
-                                                color: "#777E90",
-                                                fontSize: "1.4rem",
-                                                lineHeight: "2.4rem",
-                                                fontWeight: "400",
-                                                marginLeft: "0.8rem",
-                                                marginRight: "0.8rem",
-                                            }
+                                            color: "#777E90",
+                                            fontSize: "1.4rem",
+                                            lineHeight: "2.4rem",
+                                            fontWeight: "400",
+                                            marginLeft: "0.8rem",
+                                            marginRight: "0.8rem",
                                         }
-                                    }),
-                                    placeholder: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        paddingLeft: "0",
-                                        fontSize: "1.4rem",
-                                        lineHeight: "2.4rem",
-                                        fontWeight: "500",
-                                        margin: "0",
-                                    }),
-                                    indicatorsContainer: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        "svg": {
-                                            fill: "#777E90",
-                                            width: "1.5rem",
-                                            height: "1.5rem",
-                                        },
-                                        "span": {
-                                            display: 'none'
-                                        }
-                                    }),
-                                    option: (provided) => ({
-                                        ...provided,
-                                        fontSize: "1.2rem",
-                                        lineHeight: "2rem",
-                                        fontWeight: "500",
-                                    }),
-                                }}
-                            />
-                        </div>
+                                    }
+                                }),
+                                placeholder: (baseStyles, state) => ({
+                                    ...baseStyles,
+                                    paddingLeft: "0",
+                                    fontSize: "1.4rem",
+                                    lineHeight: "2.4rem",
+                                    fontWeight: "500",
+                                    margin: "0",
+                                }),
+                                indicatorsContainer: (baseStyles, state) => ({
+                                    ...baseStyles,
+                                    "svg": {
+                                        fill: "#777E90",
+                                        width: "1.5rem",
+                                        height: "1.5rem",
+                                    },
+                                    "span": {
+                                        display: 'none'
+                                    }
+                                }),
+                                option: (provided) => ({
+                                    ...provided,
+                                    fontSize: "1.2rem",
+                                    lineHeight: "2rem",
+                                    fontWeight: "500",
+                                }),
+                            }}
+                        />
                     </div>
                     <div className={styles.upload}>
                         <label className={styles.upload__box}>
@@ -141,19 +139,19 @@ const ReviewModal = ({ open, onCloseModal }) => {
                         {
                             !!images.length && (
                                 <div className={styles.preview}>
-                                {images.map(image => (
-                                    <div key={image.id} className={styles.preview__image}>
-                                        <Image src={image.url} fill alt="Preview" />
-                                        <button
-                                            className={styles.delete__btn}
-                                            onClick={() => handleRemoveImage(image.id)}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none">
-                                                <path d="M3.88314 3.00078L5.7998 1.08411C6.04147 0.842447 6.04147 0.442448 5.7998 0.200781C5.55814 -0.0408854 5.15814 -0.0408854 4.91647 0.200781L2.9998 2.11745L1.08314 0.200781C0.841471 -0.0408854 0.441471 -0.0408854 0.199805 0.200781C-0.041862 0.442448 -0.041862 0.842447 0.199805 1.08411L2.11647 3.00078L0.199805 4.91745C-0.041862 5.15911 -0.041862 5.55911 0.199805 5.80078C0.324805 5.92578 0.483138 5.98411 0.641471 5.98411C0.799804 5.98411 0.958138 5.92578 1.08314 5.80078L2.9998 3.88411L4.91647 5.80078C5.04147 5.92578 5.1998 5.98411 5.35814 5.98411C5.51647 5.98411 5.6748 5.92578 5.7998 5.80078C6.04147 5.55911 6.04147 5.15911 5.7998 4.91745L3.88314 3.00078Z" fill="#DB593D" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
+                                    {images.map(image => (
+                                        <div key={image.id} className={styles.preview__image}>
+                                            <Image src={image.url} fill alt="Preview" />
+                                            <button
+                                                className={styles.delete__btn}
+                                                onClick={() => handleRemoveImage(image.id)}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none">
+                                                    <path d="M3.88314 3.00078L5.7998 1.08411C6.04147 0.842447 6.04147 0.442448 5.7998 0.200781C5.55814 -0.0408854 5.15814 -0.0408854 4.91647 0.200781L2.9998 2.11745L1.08314 0.200781C0.841471 -0.0408854 0.441471 -0.0408854 0.199805 0.200781C-0.041862 0.442448 -0.041862 0.842447 0.199805 1.08411L2.11647 3.00078L0.199805 4.91745C-0.041862 5.15911 -0.041862 5.55911 0.199805 5.80078C0.324805 5.92578 0.483138 5.98411 0.641471 5.98411C0.799804 5.98411 0.958138 5.92578 1.08314 5.80078L2.9998 3.88411L4.91647 5.80078C5.04147 5.92578 5.1998 5.98411 5.35814 5.98411C5.51647 5.98411 5.6748 5.92578 5.7998 5.80078C6.04147 5.55911 6.04147 5.15911 5.7998 4.91745L3.88314 3.00078Z" fill="#DB593D" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
                             )
                         }
                     </div>

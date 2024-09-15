@@ -16,4 +16,14 @@
             color: $black-2;
         }
     }
+
+    &__thumb {
+        &:first-of-type {
+            transform: translate(-50%, -50%);
+        }
+
+        &:last-of-type {
+            transform: translate(calc(100% * 10.2), rem(-11));
+        }
+    }
 }

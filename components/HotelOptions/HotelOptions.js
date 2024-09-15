@@ -69,7 +69,7 @@ const HotelOptions = () => {
                                             src='https://www.alisontravelgroup.com/uploads/b753eec1c847ecdb828f.webp'
                                             alt=''
                                             borderRadius='1.2rem'
-                                            type='hotel'
+                                            type='middle'
                                         />
                                     </div>
                                     <div className={styles.collapse__content__item__wrapper}>

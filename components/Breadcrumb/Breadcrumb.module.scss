@@ -49,5 +49,9 @@
         font-family: $font-family-secondary;
         color: $gray;
         white-space: nowrap;
+        
+        &:hover{
+            color: $black;
+        }
     }
 }

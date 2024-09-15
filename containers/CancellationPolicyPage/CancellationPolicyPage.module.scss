@@ -1,0 +1,56 @@
+@import "@/assets/styles/utilities";
+
+.page {
+    margin-top: rem(24);
+    margin-bottom: rem(48);
+
+    &__content {
+        font-size: rem(16);
+        line-height: rem(24);
+        color: $black-3;
+        font-family: $font-family-main;
+
+        p,
+        span {
+            font-size: rem(16);
+            line-height: rem(24);
+            color: $black-3;
+            font-family: $font-family-main;
+        }
+
+        strong {
+            a {
+                color: $black;
+            }
+        }
+
+        a {
+            color: $blue;
+        }
+
+        ul {
+            font-size: rem(16);
+            line-height: rem(24);
+            padding-left: rem(16);
+
+            li {
+                list-style: initial;
+            }
+        }
+
+        ol {
+            font-size: rem(16);
+            line-height: rem(24);
+            padding-left: rem(16);
+
+            li {
+                list-style: decimal;
+            }
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-top: 0;
+        margin-bottom: rem(24);
+    }
+}
