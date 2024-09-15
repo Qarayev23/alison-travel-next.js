@@ -1,0 +1,19 @@
+@import "@/assets/styles/utilities";
+
+.priceRange {
+    margin-top: rem(28);
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: rem(15);
+
+        &__text {
+            font-size: rem(14);
+            font-weight: 500;
+            line-height: rem(24);
+            color: $black-2;
+        }
+    }
+}

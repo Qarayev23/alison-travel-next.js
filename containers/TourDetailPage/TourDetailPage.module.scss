@@ -1,8 +1,6 @@
 @import "@/assets/styles/utilities";
 
 .tour {
-    margin-top: rem(8);
-
     &__title {
         font-size: rem(32);
         line-height: rem(40);
@@ -337,8 +335,6 @@
     }
 
     @media screen and (max-width: 700px) {
-        margin-top: rem(12);
-
         .bottomBar {
             display: flex;
         }

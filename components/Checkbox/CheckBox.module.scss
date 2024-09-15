@@ -1,58 +1,66 @@
 @import "@/assets/styles/utilities";
 
 .checkbox {
-    font-size: 14px;
-    display: block;
-    position: relative;
-    padding-left: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: rem(10);
+  padding-left: rem(36);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  span {
+    font-size: rem(14);
+    line-height: rem(20);
+    font-weight: 500;
+    color: $black-3;
+  }
+
+  /* Hide the browser's default checkbox */
+  input {
+    position: absolute;
+    opacity: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    color: var(--333-to-FF);
-  
-    /* Hide the browser's default checkbox */
-    input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-  
-      /* Show the checkmark when checked */
-      &:checked~.Checkmark {
-        background-color: $blue;
-        border-color: $blue;
-  
-        &:after {
-          border-color: white;
-        }
-      }
-    }
-  
-    /* Create a custom checkbox */
-    .Checkmark {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      height: 13px;
-      width: 13px;
-      border: 2px solid $border-color;
-      border-radius: 4px;
-      transform: translateY(-50%);
-  
-      /* Create the checkmark/indicator (hidden when not checked) */
+    height: 0;
+    width: 0;
+
+    /* Show the checkmark when checked */
+    &:checked~.checkbox__mark {
+      background-color: $blue;
+      border-color: $blue;
+
       &:after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 4px;
-        height: 7px;
-        border-color: $blue;
-        border-width: 0 2px 2px 0;
-        transform: translate(-50%, -50%) rotate(45deg);
+        border-color: white;
       }
     }
   }
+
+  /* Create a custom checkbox */
+  &__mark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: rem(24);
+    width: rem(24);
+    border: rem(2) solid $border-color;
+    border-radius: rem(4);
+    transform: translateY(-50%);
+    background-color: $white;
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    &:after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      width: rem(8);
+      height: rem(13);
+      border: solid $white;
+      border-width: 0 rem(2) rem(2) 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+}

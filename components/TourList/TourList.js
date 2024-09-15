@@ -10,15 +10,15 @@ const TourList = () => {
         </h1>
 
         <div className={styles.tour__list}>
-            <TourCard />
-            <TourCard />
-            <TourCard />
-            <TourCard />
-            <TourCard />
-            <TourCard />
-            <TourCard />
-            <TourCard />
-            <TourCard />
+            <TourCard isRow />
+            <TourCard isRow />
+            <TourCard isRow />
+            <TourCard isRow />
+            <TourCard isRow />
+            <TourCard isRow />
+            <TourCard isRow />
+            <TourCard isRow />
+            <TourCard isRow />
         </div>
         
         <ShowMore />

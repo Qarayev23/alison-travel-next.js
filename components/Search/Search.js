@@ -108,7 +108,7 @@ const Search = () => {
                                                     type="search"
                                                 />
                                             </span>
-                                            <span className={styles.autocomplete__text}>A luxurious New Year's tour package in Azerbaijan</span>
+                                            <span className={styles.autocomplete__text}>A luxurious New Year&apos;s tour package in Azerbaijan</span>
                                         </Link>
                                     </li>
                                     <li className={styles.autocomplete__item}>
@@ -145,7 +145,7 @@ const Search = () => {
                                                     type="search"
                                                 />
                                             </span>
-                                            <span className={styles.autocomplete__text}>A luxurious New Year's tour package in Azerbaijan</span>
+                                            <span className={styles.autocomplete__text}>A luxurious New Year&apos;s tour package in Azerbaijan</span>
                                         </Link>
                                     </li>
                                     <li className={styles.autocomplete__item}>
@@ -164,7 +164,7 @@ const Search = () => {
                                 </ul>
                                 <div className={styles.autocomplete__more}>
                                     <Link href='/' className={styles.autocomplete__more__link}>
-                                        See all results for "baku"
+                                        See all results for &quot;baku&quot;
                                         <SvgArrowRight />
                                     </Link>
                                 </div>

@@ -16,4 +16,17 @@
         grid-template-columns: repeat(3, 1fr);
         gap: rem(24) rem(16);
     }
+
+    @media screen and (max-width: 700px) {
+        &__title {
+            font-size: rem(20);
+            line-height: rem(24);
+            margin-bottom: rem(16);
+        }
+
+        &__list {
+            grid-template-columns: repeat(1, 1fr);
+            gap: rem(16);
+        }
+    }
 }
