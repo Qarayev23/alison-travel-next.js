@@ -1,4 +1,4 @@
-import styles from './Checkbox.module.scss';
+import styles from './style.module.scss';
 
 function Checkbox({ name }) {
     return (
