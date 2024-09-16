@@ -134,7 +134,7 @@ const Navbar = () => {
                                 </ul>
                             </div>
 
-                            <Link href='/' className={styles.nav__fav}>
+                            <Link href='/favorites' className={styles.nav__fav}>
                                 <SvgHeart />
                             </Link>
 
