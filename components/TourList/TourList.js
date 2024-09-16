@@ -5,23 +5,23 @@ import styles from './TourList.module.scss'
 const TourList = () => {
   return (
     <div className={styles.tour}>
-        <h1 className={styles.tour__title}>
-            Baku: 1,308 properties found
-        </h1>
+      <h1 className={styles.tour__title}>
+        Baku: 1,308 properties found
+      </h1>
 
-        <div className={styles.tour__list}>
-            <TourCard isRow />
-            <TourCard isRow />
-            <TourCard isRow />
-            <TourCard isRow />
-            <TourCard isRow />
-            <TourCard isRow />
-            <TourCard isRow />
-            <TourCard isRow />
-            <TourCard isRow />
-        </div>
-        
-        <ShowMore />
+      <div className={styles.tour__list}>
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+      </div>
+
+      <ShowMore />
     </div>
   )
 }

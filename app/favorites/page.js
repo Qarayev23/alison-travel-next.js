@@ -1,8 +1,8 @@
-import React from 'react'
+import FavoritesPage from '@/containers/FavoritesPage/FavoritesPage'
 
 const Page = () => {
   return (
-    <div>Page</div>
+    <FavoritesPage />
   )
 }
 

@@ -48,6 +48,13 @@
                 box-shadow: 0px 8px 16px -8px #0F0F0F1A;
                 background-color: $white;
 
+                &.active {
+                    svg {
+                        color: $red;
+                        fill-rule: initial;
+                    }
+                }
+
                 &:hover {
                     svg {
                         color: $red;

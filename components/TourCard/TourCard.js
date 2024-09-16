@@ -4,9 +4,9 @@ import Image from 'next/image'
 import SvgHeart from '@/assets/icons/Heart'
 import LazyImage from '../LazyImage/LazyImage'
 
-const TourCard = ({ isRow }) => {
+const TourCard = ({ isFavourite }) => {
     return (
-        <Link href='/tours/example/example' className={`${styles.card} ${isRow ? styles.row : ''}`}>
+        <Link href='/tours/example/example' className={styles.card}>
             <div className={styles.card__top}>
                 <LazyImage
                     src='/images/tour-1.svg'
@@ -15,7 +15,7 @@ const TourCard = ({ isRow }) => {
                 <div className={styles.card__top__content}>
                     <span className={styles.card__top__content__text}>Best seller</span>
                     <button
-                        className={styles.card__top__content__icon}
+                        className={`${styles.card__top__content__icon} ${isFavourite ? styles.active : ''}`}
                         type='button'
                         onClick={(e) => {
                             e.preventDefault();

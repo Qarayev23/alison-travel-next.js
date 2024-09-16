@@ -4,7 +4,7 @@ import Image from 'next/image'
 import SvgHeart from '@/assets/icons/Heart'
 import LazyImage from '../LazyImage/LazyImage'
 
-const TransferCard = () => {
+const TransferCard = ({ isFavourite }) => {
     return (
         <Link href='/' className={styles.card}>
             <div className={styles.card__top}>
@@ -14,7 +14,7 @@ const TransferCard = () => {
                 />
                 <div className={styles.card__top__content}>
                     <button
-                        className={styles.card__top__content__icon}
+                        className={`${styles.card__top__content__icon} ${isFavourite ? styles.active : ''}`}
                         type='button'
                         onClick={(e) => {
                             e.preventDefault();
