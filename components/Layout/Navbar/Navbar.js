@@ -5,11 +5,13 @@ import styles from './Navbar.module.scss'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import SvgHeart from '@/assets/icons/Heart'
+import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
     const [showLangDropDown, setShowLangDropDown] = useState(false)
     const [showNavbar, setShowNavbar] = useState(false)
     const dropdownRef = useRef(null)
+    const pathname = usePathname()
 
     const handleShowLangDropdown = () => {
         setShowLangDropDown((prev) => !prev)
@@ -32,6 +34,13 @@ const Navbar = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [dropdownRef]);
+
+    useEffect(() => {
+        if (showNavbar) {
+            setShowNavbar(false)
+        }
+    }, [pathname])
+
 
     return (
         <header className={styles.header}>
