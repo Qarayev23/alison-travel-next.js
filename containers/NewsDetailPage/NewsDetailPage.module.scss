@@ -99,9 +99,9 @@
             background: $gray-2;
             padding: rem(24) 0;
 
-            &__wrapper{
-                margin-top: rem(24);
-                padding-bottom: rem(32);
+            &__wrapper {
+                margin-top: rem(24) !important;
+                padding-bottom: rem(32) !important;
             }
         }
 

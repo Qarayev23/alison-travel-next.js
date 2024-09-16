@@ -6,7 +6,7 @@ import LazyImage from '../LazyImage/LazyImage'
 
 const TourCard = ({ isRow }) => {
     return (
-        <Link href='/' className={`${styles.card} ${isRow ? styles.row : ''}`}>
+        <Link href='/tours/example/example' className={`${styles.card} ${isRow ? styles.row : ''}`}>
             <div className={styles.card__top}>
                 <LazyImage
                     src='/images/tour-1.svg'

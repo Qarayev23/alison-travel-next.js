@@ -5,7 +5,7 @@ import LazyImage from '../LazyImage/LazyImage'
 
 const DestinationCard = () => {
     return (
-        <Link href="/" className={styles.card}>
+        <Link href="/tours" className={styles.card}>
             <div className={styles.card__img}>
                 <LazyImage src="/images/tour-1.svg" alt='' />
             </div>

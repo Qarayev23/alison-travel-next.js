@@ -60,10 +60,10 @@ const Navbar = () => {
                                         <Link href='/' className={styles.nav__link}>Home</Link>
                                     </li>
                                     <li className={styles.nav__item}>
-                                        <Link href='/' className={styles.nav__link}>Our guests</Link>
+                                        <Link href='/guests' className={styles.nav__link}>Our guests</Link>
                                     </li>
                                     <li className={styles.nav__item}>
-                                        <Link href='/' className={styles.nav__link}>Contact</Link>
+                                        <Link href='/contact' className={styles.nav__link}>Contact</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -76,26 +76,25 @@ const Navbar = () => {
                                         <Link href='/' className={styles.nav__link}>Home</Link>
                                     </li>
                                     <li className={styles.nav__item}>
-                                        <Link href='/' className={styles.nav__link}>Contacts</Link>
+                                        <Link href='/contact' className={styles.nav__link}>Contacts</Link>
                                     </li>
                                     <li className={styles.nav__item}>
-                                        <Link href='/' className={styles.nav__link}>Cancellation policy</Link>
+                                        <Link href='/cancellation-policy' className={styles.nav__link}>Cancellation policy</Link>
                                     </li>
                                 </ul>
-
 
                                 <ul className={styles.nav__list}>
                                     <li className={styles.nav__list__title}>
                                         Information
                                     </li>
                                     <li className={styles.nav__item}>
-                                        <Link href='/' className={styles.nav__link}>About us</Link>
+                                        <Link href='/about-us' className={styles.nav__link}>About us</Link>
                                     </li>
                                     <li className={styles.nav__item}>
-                                        <Link href='/' className={styles.nav__link}>Our guests</Link>
+                                        <Link href='/guests' className={styles.nav__link}>Our guests</Link>
                                     </li>
                                     <li className={styles.nav__item}>
-                                        <Link href='/' className={styles.nav__link}>Travel news</Link>
+                                        <Link href='/news' className={styles.nav__link}>Travel news</Link>
                                     </li>
                                 </ul>
                             </div>

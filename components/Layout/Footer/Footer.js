@@ -26,10 +26,10 @@ const Footer = () => {
                                     <Link href='/' className={styles.footer__link}>Home</Link>
                                 </li>
                                 <li className={styles.footer__item}>
-                                    <Link href='/' className={styles.footer__link}>Contacts</Link>
+                                    <Link href='/contact' className={styles.footer__link}>Contacts</Link>
                                 </li>
                                 <li className={styles.footer__item}>
-                                    <Link href='/' className={styles.footer__link}>Cancellation policy</Link>
+                                    <Link href='/cancellation-policy' className={styles.footer__link}>Cancellation policy</Link>
                                 </li>
                             </ul>
                             <ul className={styles.footer__list}>
@@ -37,13 +37,13 @@ const Footer = () => {
                                     Information
                                 </li>
                                 <li className={styles.footer__item}>
-                                    <Link href='/' className={styles.footer__link}>About us</Link>
+                                    <Link href='/about-us' className={styles.footer__link}>About us</Link>
                                 </li>
                                 <li className={styles.footer__item}>
-                                    <Link href='/' className={styles.footer__link}>Our guests</Link>
+                                    <Link href='/guests' className={styles.footer__link}>Our guests</Link>
                                 </li>
                                 <li className={styles.footer__item}>
-                                    <Link href='/' className={styles.footer__link}>Travel news</Link>
+                                    <Link href='/news' className={styles.footer__link}>Travel news</Link>
                                 </li>
                             </ul>
                             <ul className={styles.footer__list}>

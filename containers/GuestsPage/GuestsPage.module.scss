@@ -1,8 +1,8 @@
 @import "@/assets/styles/utilities";
 
 .guests {
-    padding-top: rem(24);
-    padding-bottom: rem(48);
+    margin-top: rem(24);
+    margin-bottom: rem(48);
 
     &__list {
         display: grid;
@@ -13,6 +13,7 @@
     &__image {
         height: rem(320);
         position: relative;
+        cursor: pointer;
 
         img {
             object-fit: cover;
@@ -20,7 +21,33 @@
         }
     }
 
+    &__slider {
+        display: none;
+        padding-bottom: rem(30);
+        margin-left: rem(-20) !important;
+        margin-right: rem(-20) !important;
+
+        &__item {
+            position: relative;
+            height: rem(320);
+
+            img {
+                object-fit: cover;
+                cursor: pointer
+            }
+        }
+    }
+
     @media screen and (max-width: 700px) {
-        grid-template-columns: repeat(1, 1fr);
+        margin-top: rem(0);
+        margin-bottom: rem(24);
+
+        &__list {
+            display: none;
+        }
+
+        &__slider {
+            display: block;
+        }
     }
 }

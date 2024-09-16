@@ -10,7 +10,7 @@ const VisaBanner = () => {
                     <h2 className={styles.visaBanner__title}>
                         Get travel visa to Azerbaijan
                     </h2>
-                    <Link href="/visas" className={styles.visaBanner__link}>
+                    <Link href="/contact" className={styles.visaBanner__link}>
                         Apply for visa
                     </Link>
                     <Image src="https://www.alisontravelgroup.com/uploads/0dddd452956e3b261889.webp" fill priority alt='visa' />

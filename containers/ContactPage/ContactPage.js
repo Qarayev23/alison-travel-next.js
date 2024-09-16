@@ -56,8 +56,10 @@ const ContactPage = () => {
             <Breadcrumb />
             <div className={styles.contact}>
                 <div className={styles.contact__wrapper}>
-                    <h1 className="page-title">Contact Us</h1>
-                    <p className="section-text">Let’s contact!</p>
+                    <div className={styles.contact__heading}>
+                        <h1 className="page-title">Contact Us</h1>
+                        <p className="section-text">Let’s contact!</p>
+                    </div>
 
                     <form className={styles.contact__form}>
                         <div className={styles.contact__form__group}>

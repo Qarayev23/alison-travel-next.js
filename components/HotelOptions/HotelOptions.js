@@ -63,7 +63,7 @@ const HotelOptions = () => {
                     <div className={styles.collapse__content__wrapper}>
                         {
                             Array.from({ length: 3 }).map((_, index) => (
-                                <Link href='/' className={styles.collapse__content__item} key={index}>
+                                <Link href='/hotel-bookings/example' className={styles.collapse__content__item} key={index}>
                                     <div className={styles.collapse__content__item__img}>
                                         <LazyImage
                                             src='https://www.alisontravelgroup.com/uploads/b753eec1c847ecdb828f.webp'

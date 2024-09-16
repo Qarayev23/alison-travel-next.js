@@ -6,7 +6,7 @@ import LazyImage from '../LazyImage/LazyImage';
 
 const HotelCard = () => {
     return (
-        <Link href='/' className={styles.card}>
+        <Link href='/hotel-bookings/example' className={styles.card}>
             <div className={styles.card__top}>
                 <LazyImage
                     src='https://www.alisontravelgroup.com/uploads/e31dac66c74c92e4adb9.webp'
