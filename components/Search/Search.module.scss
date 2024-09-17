@@ -74,6 +74,7 @@
         border-radius: rem(50);
         border: rem(1) solid $border-color;
         position: relative;
+        background: $white;
 
         &__left {
             display: flex;
@@ -125,6 +126,7 @@
             color: $gray;
             height: rem(48);
             font-family: $font-family-main;
+            background: $white;
         }
 
         &__btn {
