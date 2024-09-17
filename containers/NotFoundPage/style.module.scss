@@ -1,0 +1,59 @@
+@import "@/assets/styles/utilities";
+
+.error {
+    margin-top: rem(100);
+    margin-bottom: rem(60);
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title {
+        font-weight: 700;
+        font-size: rem(250);
+        line-height: rem(112);
+        text-align: center;
+    }
+
+    &__desc {
+        font-weight: 700;
+        font-size: rem(25);
+        padding-top: rem(70);
+        text-transform: uppercase;
+    }
+
+    &__link {
+        padding: rem(16) rem(30);
+        border-radius: rem(90);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $red;
+        color: $white;
+        font-size: rem(16);
+        line-height: rem(16);
+        font-weight: 700;
+        font-family: $font-family-secondary;
+        margin-top: rem(20);
+
+        &:hover {
+            background: $dark-red;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-bottom: rem(24);
+        margin-top: rem(50);
+
+        &__title {
+            font-size: 130px;
+        }
+
+        &__desc {
+            font-size: rem(20);
+            padding-top: rem(10);
+        }
+    }
+}

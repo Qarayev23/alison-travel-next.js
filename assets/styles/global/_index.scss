@@ -213,14 +213,12 @@ textarea {
     }
 }
 
-.tour__btn__slider {
+.tour__btn__slider.swiper {
     margin-bottom: rem(40);
 
-    .swiper {
-        &-slide {
-            width: auto !important;
-            margin-right: rem(8) !important;
-        }
+    .swiper-slide {
+        width: auto !important;
+        margin-right: rem(8) !important;
     }
 
     @media screen and (max-width: 700px) {
