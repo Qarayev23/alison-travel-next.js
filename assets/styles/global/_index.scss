@@ -301,14 +301,6 @@ textarea {
     }
 }
 
-.react-responsive-modal-container {
-    padding: rem(16);
-
-    @media screen and (max-width: 700px) {
-        background: $white !important;
-    }
-}
-
 .react-responsive-modal {
     &-modal {
         margin: rem(15) 0 !important;
@@ -319,6 +311,11 @@ textarea {
         padding: rem(32) rem(56) !important;
         overflow-y: initial !important;
         background-color: $white !important;
+    }
+
+    &-container {
+        padding: rem(16);
+        padding-top: rem(50);
     }
 
     &-closeButton {
@@ -342,10 +339,18 @@ textarea {
 
     @media screen and (max-width: 700px) {
         &-modal {
-            padding: rem(32) 0 !important;
-            box-shadow: none !important;
+            padding: 0 !important;
             margin: 0 !important;
+            height: 100%;
+            box-shadow: none !important;
+        }
 
+        &-closeButton {
+            top: rem(-35) !important;
+        }
+
+        &-container {
+            background: $white !important;
         }
     }
-}  
+}

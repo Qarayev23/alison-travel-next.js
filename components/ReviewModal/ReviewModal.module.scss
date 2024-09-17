@@ -32,7 +32,7 @@
             cursor: pointer;
             display: flex;
 
-            svg{
+            svg {
                 width: rem(20);
                 height: rem(20);
             }
@@ -133,4 +133,10 @@
             background: $dark-red;
         }
     }
+
+    // @media screen and (max-width: 700px) {
+    //     &__title {
+    //         margin-bottom: rem(48);
+    //     }
+    // }
 }

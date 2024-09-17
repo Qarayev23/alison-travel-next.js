@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import SvgArrowRight from '@/assets/icons/ArrowRight';
 import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 import TourCard from '../TourCard/TourCard';
+import ShowMore from '../UI/ShowMore/ShowMore';
 
 const DailyTours = () => {
     const swiperRef = useRef(null);
@@ -73,6 +74,7 @@ const DailyTours = () => {
                         <SvgArrowRight />
                     </button>
                 </div>
+                <ShowMore />
             </div>
         </div>
     )

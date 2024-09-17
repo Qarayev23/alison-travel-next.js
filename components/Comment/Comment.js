@@ -44,7 +44,7 @@ const Comment = ({ onOpenModal }) => {
                 <div className={styles.review}>
                     <div className={styles.review__top}>
                         <p className={styles.review__top__text}>
-                            3 comments
+                            3 reviews
                         </p>
                         <Select
                             instanceId={'sorting-select'}
