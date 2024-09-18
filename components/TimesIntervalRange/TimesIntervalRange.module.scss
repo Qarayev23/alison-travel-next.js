@@ -3,6 +3,45 @@
 .timesIntervalRange {
     margin-top: rem(28);
 
+    &__inputs {
+        display: flex;
+        gap: rem(16);
+        margin-bottom: rem(24);
+    }
+
+    &__input {
+        width: calc(50% - rem(8));
+        position: relative;
+        height: rem(48);
+        border-radius: rem(8);
+        border: rem(1) solid $gray;
+        display: flex;
+
+        &__text {
+            font-size: rem(12);
+            font-weight: 500;
+            line-height: rem(12);
+            color: $black-2;
+            position: absolute;
+            left: rem(14);
+            top: rem(6);
+            color: $gray;
+        }
+
+        input {
+            width: 100%;
+            height: rem(35);
+            border: none;
+            border-radius: rem(8);
+            font-size: rem(14);
+            font-weight: 500;
+            line-height: rem(16);
+            color: $black-2;
+            padding: rem(7) rem(14) 0 rem(14);
+            margin-top: auto;
+        }
+    }
+
     &__footer {
         display: flex;
         justify-content: space-between;

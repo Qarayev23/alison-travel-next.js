@@ -15,7 +15,7 @@ const AboutUsPage = () => {
                         About us
                     </h1>
                     <p className='section-text'>Let’s contact!</p>
-                    <div className={styles.about__content}>
+                    <div className={`${styles.about__content} rich-text`}>
                         <p>Alison Travel Group is a full-service travel agency that specializes in providing custom and personalized travel services for individuals, families, groups, and businesses. We offer a variety of services including vacation planning, honeymoons, corporate events and meetings, cruises and more. With our extensive network of suppliers and industry experts we are able to provide our clients with the best prices on flights, hotels and car rentals. Our experienced agents are dedicated to assisting you in finding the perfect trip for your budget and needs. We take pride in offering exceptional customer service before, during and after your travels so you can be sure that you’re getting the most out of your vacation experience.
                             <br /><br />
                             As a brand, we aim to provide the best travel booking platform for everyone and provide it to our customers as a reliable travel partner. Our services include offering cheap flights and hotel booking services, great tours, visa support, etc. Here you will find the best tours and hotel offers. Alison Travel is one of the best travel sites for you to plan your trip flawlessly.

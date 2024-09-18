@@ -28,51 +28,6 @@
         }
     }
 
-    &__desc {
-        font-size: rem(16);
-        line-height: rem(24);
-        color: $black-3;
-        font-family: $font-family-main;
-
-        p,
-        span {
-            font-size: rem(16);
-            line-height: rem(24);
-            color: $black-3;
-            font-family: $font-family-main;
-        }
-
-        strong {
-            a {
-                color: $black;
-            }
-        }
-
-        a {
-            color: $blue;
-        }
-
-        ul {
-            font-size: rem(16);
-            line-height: rem(24);
-            padding-left: rem(16);
-
-            li {
-                list-style: initial;
-            }
-        }
-
-        ol {
-            font-size: rem(16);
-            line-height: rem(24);
-            padding-left: rem(16);
-
-            li {
-                list-style: decimal;
-            }
-        }
-    }
-
     .relatedNews {
         flex-grow: 1;
 

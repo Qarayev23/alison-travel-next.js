@@ -93,6 +93,59 @@ textarea {
     width: 100% !important;
 }
 
+.rich-content {
+    font-size: rem(16);
+    line-height: rem(24);
+    font-family: $font-family-main;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: rem(18);
+    }
+
+    p,
+    span {
+        font-size: rem(16);
+        line-height: rem(24);
+        color: $black-3;
+        font-family: $font-family-main;
+    }
+
+    strong {
+        a {
+            color: $black;
+        }
+    }
+
+    a {
+        color: $blue;
+    }
+
+    ul {
+        font-size: rem(16);
+        line-height: rem(24);
+        padding-left: rem(16);
+
+        li {
+            list-style: initial;
+        }
+    }
+
+    ol {
+        font-size: rem(16);
+        line-height: rem(24);
+        padding-left: rem(16);
+
+        li {
+            list-style: decimal;
+        }
+    }
+}
+
 .search__tab__slider {
     .swiper {
         &-wrapper {

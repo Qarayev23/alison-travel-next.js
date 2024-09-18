@@ -1,25 +1,65 @@
-import React, { useState } from 'react';
+"use client";
+
+import { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import styles from './TimesIntervalRange.module.scss';
 
 const TimesIntervalRange = () => {
-    const [values, setValues] = useState([1]);
-    const [hoverIndex, setHoverIndex] = useState(null)
+    const [inputValues, setInputValues] = useState(['1 night', '10 nights']); // Daxil edilən dəyərlər üçün ayrı state
+    const [values, setValues] = useState([1, 10]); // Slider dəyərləri üçün state
+    const min = 1;
+    const max = 10;
+
+    // Input dəyərlərini idarə etmək üçün funksiya
+    const handleInputChange = (index, value) => {
+        const numericValue = parseInt(value, 10) || min; // Rəqəmləri çıxarır və min ilə müqayisə edir
+        const newValue = `${numericValue} night${numericValue > 1 ? 's' : ''}`; // Pluralization dəstəyi
+        const newInputValues = [...inputValues];
+        newInputValues[index] = newValue;
+        setInputValues(newInputValues);
+
+        // Slider dəyərlərini tənzimləyir
+        const newValues = [...values];
+        newValues[index] = Math.max(min, Math.min(max, numericValue));
+        setValues(newValues);
+    };
 
     return (
         <div className={styles.timesIntervalRange}>
+            <div className={styles.timesIntervalRange__inputs}>
+                <div className={styles.timesIntervalRange__input}>
+                    <p className={styles.timesIntervalRange__input__text}>Min</p>
+                    <input
+                        type="text"
+                        value={inputValues[0]}
+                        onChange={(e) => handleInputChange(0, e.target.value)}
+                    />
+                </div>
+                <div className={styles.timesIntervalRange__input}>
+                    <p className={styles.timesIntervalRange__input__text}>Max</p>
+                    <input
+                        type="text"
+                        value={inputValues[1]}
+                        onChange={(e) => handleInputChange(1, e.target.value)}
+                    />
+                </div>
+            </div>
             <Range
                 step={1}
-                min={1}
-                max={10}
+                min={min}
+                max={max}
                 values={values}
-                onChange={(values) => setValues(values)}
+                onChange={(newValues) => {
+                    setValues(newValues);
+                    setInputValues(newValues.map(value => `${value} night${value > 1 ? 's' : ''}`)); // Slider dəyərlərini yeniləyir
+                }}
                 renderTrack={({ props, children }) => (
                     <div
                         onMouseDown={props.onMouseDown}
                         onTouchStart={props.onTouchStart}
                         style={{
                             ...props.style,
+                            padding: '0 0.8rem',
                         }}
                     >
                         <div
@@ -31,8 +71,8 @@ const TimesIntervalRange = () => {
                                 background: getTrackBackground({
                                     values: values,
                                     colors: ['#E6E8EC', '#3B71FE', '#3B71FE'],
-                                    min: 1,
-                                    max: 10
+                                    min: min,
+                                    max: max
                                 }),
                                 alignSelf: 'center'
                             }}
@@ -45,8 +85,6 @@ const TimesIntervalRange = () => {
                     <div
                         {...props}
                         key={props.key}
-                        onMouseEnter={() => setHoverIndex(index)}
-                        onMouseLeave={() => setHoverIndex(null)}
                         className={styles.timesIntervalRange__thumb}
                         style={{
                             ...props.style,
@@ -59,30 +97,9 @@ const TimesIntervalRange = () => {
                             justifyContent: 'center',
                             alignItems: 'center',
                         }}
-                    >
-                        {(hoverIndex === index || isDragged) && (
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    top: '-2.7rem',
-                                    color: '#FFF',
-                                    fontSize: '1.2rem',
-                                    lineHeight: '1.2rem',
-                                    padding: '0.6rem',
-                                    borderRadius: '0.8rem',
-                                    backgroundColor: '#23262F',
-                                }}
-                            >
-                                {`${values[index]}`}
-                            </div>
-                        )}
-                    </div>
+                    />
                 )}
             />
-            <div className={styles.timesIntervalRange__footer}>
-                <span className={styles.timesIntervalRange__footer__text}>1 nights</span>
-                <span className={styles.timesIntervalRange__footer__text}>10 nights</span>
-            </div>
         </div>
     );
 };
