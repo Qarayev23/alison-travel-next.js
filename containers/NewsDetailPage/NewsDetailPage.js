@@ -25,7 +25,7 @@ const NewsDetailPage = () => {
                                 Top 10 Sightseeing in Baku
                             </h1>
                             <p className="section-text">December 19, 2022</p>
-                            <div className={`${styles.news__desc} rich-text`}>
+                            <div className={`${styles.news__desc} rich-content`}>
                                 <p><strong>Baku</strong> is the capital and largest city of Azerbaijan. It is located on the southern shore of the Caspian Sea and is one of the oldest cities in the world, with a history dating back to at least the 8th century AD. The city has a population of 2.2 million people, making it one of the largest cities in the Caucasus region. Baku is home to many landmarks, including its ancient walled city core, which contains several UNESCO World Heritage Sites such as Maiden Tower and Shirvanshah Palace.</p>
                                 <br />
                                 <p><strong>1) <a href="https://en.wikipedia.org/wiki/Maiden_Tower_(Baku)" target="_blank" rel="noopener">Maiden Tower</a> </strong>is a 12th-century tower located in the old city of Baku city, Azerbaijan. It is one of the most prominent landmarks and tourist attractions in Baku. The tower's exact purpose has been debated for centuries, but it is believed to have been used as a defense structure, astronomical observatory, or a Zoroastrian temple. It stands 30 meters tall and has eight stories connected by an internal staircase. The walls are made of solid stone blocks and feature inscriptions from various periods of the tower's history.</p>

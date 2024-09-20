@@ -11,7 +11,7 @@ const CancellationPolicyPage = () => {
             Cancellation policy
           </h1>
           <p className='section-text'>Let’s contact!</p>
-          <div className={`${styles.page__content} rich-text`}>
+          <div className={`${styles.page__content} rich-content`}>
             <p>As Alison Travel, we know and understand that your plans can change or sometimes you may need to cancel your booking. We have prepared a policy in order to protect the interests of our valued customers and our company. Please review our cancellation policy below before making any kind of transaction such as reservation, reservation and purchase.</p>
             <br />
             <p><strong>In terms of transactions that are paid at the time of booking</strong></p>
