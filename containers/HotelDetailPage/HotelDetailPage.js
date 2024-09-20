@@ -11,7 +11,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'react-image-lightbox/style.css';
 import 'react-responsive-modal/styles.css';
-import styles from './HotelPage.module.scss';
+import styles from './HotelDetailPage.module.scss';
 import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAccordion';
 import BookingCard from '@/components/BookingCard/BookingCard';
 import BottomBar from '@/components/BottomBar/BottomBar';
@@ -20,7 +20,7 @@ import TourCard from '@/components/TourCard/TourCard';
 import ReviewModal from '@/components/ReviewModal/ReviewModal';
 import ShowMore from '@/components/UI/ShowMore/ShowMore';
 
-const HotelPage = () => {
+const HotelDetailPage = () => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -112,7 +112,7 @@ const HotelPage = () => {
                 <Image src='/images/line-10.svg' width={16} height={16} alt='Calendar' />
                 <span>Free cancellation available</span>
               </div>
-              <div className={styles.hotel__description}>
+              <div className={`${styles.hotel__description} rich-content`}>
                 <p>
                   Described by Queenstown House & Garden magazine as having 'one of the best views we've ever seen' you will love relaxing in this newly built, architectural house sitting proudly on Queenstown Hill.
                 </p>
@@ -195,4 +195,4 @@ const HotelPage = () => {
   );
 };
 
-export default HotelPage;
+export default HotelDetailPage;

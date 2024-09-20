@@ -127,7 +127,7 @@ const TourDetailPage = () => {
                 <Image src='/images/line-10.svg' width={16} height={16} alt='Calendar' />
                 <span>Free cancellation available</span>
               </div>
-              <div className={styles.tour__description}>
+              <div className={`${styles.tour__description} rich-content`}>
                 <p>
                   Described by Queenstown House & Garden magazine as having 'one of the best views we've ever seen' you will love relaxing in this newly built, architectural house sitting proudly on Queenstown Hill.
                 </p>

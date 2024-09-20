@@ -1,8 +1,8 @@
-import HotelPage from '@/containers/HotelPage/HotelPage'
+import HotelDetailPage from '@/containers/HotelDetailPage/HotelDetailPage'
 
 const Page = () => {
   return (
-    <HotelPage />
+    <HotelDetailPage />
   )
 }
 

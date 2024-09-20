@@ -175,34 +175,7 @@
 
     &__description {
         margin-top: rem(20);
-        font-size: rem(16);
-        line-height: rem(24);
         margin-bottom: rem(48);
-
-        p {
-            font-size: rem(16) !important;
-            line-height: rem(24) !important;
-        }
-
-        ul {
-            font-size: rem(14);
-            line-height: rem(24);
-            padding-left: rem(16);
-
-            li {
-                list-style: initial;
-            }
-        }
-
-        ol {
-            font-size: rem(14);
-            line-height: rem(24);
-            padding-left: rem(16);
-
-            li {
-                list-style: decimal;
-            }
-        }
     }
 
     &__facilities {
@@ -368,11 +341,6 @@
             display: block;
             margin-left: rem(-20) !important;
             margin-right: rem(-20) !important;
-        }
-
-        &__description {
-            font-size: rem(14);
-            line-height: rem(24);
         }
     }
 }

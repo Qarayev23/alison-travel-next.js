@@ -110,7 +110,7 @@ textarea {
     span {
         font-size: rem(16);
         line-height: rem(24);
-        color: $black-3;
+        color: $black;
         font-family: $font-family-main;
     }
 
@@ -141,6 +141,36 @@ textarea {
 
         li {
             list-style: decimal;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        font-size: rem(14);
+        line-height: rem(24);
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: rem(16);
+        }
+
+        p,
+        span {
+            font-size: rem(14);
+            line-height: rem(20);
+        }
+
+        ul {
+            font-size: rem(14);
+            line-height: rem(20);
+        }
+
+        ol {
+            font-size: rem(14);
+            line-height: rem(20);
         }
     }
 }

@@ -199,28 +199,6 @@
 
     &__description {
         margin-top: rem(20);
-        font-size: rem(16);
-        line-height: rem(24);
-
-        ul {
-            font-size: rem(14);
-            line-height: rem(24);
-            padding-left: rem(16);
-
-            li {
-                list-style: initial;
-            }
-        }
-
-        ol {
-            font-size: rem(14);
-            line-height: rem(24);
-            padding-left: rem(16);
-
-            li {
-                list-style: decimal;
-            }
-        }
     }
 
     &__includes {
@@ -383,11 +361,6 @@
             display: block;
             margin-left: rem(-20) !important;
             margin-right: rem(-20) !important;
-        }
-
-        &__description {
-            font-size: rem(14);
-            line-height: rem(24);
         }
 
         &__includes {
