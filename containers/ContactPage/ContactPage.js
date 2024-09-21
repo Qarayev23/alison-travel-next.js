@@ -89,6 +89,7 @@ const ContactPage = () => {
                                         width: '100%',
                                         height: '4.8rem',
                                         width: '15rem',
+                                        background: "#FCFCFD",
                                         "div": {
                                             "div": {
                                                 color: "#777E90",
@@ -153,6 +154,7 @@ const ContactPage = () => {
                                         width: '100%',
                                         height: '4.8rem',
                                         width: '100%',
+                                        background: "#FCFCFD",
                                         "div": {
                                             "div": {
                                                 color: "#777E90",

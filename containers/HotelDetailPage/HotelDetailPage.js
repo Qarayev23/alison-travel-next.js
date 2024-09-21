@@ -19,14 +19,18 @@ import Comment from '@/components/Comment/Comment';
 import TourCard from '@/components/TourCard/TourCard';
 import ReviewModal from '@/components/ReviewModal/ReviewModal';
 import ShowMore from '@/components/UI/ShowMore/ShowMore';
+import HotelBookingModal from '@/components/HotelBookingModal/HotelBookingModal';
 
 const HotelDetailPage = () => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [open, setOpen] = useState(false);
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false)
+  const [openReviewModal, setOpenReviewModal] = useState(false);
+  const onOpenReviewModal = () => setOpenReviewModal(true);
+  const closeReviewModal = () => setOpenReviewModal(false)
+  const [openBookingModal, setOpenBookingModal] = useState(false);
+  const onOpenBookingModal = () => setOpenBookingModal(true);
+  const closeBookingModal = () => setOpenBookingModal(false)
 
   const images = [
     'https://www.alisontravelgroup.com/uploads/ab9be6ba240a235c2b3a.jpg',
@@ -163,10 +167,10 @@ const HotelDetailPage = () => {
               <GoodToKnowAccordion />
             </div>
             <div className={styles.card}>
-              <BookingCard />
+              <BookingCard onOpenBookingModal={onOpenBookingModal} />
             </div>
           </div>
-          <Comment onOpenModal={onOpenModal} />
+          <Comment onOpenReviewModal={onOpenReviewModal} />
         </div>
         <div className={styles.moreHotel}>
           <div className="g-container">
@@ -181,16 +185,17 @@ const HotelDetailPage = () => {
             <ShowMore />
           </div>
         </div>
-        <BottomBar isHide={isShow} handleShow={handleShow} />
+        <BottomBar isHide={isShow} handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
-          <BookingCard handleShow={handleShow} />
+          <BookingCard handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
         </div>
         <div
           className={`${styles.overlay} ${isShow ? styles.show : ''}`}
           onClick={handleShow}
         />
       </div>
-      <ReviewModal open={open} onCloseModal={onCloseModal} />
+      <ReviewModal openReviewModal={openReviewModal} closeReviewModal={closeReviewModal} />
+      <HotelBookingModal openBookingModal={openBookingModal} closeBookingModal={closeBookingModal} />
     </>
   );
 };

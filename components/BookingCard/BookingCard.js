@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './BookingCard.module.scss'
 import AngleUp from '@/assets/icons/AngleUp'
 
-const BookingCard = ({ handleShow, type }) => {
+const BookingCard = ({ handleShow, type, onOpenBookingModal }) => {
     return (
         <div className={styles.card}>
             {
@@ -29,24 +29,24 @@ const BookingCard = ({ handleShow, type }) => {
             {
                 type === 'tour' && (
                     <div className={styles.card__duration}>
-                    <div className={styles.card__duration__item}>
-                        <Image src="/images/line-1.svg" width={24} height={24} alt="Days" />
-                        <div className={styles.card__duration__item__content}>
-                            <p className={styles.card__duration__item__title}>Days</p>
-                            <p className={styles.card__duration__item__number}>5</p>
+                        <div className={styles.card__duration__item}>
+                            <Image src="/images/line-1.svg" width={24} height={24} alt="Days" />
+                            <div className={styles.card__duration__item__content}>
+                                <p className={styles.card__duration__item__title}>Days</p>
+                                <p className={styles.card__duration__item__number}>5</p>
+                            </div>
+                        </div>
+                        <div className={styles.card__duration__item}>
+                            <Image src="/images/line-9.svg" width={24} height={24} alt="Nights" />
+                            <div className={styles.card__duration__item__content}>
+                                <p className={styles.card__duration__item__title}>Nights</p>
+                                <p className={styles.card__duration__item__number}>6</p>
+                            </div>
                         </div>
                     </div>
-                    <div className={styles.card__duration__item}>
-                        <Image src="/images/line-9.svg" width={24} height={24} alt="Nights" />
-                        <div className={styles.card__duration__item__content}>
-                            <p className={styles.card__duration__item__title}>Nights</p>
-                            <p className={styles.card__duration__item__number}>6</p>
-                        </div>
-                    </div>
-                </div>
                 )
             }
-            <button className={styles.card__button}>
+            <button className={styles.card__button} onClick={onOpenBookingModal}>
                 Book Now
                 <Image src="/images/basket.svg" width={16} height={16} alt="Basket" />
             </button>

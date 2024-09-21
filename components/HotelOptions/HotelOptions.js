@@ -22,7 +22,7 @@ const HotelOptions = () => {
 
     return (
         <div className={styles.collapse}>
-            <h2 className="section-title">Hotel Options</h2>
+            <h2 className="section-title">Hotel options</h2>
             <Swiper
                 slidesPerView="auto"
                 spaceBetween="0"

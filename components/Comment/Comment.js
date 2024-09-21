@@ -9,7 +9,7 @@ const options = [
     { value: 'oldest', label: 'Oldest' },
 ];
 
-const Comment = ({ onOpenModal }) => {
+const Comment = ({ onOpenReviewModal }) => {
     const [selectedOption, setSelectedOption] = useState(null);
 
     return (
@@ -25,7 +25,7 @@ const Comment = ({ onOpenModal }) => {
                             <span> Beautiful Gabala Tour Package from Alison</span>
                         </p>
                     </div>
-                    <div className={styles.comment__left__top__rating} onClick={onOpenModal}>
+                    <div className={styles.comment__left__top__rating} onClick={onOpenReviewModal}>
                         <Image src="/images/star-line.svg" width={24} height={24} alt="Star" />
                         <Image src="/images/star-line.svg" width={24} height={24} alt="Star" />
                         <Image src="/images/star-line.svg" width={24} height={24} alt="Star" />
@@ -33,7 +33,7 @@ const Comment = ({ onOpenModal }) => {
                         <Image src="/images/star-line.svg" width={24} height={24} alt="Star" />
                     </div>
                 </div>
-                <div className={styles.comment__input} onClick={onOpenModal}>
+                <div className={styles.comment__input} onClick={onOpenReviewModal}>
                     <p className={styles.comment__input__text}>Share your thoughts</p>
                     <button className={styles.comment__input__btn}>
                         Post it!
@@ -61,6 +61,7 @@ const Comment = ({ onOpenModal }) => {
                                     borderRadius: '1.2rem',
                                     width: '16rem',
                                     height: '4.8rem',
+                                    background: "#FCFCFD",
                                     "div": {
                                         "div": {
                                             color: "#23262F",

@@ -2,7 +2,7 @@ import AngleUp from '@/assets/icons/AngleUp'
 import Image from 'next/image'
 import styles from './BottomBar.module.scss'
 
-const BottomBar = ({ isHide, handleShow }) => {
+const BottomBar = ({ isHide, handleShow, onOpenBookingModal }) => {
     return (
         <div className={`${styles.bottomBar} ${isHide ? styles.hide : ""}`}>
             <div className={styles.bottomBar__wrapper}>
@@ -29,7 +29,7 @@ const BottomBar = ({ isHide, handleShow }) => {
                     </div>
                 </div>
                 <div className={styles.bottomBar__right}>
-                    <button className={styles.bottomBar__button}>
+                    <button className={styles.bottomBar__button} onClick={onOpenBookingModal}>
                         Book Now
                         <Image src="/images/basket.svg" width={16} height={16} alt="Basket" />
                     </button>

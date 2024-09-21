@@ -27,6 +27,12 @@ const HotelCard = ({ isFavourite }) => {
             <div className={styles.card__content}>
                 <h4 className={styles.card__title}>White Boutique Hotel</h4>
                 <div className={styles.card__wrapper}>
+                    <div className={styles.card__stars}>
+                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
+                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
+                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
+                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
+                    </div>
                     <div className={styles.card__services}>
                         <div className={styles.card__services__item}>
                             <Image src='/images/wifi.svg' width={16} height={16} alt='' />

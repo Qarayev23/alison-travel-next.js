@@ -1,0 +1,178 @@
+@import "@/assets/styles/utilities";
+
+.modal {
+    display: flex;
+    gap: rem(112);
+
+    &__left {
+        width: rem(352);
+        flex-shrink: 0;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+    }
+
+    &__submit {
+        padding: rem(16) rem(24);
+        border-radius: rem(90);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $red;
+        color: $white;
+        font-size: rem(16);
+        line-height: rem(16);
+        font-weight: 700;
+        font-family: $font-family-secondary;
+
+        &:hover {
+            background: $dark-red;
+        }
+    }
+
+    .option {
+        padding: rem(16);
+        border-radius: rem(16);
+        background: #D3EEDC;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(16);
+        margin-bottom: rem(24);
+
+        &__left {
+            display: flex;
+            gap: rem(16);
+            align-items: center;
+        }
+
+        &__icon {
+            position: relative;
+
+            img {
+                width: rem(24);
+                height: rem(24);
+            }
+
+            &__text {
+                display: flex;
+                font-size: rem(12);
+                line-height: rem(12);
+                color: $black-2;
+                font-weight: 600;
+                position: absolute;
+                top: rem(6);
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            gap: rem(4);
+        }
+
+        &__title {
+            font-size: rem(16);
+            line-height: rem(16);
+            font-weight: 700;
+            font-family: $font-family-secondary;
+        }
+
+        &__desc {
+            font-size: rem(12);
+            line-height: rem(20);
+        }
+
+        &__price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            background: $green;
+            padding: rem(12) rem(20);
+            border-radius: rem(90);
+            font-size: rem(16);
+            line-height: rem(16);
+            font-weight: 600;
+            font-family: $font-family-secondary;
+        }
+    }
+
+    .tour {
+        margin-top: rem(35);
+
+        &__title {
+            font-size: rem(24);
+            line-height: rem(32);
+            font-weight: 600;
+            color: $black-3;
+            margin-bottom: rem(8);
+        }
+
+        &__info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: rem(8);
+            margin-bottom: rem(35);
+        }
+
+        &__age {
+            font-size: rem(16);
+            line-height: rem(24);
+            font-weight: 500;
+            color: $black-3;
+        }
+
+        &__price {
+            font-size: rem(16);
+            line-height: rem(24);
+            font-weight: 500;
+            color: $gray;
+        }
+
+        &__cancellation {
+            &__title {
+                font-family: $font-family-secondary;
+                font-size: rem(16);
+                line-height: rem(16);
+                font-weight: 700;
+                margin-bottom: rem(4);
+            }
+
+            &__text {
+                font-size: rem(12);
+                line-height: rem(20);
+                font-weight: 400;
+            }
+        }
+    }
+
+    .info__text {
+        font-size: rem(12);
+        line-height: rem(20);
+        font-weight: 600;
+        color: $blue;
+        margin-top: rem(4);
+        margin-left: rem(18);
+    }
+
+    @media screen and (max-width: 700px) {
+        flex-direction: column-reverse;
+        gap: rem(32);
+        padding-bottom: rem(30);
+
+        &__left {
+            width: 100%;
+        }
+
+        .tour {
+            display: none;
+        }
+    }
+}

@@ -77,7 +77,8 @@ textarea {
     padding: rem(14) rem(16);
     font-size: rem(14);
     line-height: rem(24);
-    color: $gray;
+    color: $black-2;
+    background: $white;
     width: 100%;
 }
 
@@ -88,8 +89,31 @@ textarea {
     height: rem(160) !important;
     font-size: rem(14);
     line-height: rem(24);
-    color: $gray;
+    color: $black;
+    background: $white;
     width: 100% !important;
+}
+
+.g-phone-input {
+    display: flex;
+    border: rem(2) solid $border-color;
+    border-radius: rem(24);
+    position: relative;
+
+    &::after {
+        content: "";
+        height: rem(24);
+        width: rem(1);
+        background: $border-color;
+        left: rem(102);
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+    }
+
+    .g-input {
+        border: none;
+    }
 }
 
 .rich-content {
@@ -384,8 +408,8 @@ textarea {
 .react-responsive-modal {
     &-modal {
         margin: rem(15) 0 !important;
-        max-width: rem(464) !important;
-        width: 100% !important;
+        max-width: initial !important;
+        width: initial !important;
         box-shadow: 0px 64px 64px -48px #0F0F0F14 !important;
         border-radius: rem(16) !important;
         padding: rem(32) rem(56) !important;
@@ -422,15 +446,19 @@ textarea {
             padding: 0 !important;
             margin: 0 !important;
             height: 100%;
+            width: 100% !important;
             box-shadow: none !important;
         }
 
         &-closeButton {
-            top: rem(-35) !important;
+            top: rem(-49) !important;
+            right: inherit !important;
+            left: 0 !important;
         }
 
         &-container {
             background: $white !important;
+            padding-top: rem(64);
         }
     }
 }

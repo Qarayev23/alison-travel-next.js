@@ -9,12 +9,12 @@ const options = [
     { value: 'oldest', label: 'Oldest' },
 ];
 
-const ReviewModal = ({ open, onCloseModal }) => {
+const ReviewModal = ({ openReviewModal, closeReviewModal }) => {
     const [rating, setRating] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const handleCloseModal = () => {
-        onCloseModal();
+        closeReviewModal();
         setRating(null);
     };
 
@@ -46,7 +46,7 @@ const ReviewModal = ({ open, onCloseModal }) => {
     };
 
     return (
-        <Modal open={open} onClose={handleCloseModal} center>
+        <Modal open={openReviewModal} onClose={handleCloseModal} center>
             <div className={styles.modal}>
                 <p className={styles.modal__title}>Add a review</p>
                 <div className={styles.modal__rating}>
@@ -85,9 +85,10 @@ const ReviewModal = ({ open, onCloseModal }) => {
                                     borderRadius: '2.4rem',
                                     width: '100%',
                                     height: '4.8rem',
+                                    background: "#FCFCFD",
                                     "div": {
                                         "div": {
-                                            color: "#777E90",
+                                            color: "#23262F",
                                             fontSize: "1.4rem",
                                             lineHeight: "2.4rem",
                                             fontWeight: "400",
@@ -103,11 +104,12 @@ const ReviewModal = ({ open, onCloseModal }) => {
                                     lineHeight: "2.4rem",
                                     fontWeight: "500",
                                     margin: "0",
+                                    color: "#777E90 !important",
                                 }),
                                 indicatorsContainer: (baseStyles, state) => ({
                                     ...baseStyles,
                                     "svg": {
-                                        fill: "#777E90",
+                                        fill: "#B1B5C3",
                                         width: "1.5rem",
                                         height: "1.5rem",
                                     },

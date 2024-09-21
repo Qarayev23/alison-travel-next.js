@@ -1,0 +1,43 @@
+@import "@/assets/styles/utilities";
+
+.modal {
+    &__title {
+        font-size: rem(32);
+        font-weight: 700;
+        line-height: rem(40);
+        margin-bottom: rem(32);
+        text-align: center;
+        color: $black-3;
+    }
+
+    &__wrapper {
+        width: rem(352);
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+    }
+
+    &__submit {
+        padding: rem(16) rem(24);
+        border-radius: rem(90);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $red;
+        color: $white;
+        font-size: rem(16);
+        line-height: rem(16);
+        font-weight: 700;
+        font-family: $font-family-secondary;
+
+        &:hover {
+            background: $dark-red;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        flex-direction: column-reverse;
+        gap: rem(32);
+        padding-bottom: rem(30);
+    }
+}

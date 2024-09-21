@@ -185,4 +185,16 @@
             height: rem(12);
         }
     }
+
+    &__stars {
+        display: flex;
+        align-items: center;
+        gap: rem(6);
+        margin-bottom: rem(8);
+
+        img {
+            width: rem(16);
+            height: rem(16);
+        }
+    }
 }

@@ -1,6 +1,8 @@
 @import "@/assets/styles/utilities";
 
 .modal {
+    width: rem(352);
+
     &__title {
         font-size: rem(32);
         font-weight: 700;
@@ -132,5 +134,9 @@
         &:hover {
             background: $dark-red;
         }
+    }
+
+    @media screen and (max-width: 700px) {
+        width: initial;
     }
 }

@@ -4,9 +4,9 @@ import Image from 'next/image'
 import SvgHeart from '@/assets/icons/Heart'
 import LazyImage from '../LazyImage/LazyImage'
 
-const TourCard = ({ isFavourite }) => {
+const TourCard = ({ isFavourite, isRow }) => {
     return (
-        <Link href='/tours/example/example' className={styles.card}>
+        <Link href='/tours/example/example' className={`${styles.card} ${isRow ? styles.row : ''}`}>
             <div className={styles.card__top}>
                 <LazyImage
                     src='/images/tour-1.svg'
