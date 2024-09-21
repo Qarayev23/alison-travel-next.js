@@ -6,43 +6,43 @@ import { useState } from 'react';
 import Select from 'react-select';
 import Image from 'next/image';
 
+const countryCodeOptions = [
+    { value: 'us', label: 'USA', phoneCode: '+1', flagUrl: '/images/flag.svg' },
+    { value: 'de', label: 'DE', phoneCode: '+49', flagUrl: '/images/flag.svg' },
+    { value: 'fr', label: 'FR', phoneCode: '+33', flagUrl: '/images/flag.svg' },
+];
+
 const ContactPage = () => {
     const [fileName, setFileName] = useState('International Passport Front Side');
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedCodeOption, setSelectedCodeOption] = useState(countryCodeOptions[0]);
     const [selectedCountry, setSelectedCountry] = useState(null);
-
-    const options = [
-        { value: 'us', label: 'United States', phoneCode: '+1', flagUrl: '/images/flag.svg' },
-        { value: 'de', label: 'Germany', phoneCode: '+49', flagUrl: '/images/flag.svg' },
-        { value: 'fr', label: 'France', phoneCode: '+33', flagUrl: '/images/flag.svg' },
-    ];
-
-    const countries = [
-        { value: 'Azerbaijan', label: 'Azerbaijan' },
-        { value: 'Turkey', label: 'Turkey' },
-    ];
 
     const formatOptionLabel = ({ label, phoneCode, flagUrl }, { context }) => {
         if (context === 'value') {
             return (
-                <div style={{ margin: "0", display: 'flex', alignItems: 'center', justifyContent: "flex-start", gap: "0.8rem" }}>
-                    <span style={{ position: 'relative', width: '1.8rem', height: '1.8rem' }}>
-                        <Image src={flagUrl} alt={label} fill style={{ objectFit: "cover", borderRadius: "50%" }} />
+                <div style={{ margin: "0", display: 'flex', alignItems: 'center', justifyContent: "flex-start", gap: "0.8rem", }}>
+                    <span style={{ position: 'relative', width: '2.4rem', height: '1.8rem', marginLeft: "0.8rem", flexShrink: "0" }}>
+                        <Image src={flagUrl} alt={label} fill style={{ objectFit: "cover", borderRadius: "0.2rem" }} />
                     </span>
-                    {phoneCode}
+                    {label}
                 </div>
             );
         } else {
             return (
                 <div style={{ margin: "0", display: 'flex', alignItems: 'center', justifyContent: "flex-start", gap: "1rem" }}>
-                    <span style={{ position: 'relative', width: '1.8rem', height: '1.8rem' }}>
-                        <Image src={flagUrl} alt={label} fill style={{ objectFit: "cover", borderRadius: "50%" }} />
+                    <span style={{ position: 'relative', width: '2.4rem', height: '1.8rem', marginLeft: "0.8rem", flexShrink: "0" }}>
+                        <Image src={flagUrl} alt={label} fill style={{ objectFit: "cover", borderRadius: "0.2rem" }} />
                     </span>
                     {label} ({phoneCode})
                 </div>
             );
         }
     };
+
+    const countries = [
+        { value: 'Azerbaijan', label: 'Azerbaijan' },
+        { value: 'Turkey', label: 'Turkey' },
+    ];
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -71,33 +71,34 @@ const ContactPage = () => {
                             </div>
                         </div>
 
-                        <div className={styles.contact__form__country}>
+                        <div className="g-phone-input">
                             <Select
                                 instanceId="country-code"
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
+                                defaultValue={selectedCodeOption}
+                                onChange={setSelectedCodeOption}
                                 formatOptionLabel={formatOptionLabel}
-                                options={options}
+                                options={countryCodeOptions}
                                 isSearchable={false}
-                                placeholder="Country code"
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
-                                        border: '0.2rem solid #E6E8EC !important',
+                                        border: 'none !important',
                                         boxShadow: 'none !important',
                                         borderRadius: '2.4rem',
                                         width: '100%',
                                         height: '4.8rem',
-                                        width: '15rem',
+                                        width: '10.1rem',
                                         background: "#FCFCFD",
+                                        borderTopRightRadius: "0",
+                                        borderBottomRightRadius: "0",
                                         "div": {
+                                            paddingRight: "0",
                                             "div": {
-                                                color: "#777E90",
+                                                color: "#23262F",
                                                 fontSize: "1.4rem",
                                                 lineHeight: "2.4rem",
                                                 fontWeight: "400",
-                                                marginLeft: "0.8rem",
-                                                marginRight: "1rem",
+                                                margin: "0",
                                                 padding: "0",
                                             }
                                         }
@@ -117,14 +118,15 @@ const ContactPage = () => {
                                             fill: "#777E90",
                                             width: "1.5rem",
                                             height: "1.5rem",
+                                            marginRight: "0.5rem"
                                         },
                                         "span": {
                                             display: 'none'
                                         }
                                     }),
-                                    menu: (provided) => ({
-                                        ...provided,
-                                        width: '150%'
+                                    menu: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        width: '14.1rem',
                                     }),
                                     option: (provided) => ({
                                         ...provided,
@@ -134,7 +136,7 @@ const ContactPage = () => {
                                     }),
                                 }}
                             />
-                            <input type="text" placeholder="Phone number" className='g-input' />
+                            <input type="text" placeholder="Phone" className='g-input' />
                         </div>
 
                         <div>
