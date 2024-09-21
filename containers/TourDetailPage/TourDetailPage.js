@@ -262,7 +262,7 @@ const TourDetailPage = () => {
             </div>
           </div>
         </div>
-        <BottomBar isHide={isShow} handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
+        <BottomBar type="tour" isHide={isShow} handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
           <BookingCard type="tour" handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
         </div>
