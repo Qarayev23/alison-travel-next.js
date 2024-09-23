@@ -45,7 +45,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
                 className={styles.accordion__container}
                 style={
                     isOpen
-                        ? { height: contentHeight.current.scrollHeight }
+                        ? { height: contentHeight.current.scrollHeight + "px" }
                         : { height: "0px" }
                 }
             >
@@ -58,10 +58,17 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
 };
 
 const GoodToKnowAccordion = () => {
-    const [activeIndex, setActiveIndex] = useState(null);
+    const [activeIndexes, setActiveIndexes] = useState([]);
 
     const handleItemClick = (index) => {
-        setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+        setActiveIndexes(prevIndexes => {
+            const currentIndex = prevIndexes.indexOf(index);
+            if (currentIndex === -1) {
+                return [...prevIndexes, index]; // Add index to array
+            } else {
+                return prevIndexes.filter(i => i !== index); // Remove index from array
+            }
+        });
     };
 
     return (
@@ -73,7 +80,7 @@ const GoodToKnowAccordion = () => {
                         key={index}
                         question={item.question}
                         answer={item.answer}
-                        isOpen={activeIndex === index}
+                        isOpen={activeIndexes.includes(index)}
                         onClick={() => handleItemClick(index)}
                     />
                 ))}

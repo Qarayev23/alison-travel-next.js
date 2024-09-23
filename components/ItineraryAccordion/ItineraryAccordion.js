@@ -32,7 +32,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
         <div className={styles.accordion__item}>
             <button
                 className={`${styles.accordion__btn} ${isOpen ? styles.active : ""}`}
-                onClick={onClick}
+                onClick={() => onClick(index)}
             >
                 <div className={styles.accordion__btn__left}>
                     {
@@ -60,7 +60,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
                 className={styles.accordion__container}
                 style={
                     isOpen
-                        ? { height: contentHeight.current.scrollHeight }
+                        ? { height: contentHeight.current.scrollHeight + "px" }
                         : { height: "0px" }
                 }
             >
@@ -73,10 +73,17 @@ const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
 };
 
 const ItineraryAccordion = () => {
-    const [activeIndex, setActiveIndex] = useState(null);
+    const [activeIndexes, setActiveIndexes] = useState([]);
 
     const handleItemClick = (index) => {
-        setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+        setActiveIndexes(prevIndexes => {
+            const currentIndex = prevIndexes.indexOf(index);
+            if (currentIndex === -1) {
+                return [...prevIndexes, index]; // Add index to array
+            } else {
+                return prevIndexes.filter(i => i !== index); // Remove index from array
+            }
+        });
     };
 
     return (
@@ -88,14 +95,13 @@ const ItineraryAccordion = () => {
                         key={index}
                         question={item.question}
                         answer={item.answer}
-                        isOpen={activeIndex === index}
-                        onClick={() => handleItemClick(index)}
+                        isOpen={activeIndexes.includes(index)}
+                        onClick={handleItemClick}
                         index={index}
                     />
                 ))}
             </div>
         </>
-
     );
 };
 
