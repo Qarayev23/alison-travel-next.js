@@ -13,8 +13,11 @@ import WeProvide from '@/components/WeProvide/WeProvide';
 import HomeTourList from '@/components/HomeTourList/HomeTourList';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
+    const { t } = useTranslation();
+
     return (
         <>
             <Search />
