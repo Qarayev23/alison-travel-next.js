@@ -120,7 +120,7 @@ const Footer = () => {
                     </div>
                     <p className={styles.footer__copyright}>
                         Alison Travel 2023. All Rights Reserved | Developed by
-                        <Link href='https://trustmedigital.com/'>Trustme Digital</Link>
+                        <Link href='https://coretech.az/'>CoreTech</Link>
                     </p>
                 </div>
             </div>
