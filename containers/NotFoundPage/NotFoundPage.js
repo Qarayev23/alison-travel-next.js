@@ -9,7 +9,7 @@ const NotFoundPage = () => {
                 <h1 className={styles.error__title}>404</h1>
                 <p className={styles.error__desc}>Page not found</p>
                 <div className={styles.error__footer}>
-                    <Link href="/" className={styles.error__link}>Ana səhifə</Link>
+                    <Link href="/" className={styles.error__link}>Back to Home</Link>
                 </div>
             </div>
         </div>

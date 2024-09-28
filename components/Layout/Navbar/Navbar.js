@@ -5,23 +5,49 @@ import styles from './Navbar.module.scss'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import SvgHeart from '@/assets/icons/Heart'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+
+const languages = [
+    {
+        value: 'en',
+        text: 'EN'
+    },
+    {
+        value: 'ru',
+        text: 'RU'
+    },
+    {
+        value: 'ar',
+        text: 'AR'
+    },
+    {
+        value: 'ch',
+        text: 'CH'
+    },
+]
 
 const Navbar = () => {
-    const [showLangDropDown, setShowLangDropDown] = useState(false)
-    const [showNavbar, setShowNavbar] = useState(false)
-    const dropdownRef = useRef(null)
-    const pathname = usePathname()
+    const [showLangDropDown, setShowLangDropDown] = useState(false);
+    const [showNavbar, setShowNavbar] = useState(false);
+    const dropdownRef = useRef(null);
+    const router = useRouter();
+    const pathname = usePathname();
+    const locale = pathname.split("/")[1];
 
     const handleShowLangDropdown = () => {
-        setShowLangDropDown((prev) => !prev)
-    }
+        setShowLangDropDown(prev => !prev);
+    };
 
     const handleShowNavbar = () => {
-        setShowNavbar((prev) => !prev)
-    }
+        setShowNavbar(prev => !prev);
+    };
 
-    // close menu when click outside dropdown
+    const handleLocaleChange = (value) => {
+        const newPath = pathname.split("/").slice(2).join("/");
+        router.push(`/${value}/${newPath}`);
+        setShowLangDropDown(false);
+    };
+
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -37,10 +63,9 @@ const Navbar = () => {
 
     useEffect(() => {
         if (showNavbar) {
-            setShowNavbar(false)
+            setShowNavbar(false);
         }
-    }, [pathname])
-
+    }, [pathname]);
 
     return (
         <header className={styles.header}>
@@ -113,24 +138,22 @@ const Navbar = () => {
                             <div className={styles.lang} ref={dropdownRef}>
                                 <button className={styles.lang__btn} onClick={handleShowLangDropdown}>
                                     <Image src="/images/lang.svg" alt="Language" width={15} height={15} priority />
-                                    <span className={styles.lang__btn__text}>EN</span>
+                                    <span className={styles.lang__btn__text}>
+                                        {languages.find(lang => lang.value === locale)?.text}
+                                    </span>
                                 </button>
                                 <ul className={`${styles.lang__dropdown} ${showLangDropDown ? styles.show : ''}`}>
-                                    <li className={styles.lang__dropdown__item}>
-                                        <button className={styles.lang__dropdown__btn} onClick={handleShowLangDropdown}>
-                                            AZ
-                                        </button>
-                                    </li>
-                                    <li className={styles.lang__dropdown__item}>
-                                        <button className={styles.lang__dropdown__btn} onClick={handleShowLangDropdown}>
-                                            RU
-                                        </button>
-                                    </li>
-                                    <li className={styles.lang__dropdown__item}>
-                                        <button className={styles.lang__dropdown__btn} onClick={handleShowLangDropdown}>
-                                            UA
-                                        </button>
-                                    </li>
+                                    {
+                                        languages.map(lang => (
+                                            locale !== lang.value && (
+                                                <li className={styles.lang__dropdown__item}>
+                                                    <button className={styles.lang__dropdown__btn} onClick={() => handleLocaleChange(lang.value)}>
+                                                        {lang.text}
+                                                    </button>
+                                                </li>
+                                            )
+                                        ))
+                                    }
                                 </ul>
                             </div>
 
