@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@/components/Link/Link'
 import styles from './DestinationCard.module.scss'
 import Image from 'next/image'
 import LazyImage from '../LazyImage/LazyImage'

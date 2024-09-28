@@ -1,11 +1,11 @@
 "use client"
 
-import Link from 'next/link'
 import styles from './Navbar.module.scss'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import SvgHeart from '@/assets/icons/Heart'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation';
+import Link from '@/components/Link/Link'
 
 const languages = [
     {
@@ -146,7 +146,7 @@ const Navbar = () => {
                                     {
                                         languages.map(lang => (
                                             locale !== lang.value && (
-                                                <li className={styles.lang__dropdown__item}>
+                                                <li className={styles.lang__dropdown__item} key={lang.value}>
                                                     <button className={styles.lang__dropdown__btn} onClick={() => handleLocaleChange(lang.value)}>
                                                         {lang.text}
                                                     </button>

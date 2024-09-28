@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import styles from './OurTeam.module.scss'
-import Link from 'next/link'
+import Link from '@/components/Link/Link'
 import LazyImage from '../LazyImage/LazyImage'
 
 const OurTeam = () => {

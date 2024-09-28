@@ -1,6 +1,6 @@
 import AngleRight from '@/assets/icons/AngleRight'
 import styles from './Breadcrumb.module.scss'
-import Link from 'next/link'
+import Link from '@/components/Link/Link'
 
 const Breadcrumb = () => {
     return (

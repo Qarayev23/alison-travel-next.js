@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from './HotelOptions.module.scss';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/Link/Link';
 import LazyImage from '../LazyImage/LazyImage';
 
 const data = [

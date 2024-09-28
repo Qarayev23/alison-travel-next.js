@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@/components/Link/Link'
 import styles from './TransferCard.module.scss'
 import Image from 'next/image'
 import SvgHeart from '@/assets/icons/Heart'

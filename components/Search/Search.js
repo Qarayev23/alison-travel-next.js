@@ -5,7 +5,7 @@ import SvgTransfers from '@/assets/icons/Transfers'
 import SvgSearch from '@/assets/icons/Search'
 import SvgDailyTours from '@/assets/icons/DailyTours'
 import { useRef, useState } from 'react'
-import Link from 'next/link'
+import Link from '@/components/Link/Link'
 import SvgArrowRight from '@/assets/icons/ArrowRight'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import LazyImage from '../LazyImage/LazyImage'

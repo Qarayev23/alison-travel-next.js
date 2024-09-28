@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@/components/Link/Link'
 import styles from './ReviewCard.module.scss'
 import Image from 'next/image'
 

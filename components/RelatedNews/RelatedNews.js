@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@/components/Link/Link'
 import styles from './RelatedNews.module.scss'
 import LazyImage from '../LazyImage/LazyImage';
 
