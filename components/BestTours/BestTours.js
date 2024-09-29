@@ -1,8 +1,10 @@
 import TourCard from '../TourCard/TourCard'
 import ShowMore from '../UI/ShowMore/ShowMore'
-import styles from './HomeTourList.module.scss'
+import styles from './BestTours.module.scss'
 
-const HomeTourList = () => {
+const BestTours = ({data}) => {
+    console.log(data);
+    
     return (
         <div className={styles.tour}>
             <div className='g-container'>
@@ -13,9 +15,9 @@ const HomeTourList = () => {
                     Discover Azerbaijan
                 </p>
                 <div className={styles.tour__list}>
-                    {
+                    {/* {
                         Array.from({ length: 12 }).map((_, i) => <TourCard key={i} />)
-                    }
+                    } */}
                 </div>
                 <ShowMore />
             </div>
@@ -23,4 +25,4 @@ const HomeTourList = () => {
     )
 }
 
-export default HomeTourList
+export default BestTours

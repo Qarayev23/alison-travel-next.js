@@ -4,13 +4,13 @@ import Image from 'next/image'
 import SvgHeart from '@/assets/icons/Heart'
 import LazyImage from '../LazyImage/LazyImage'
 
-const TourCard = ({ isFavourite, isRow }) => {
+const TourCard = ({ data, isFavourite, isRow }) => {
     return (
-        <Link href='/tours/example/example' className={`${styles.card} ${isRow ? styles.row : ''}`}>
+        <Link href={`/tours/${data.slug}`} className={`${styles.card} ${isRow ? styles.row : ''}`}>
             <div className={styles.card__top}>
                 <LazyImage
-                    src='/images/tour-1.svg'
-                    alt=''
+                    src={data.image}
+                    alt={data.title}
                 />
                 <div className={styles.card__top__content}>
                     <span className={styles.card__top__content__text}>Best seller</span>
@@ -26,29 +26,29 @@ const TourCard = ({ isFavourite, isRow }) => {
                 </div>
             </div>
             <div className={styles.card__content}>
-                <h4 className={styles.card__title}>Entire serviced classy mountain house view</h4>
+            <h4 className={styles.card__title}>{data.title}</h4>
                 <div className={styles.card__wrapper}>
                     <div className={styles.card__duration}>
                         <div className={styles.card__duration__item}>
-                            <Image src='/images/line-1.svg' width={12} height={12} alt='' />
-                            <span className={styles.card__duration__text}>5 Days</span>
+                            <Image src='/images/line-1.svg' width={12} height={12} alt='duration' />
+                            <span className={styles.card__duration__text}>{data.days_duration} days</span>
                         </div>
                         <div className={styles.card__duration__item}>
-                            <Image src='/images/line-9.svg' width={12} height={12} alt='' />
-                            <span className={styles.card__duration__text}>4 nights</span>
+                            <Image src='/images/line-9.svg' width={12} height={12} alt='night' />
+                            <span className={styles.card__duration__text}>{data.nights_duration} nights</span>
                         </div>
                     </div>
                     <div className={styles.card__cancel}>
-                        <Image src='/images/line-10.svg' width={12} height={12} alt='' />
+                        <Image src='/images/line-10.svg' width={12} height={12} alt='cancel' />
                         <span className={styles.card__cancel__text}>Free cancellation available</span>
                     </div>
                     <div className={styles.card__footer}>
                         <div className={styles.card__price}>
-                            <span>$200</span>
+                            <span>${data.price}</span>
                             <span> /person</span>
                         </div>
                         <div className={styles.card__rating}>
-                            <Image src='/images/star.svg' width={12} height={12} alt='' />
+                            <Image src='/images/star.svg' width={12} height={12} alt='star' />
                             <span className={styles.card__rating__text}>4.8</span>
                             <span className={styles.card__rating__review}>(12 reviews)</span>
                         </div>

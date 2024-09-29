@@ -3,15 +3,15 @@ import styles from './DestinationCard.module.scss'
 import Image from 'next/image'
 import LazyImage from '../LazyImage/LazyImage'
 
-const DestinationCard = () => {
+const DestinationCard = ({ data }) => {
     return (
-        <Link href="/tours" className={styles.card}>
+        <Link href={`tours/${data.slug}`} className={styles.card}>
             <div className={styles.card__img}>
-                <LazyImage src="/images/tour-1.svg" alt='' />
+                <LazyImage src={data.cover_image} alt={data.title} />
             </div>
             <div className={styles.card__footer}>
-                <Image src="/images/flag.svg" width={28} height={20} alt='' />
-                <h4 className={styles.card__title}>Azerbaijan Travel</h4>
+                <Image src={data.flag} width={28} height={20} alt='' />
+                <h4 className={styles.card__title}>{data.title}</h4>
             </div>
         </Link>
     )

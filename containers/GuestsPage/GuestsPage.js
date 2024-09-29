@@ -20,7 +20,7 @@ import 'react-image-lightbox/style.css';
 import styles from './GuestsPage.module.scss'
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-const GuestsPage = () => {
+const GuestsPage = ({ data }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [photoIndex, setPhotoIndex] = useState(0);
 
@@ -29,13 +29,13 @@ const GuestsPage = () => {
             <Breadcrumb />
             <div className={styles.guests}>
                 <div className="g-container">
-                    <h1 className='page-title'>Our guests</h1>
-                    <p className='section-text'>Let’s contact!</p>
+                    <h1 className='page-title'>{data?.page?.title}</h1>
+                    <p className='section-text'>{data?.page?.subtitle}</p>
                     <div className={styles.guests__list}>
                         {
-                            images.map((image, index) => (
+                            data?.page?.images.map((item, index) => (
                                 <div key={index} className={styles.guests__image} onClick={() => { setIsOpen(true); setPhotoIndex(index); }}>
-                                    <LazyImage src={image} fill alt="our guests" />
+                                    <LazyImage src={item.image} fill alt="our guests" />
                                 </div>
                             ))
                         }
@@ -48,10 +48,10 @@ const GuestsPage = () => {
                         spaceBetween={15}
                         className={styles.guests__slider}
                     >
-                        {images.map((src, index) => (
+                        {data?.page?.images.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <div className={styles.guests__slider__item} onClick={() => { setIsOpen(true); setPhotoIndex(index); }}>
-                                    <LazyImage src={src} borderRadius="0" alt='' />
+                                    <LazyImage src={item.image} borderRadius="0" alt='our guests' />
                                 </div>
                             </SwiperSlide>
                         ))}
@@ -59,12 +59,12 @@ const GuestsPage = () => {
 
                     {isOpen && (
                         <Lightbox
-                            mainSrc={images[photoIndex]}
-                            nextSrc={images[(photoIndex + 1) % images.length]}
-                            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+                            mainSrc={data?.page?.images[photoIndex]}
+                            nextSrc={data?.page?.images[(photoIndex + 1) % data?.page?.images.length]}
+                            prevSrc={data?.page?.images[(photoIndex + data?.page?.images.length - 1) % data?.page?.images.length]}
                             onCloseRequest={() => setIsOpen(false)}
-                            onMovePrevRequest={() => setPhotoIndex((photoIndex + images.length - 1) % images.length)}
-                            onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
+                            onMovePrevRequest={() => setPhotoIndex((photoIndex + data?.page?.images.length - 1) % data?.page?.images.length)}
+                            onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % data?.page?.images.length)}
                         />
                     )}
                 </div>

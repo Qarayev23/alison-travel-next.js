@@ -170,6 +170,10 @@ textarea {
         }
     }
 
+    img {
+        max-width: 100% !important;
+    }
+
     @media screen and (max-width: 700px) {
         font-size: rem(14);
         line-height: rem(24);
@@ -197,6 +201,10 @@ textarea {
         ol {
             font-size: rem(14);
             line-height: rem(20);
+        }
+
+        img {
+            width: 100% !important;
         }
     }
 }

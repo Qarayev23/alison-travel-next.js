@@ -46,7 +46,7 @@ const NewsList = () => {
                             }
                         }}
                     >
-                        <SwiperSlide>
+                        {/* <SwiperSlide>
                             <NewsCard />
                         </SwiperSlide>
                         <SwiperSlide>
@@ -60,7 +60,7 @@ const NewsList = () => {
                         </SwiperSlide>
                         <SwiperSlide>
                             <NewsCard />
-                        </SwiperSlide>
+                        </SwiperSlide> */}
                     </Swiper>
                     <button id='newsPrevBtn' className="custom-arrow custom-arrow-prev" onClick={goPrev}>
                         <SvgArrowLeft />

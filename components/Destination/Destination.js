@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import SvgArrowRight from '@/assets/icons/ArrowRight';
 import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 
-const Destination = () => {
+const Destination = ({ data }) => {
     const swiperRef = useRef(null);
 
     const goPrev = () => {
@@ -47,21 +47,13 @@ const Destination = () => {
                             }
                         }}
                     >
-                        <SwiperSlide>
-                            <DestinationCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <DestinationCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <DestinationCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <DestinationCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <DestinationCard />
-                        </SwiperSlide>
+                        {
+                            data?.countries?.map((item, index) => (
+                                <SwiperSlide key={index}>
+                                    <DestinationCard data={item} />
+                                </SwiperSlide>
+                            ))
+                        }
                     </Swiper>
                     <button id='destinationPrevBtn' className="custom-arrow custom-arrow-prev" onClick={goPrev}>
                         <SvgArrowLeft />

@@ -1,15 +1,20 @@
 import Image from 'next/image'
 import styles from './AzerbaijanTours.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Navigation } from 'swiper/modules';
 import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 import SvgArrowRight from '@/assets/icons/ArrowRight';
 import TourCard from '../TourCard/TourCard';
 import ShowMore from '../UI/ShowMore/ShowMore';
 import LazyImage from '../LazyImage/LazyImage';
+import axios from 'axios';
+import { HtmlContent } from '@/utils/HTMLcontent';
 
-const AzerbaijanTours = () => {
+const AzerbaijanTours = ({ data, locale }) => {
+    const [tourData, setTourData] = useState(data);
+    const [activeBtn, setActiveBtn] = useState("baku");
+
     const swiperRef = useRef(null);
 
     const goPrev = () => {
@@ -23,6 +28,22 @@ const AzerbaijanTours = () => {
             swiperRef.current.swiper.slideNext();
         }
     };
+
+    const handleClick = async (slug) => {
+        setActiveBtn(slug);
+
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}home-city-detail/${slug}`, {
+                headers: {
+                    'Accept-Language': locale,
+                },
+            });
+
+            setTourData(response.data);
+        } catch (error) {
+            console.error("Error in getCityTours", error.message);
+        }
+    }
 
     return (
         <div className={styles.tour}>
@@ -38,98 +59,51 @@ const AzerbaijanTours = () => {
                     spaceBetween="0"
                     className='tour__btn__slider'
                 >
-                    <SwiperSlide>
-                        <button className={`${styles.tour__btn} ${styles.active}`}>
-                            Baku
-                        </button>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <button className={styles.tour__btn}>
-                            Gabala
-                        </button>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <button className={styles.tour__btn}>
-                            Shamakhi
-                        </button>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <button className={styles.tour__btn}>
-                            Shaki
-                        </button>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <button className={styles.tour__btn}>
-                            Guba
-                        </button>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <button className={styles.tour__btn}>
-                            Shahdag
-                        </button>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <button className={styles.tour__btn}>
-                            Ganja
-                        </button>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <button className={styles.tour__btn}>
-                            Lankaran
-                        </button>
-                    </SwiperSlide>
+                    {
+                        tourData?.cities?.map((item, index) => (
+                            <SwiperSlide key={index}>
+                                <button
+                                    className={`${styles.tour__btn} ${activeBtn === item.slug ? styles.active : ''}`}
+                                    onClick={() => handleClick(item.slug)}
+                                >
+                                    {item.title}
+                                </button>
+                            </SwiperSlide>
+                        ))
+                    }
                 </Swiper>
                 <div className={styles.tour__detail}>
                     <div className={styles.tour__detail__img}>
-                        <LazyImage src="/images/tour-1.svg" alt='' />
+                        <LazyImage src={tourData?.city_data?.cover_image} alt={tourData?.city_data?.title} />
                     </div>
                     <div className={styles.tour__content}>
-                        <h3 className={styles.tour__title}>Gabala</h3>
-                        <p className={styles.tour__desc}>
-                            Gabala is considered a popular tourist destination due to the combination of a very good spring climate, woods along the mountains and beautiful nature was exploited by the construction of large numbers of hotels and apartments in city. The city contains “Gabaland” amusement park, There are all conditions for recreation and entertainment for children an ice skating rink Gabala has several shopping malls; the most famous city center mall is Gabala Mall. Tufan Dag Ski Complex, one of the biggest mountain resorts in Caucasus located in Gabala Since 2009, city has been home of Gabala International Music Festival, which included performances from classical and jazz performers Here tourists are available for restaurants and hotel services at a high level.
-                        </p>
+                        <h3 className={styles.tour__title}>{tourData?.city_data?.title}</h3>
+                        <HtmlContent
+                            html={tourData?.city_data?.body}
+                            className={styles.tour__desc}
+                        />
                         <div className={styles.tour__includes}>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-1.svg" width={24} height={24} alt='' />
-                                Sightseeing tour
-                            </span>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-2.svg" width={24} height={24} alt='' />
-                                Food & drink
-                            </span>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-3.svg" width={24} height={24} alt='' />
-                                Day trips
-                            </span>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-4.svg" width={24} height={24} alt='' />
-                                Transportation
-                            </span>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-5.svg" width={24} height={24} alt='' />
-                                Historical places
-                            </span>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-6.svg" width={24} height={24} alt='' />
-                                Boat tours
-                            </span>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-7.svg" width={24} height={24} alt='' />
-                                Local culture
-                            </span>
-                            <span className={styles.tour__include}>
-                                <Image src="/images/line-8.svg" width={24} height={24} alt='' />
-                                Nature & adventure
-                            </span>
+                            {
+                                tourData?.city_data?.chip?.map((item, index) => (
+                                    <span className={styles.tour__include} key={index}>
+                                        <Image src={item?.icon} width={24} height={24} alt={item?.title} />
+                                        {item?.title}
+                                    </span>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
                 <div className={styles.mobile}>
                     <div className={styles.tour__list}>
-                        <TourCard />
-                        <TourCard />
-                        <TourCard />
-                        <TourCard />
+                        {
+                            tourData?.tours?.map((item, index) => (
+                                <TourCard
+                                    key={index}
+                                    data={item}
+                                />
+                            ))
+                        }
                     </div>
                     <ShowMore text="Show more" />
                 </div>
@@ -150,24 +124,15 @@ const AzerbaijanTours = () => {
                             }
                         }}
                     >
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
+                        {
+                            tourData?.tours?.map((item, index) => (
+                                <SwiperSlide key={index}>
+                                    <TourCard
+                                        data={item}
+                                    />
+                                </SwiperSlide>
+                            ))
+                        }
                     </Swiper>
                     <button id='azerbaijanTourPrevBtn' className="custom-arrow custom-arrow-prev" onClick={goPrev}>
                         <SvgArrowLeft />
