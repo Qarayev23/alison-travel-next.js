@@ -6,7 +6,7 @@ import SvgArrowRight from '@/assets/icons/ArrowRight';
 import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 import ReviewCard from '../ReviewCard/ReviewCard';
 
-const ReviewList = () => {
+const ReviewList = ({ data }) => {
     const swiperRef = useRef(null);
 
     const goPrev = () => {
@@ -21,7 +21,6 @@ const ReviewList = () => {
         }
     };
 
-    
     return (
         <div className={styles.review}>
             <div className='g-container'>
@@ -47,21 +46,13 @@ const ReviewList = () => {
                             }
                         }}
                     >
-                        <SwiperSlide>
-                            <ReviewCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ReviewCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ReviewCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ReviewCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ReviewCard />
-                        </SwiperSlide>
+                        {
+                            data?.map((item, i) => (
+                                <SwiperSlide className={styles.slide} key={i}>
+                                    <ReviewCard data={item} />
+                                </SwiperSlide>
+                            ))
+                        }
                     </Swiper>
                     <button id='reviewPrevBtn' className="custom-arrow custom-arrow-prev" onClick={goPrev}>
                         <SvgArrowLeft />

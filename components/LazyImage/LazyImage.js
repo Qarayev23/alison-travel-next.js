@@ -8,7 +8,7 @@ const LazyImage = ({ src, alt, sizes, className, type, borderRadius = "0.8rem" }
 
   useEffect(() => {
     setIsLoading(true);
-  }, [src]);
+  }, []);
 
   return (
     <div
@@ -31,8 +31,8 @@ const LazyImage = ({ src, alt, sizes, className, type, borderRadius = "0.8rem" }
         fill
         onLoad={() => setIsLoading(false)}
         className={`${isLoading ? styles.hidden : ''} ${className ? className : ''}`}
-        key={`${src}-${isLoading}`}
-        />
+        key={`${src}-${Date.now()}`}
+      />
     </div>
   );
 };

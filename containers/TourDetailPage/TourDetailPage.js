@@ -21,8 +21,9 @@ import Comment from '@/components/Comment/Comment';
 import TourCard from '@/components/TourCard/TourCard';
 import ReviewModal from '@/components/ReviewModal/ReviewModal';
 import TourBookingModal from '@/components/TourBookingModal/TourBookingModal';
+import { HtmlContent } from '@/utils/HTMLcontent';
 
-const TourDetailPage = () => {
+const TourDetailPage = ({ data }) => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -33,13 +34,8 @@ const TourDetailPage = () => {
   const onOpenBookingModal = () => setOpenBookingModal(true);
   const closeBookingModal = () => setOpenBookingModal(false)
 
-  const images = [
-    'https://www.alisontravelgroup.com/uploads/ab9be6ba240a235c2b3a.jpg',
-    'https://www.alisontravelgroup.com/uploads/68c188654044732f1dc2.jpeg',
-    'https://www.alisontravelgroup.com/uploads/f4f158df4c9ba0d2d240.jpg',
-    'https://www.alisontravelgroup.com/uploads/88db133dbf8eea19c973.jpg',
-    'https://www.alisontravelgroup.com/uploads/43e0b08722ba290d991e.jpg',
-  ];
+  const images = [...data?.images, data?.image];
+console.log(images, "images");
 
   const handleShow = () => {
     setIsShow(!isShow);
@@ -50,28 +46,36 @@ const TourDetailPage = () => {
       <Breadcrumb />
       <div className={styles.tour}>
         <div className="g-container">
-          <h1 className={styles.tour__title}>Beautiful Gabala Tour Package from Alison</h1>
+          <h1 className={styles.tour__title}>{data?.title}</h1>
           <div className={styles.tour__heading}>
             <div className={styles.tour__heading__rating}>
               <Image src='/images/star.svg' width={20} height={19} alt='Star' />
-              <span className={styles.tour__heading__rating__value}>4.8</span>
-              <span className={styles.tour__heading__rating__text}>(256 reviews)</span>
+              <span className={styles.tour__heading__rating__value}>{data?.rate !== 0 ? data?.rate.toFixed(1) : data?.score}</span>
+              <span className={styles.tour__heading__rating__text}>({data?.review_count} reviews)</span>
             </div>
-            <div className={styles.tour__heading__item}>
-              <Image src='/images/home.svg' width={20} height={20} alt='Best Seller' />
-              <span className={styles.tour__heading__item__text}>Best seller</span>
-            </div>
+            {
+              data?.best && (
+                <div className={styles.tour__heading__item}>
+                  <Image src='/images/home.svg' width={20} height={20} alt='Best Seller' />
+                  <span className={styles.tour__heading__item__text}>Best seller</span>
+                </div>
+              )
+            }
             <div className={styles.tour__heading__item}>
               <Image src='/images/location.svg' width={20} height={20} alt='Location' />
-              <span className={styles.tour__heading__item__text}>Nohur lake, Gabala, Azerbaijan</span>
+              {
+                data?.countries?.map((item, index) => (
+                  <span key={index} className={styles.tour__heading__item__text}>{item}</span>
+                ))
+              }
             </div>
           </div>
           <div className={styles.tour__images}>
             <div onClick={() => { setIsOpen(true); setPhotoIndex(0); }} className={styles.tour__images__left}>
-              <LazyImage src={images[0]} borderRadius="1.6rem" alt='' />
+              <LazyImage src={data?.image} borderRadius="1.6rem" alt={data?.title} />
             </div>
             <div className={styles.tour__images__right}>
-              {images.slice(1).map((image, index) => (
+              {data?.images?.map((image, index) => (
                 <div key={index} onClick={() => { setIsOpen(true); setPhotoIndex(index + 1); }} className={styles.tour__images__right__item}>
                   <LazyImage src={image} borderRadius="1.6rem" alt='' />
                   {
@@ -92,10 +96,17 @@ const TourDetailPage = () => {
             spaceBetween={15}
             className={styles.tour__images__slider}
           >
-            {images.map((src, index) => (
+            {
+              <SwiperSlide>
+                <div className={styles.tour__images__slider__item} onClick={() => { setIsOpen(true); setPhotoIndex(0); }}>
+                  <LazyImage src={data?.image} borderRadius="0" alt={data?.title} />
+                </div>
+              </SwiperSlide>
+            }
+            {data?.images.map((src, index) => (
               <SwiperSlide key={index}>
-                <div className={styles.tour__images__slider__item} onClick={() => { setIsOpen(true); setPhotoIndex(index); }}>
-                  <LazyImage src={src} borderRadius="0" alt='' />
+                <div className={styles.tour__images__slider__item} onClick={() => { setIsOpen(true); setPhotoIndex(index + 1); }}>
+                  <LazyImage src={src} borderRadius="0" alt={data?.title} />
                 </div>
               </SwiperSlide>
             ))}
@@ -120,123 +131,51 @@ const TourDetailPage = () => {
                 </div>
                 <div className={styles.tour__content__heading__item}>
                   <Image src='/images/day.svg' width={20} height={20} alt='Day' />
-                  <span>5 days</span>
+                  <span>{data?.days_duration} days</span>
                 </div>
                 <div className={styles.tour__content__heading__item}>
                   <Image src='/images/night.svg' width={20} height={20} alt='Night' />
-                  <span>6 nights</span>
+                  <span>{data?.nights_duration} nights</span>
                 </div>
               </div>
               <div className={styles.tour__cancel}>
                 <Image src='/images/line-10.svg' width={16} height={16} alt='Calendar' />
                 <span>Free cancellation available</span>
               </div>
-              <div className={`${styles.tour__description} rich-content`}>
-                <p>
-                  Described by Queenstown House & Garden magazine as having 'one of the best views we've ever seen' you will love relaxing in this newly built, architectural house sitting proudly on Queenstown Hill.
-                </p>
-                <br />
-                <p>
-                  Enjoy breathtaking 180' views of Lake Wakatipu from your well appointed & privately accessed bedroom with modern en suite and floor-to-ceiling windows.
-                </p>
-                <br />
-                <p>
-                  Your private patio takes in the afternoon sun, letting you soak up unparalleled lake and mountain views by day and the stars & city lights by night.
-                </p>
-              </div>
+              {/* <div className={`${styles.tour__description} rich-content`}>
+              </div> */}
+              <HtmlContent html={data?.overview} className={`${styles.tour__description} rich-content`} />
               <div className={styles.tour__includes}>
                 <div className={styles.tour__include}>
                   <h3 className={styles.tour__include__title}>Tour Includes</h3>
                   <ul className={styles.tour__include__list}>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/accommodation.svg' width={24} height={24} alt='Accommodation' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Accommodation in Georgia</p>
-                        <p className={styles.tour__include__item__desc}>You will stay 6 nights in Georgia</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/breakfast.svg' width={24} height={24} alt='Breakfast' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Breakfast</p>
-                        <p className={styles.tour__include__item__desc}>Continental breakfast in hotel</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/transfer.svg' width={24} height={24} alt='Transfer' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Transfer</p>
-                        <p className={styles.tour__include__item__desc}>Comfortable transport from hotel to destination</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/building.svg' width={24} height={24} alt='Building' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Sightseeing</p>
-                        <p className={styles.tour__include__item__desc}>Daily tours of the most interesting places</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/driver.svg' width={24} height={24} alt='Driver' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Driver</p>
-                        <p className={styles.tour__include__item__desc}>English speaking professional driver</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/water.svg' width={24} height={24} alt='Water' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Water</p>
-                        <p className={styles.tour__include__item__desc}>You will receive a bottle of water for each day of the excursion</p>
-                      </div>
-                    </li>
+                    {
+                      data?.includes?.map((item, index) => (
+                        <li className={styles.tour__include__item} key={index}>
+                          <Image src={item.icon} width={24} height={24} alt={item.title} />
+                          <div className={styles.tour__include__item__content}>
+                            <p className={styles.tour__include__item__title}>{item.title}</p>
+                            <p className={styles.tour__include__item__desc}>{item.description}</p>
+                          </div>
+                        </li>
+                      ))
+                    }
                   </ul>
                 </div>
                 <div className={styles.tour__include}>
                   <h3 className={styles.tour__include__title}>Tour excludes</h3>
                   <ul className={styles.tour__include__list}>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/accommodation.svg' width={24} height={24} alt='Accommodation' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Accommodation in Georgia</p>
-                        <p className={styles.tour__include__item__desc}>You will stay 6 nights in Georgia</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/breakfast.svg' width={24} height={24} alt='Breakfast' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Breakfast</p>
-                        <p className={styles.tour__include__item__desc}>Continental breakfast in hotel</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/transfer.svg' width={24} height={24} alt='Transfer' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Transfer</p>
-                        <p className={styles.tour__include__item__desc}>Comfortable transport from hotel to destination</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/building.svg' width={24} height={24} alt='Building' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Sightseeing</p>
-                        <p className={styles.tour__include__item__desc}>Daily tours of the most interesting places</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/driver.svg' width={24} height={24} alt='Driver' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Driver</p>
-                        <p className={styles.tour__include__item__desc}>English speaking professional driver</p>
-                      </div>
-                    </li>
-                    <li className={styles.tour__include__item}>
-                      <Image src='/images/water.svg' width={24} height={24} alt='Water' />
-                      <div className={styles.tour__include__item__content}>
-                        <p className={styles.tour__include__item__title}>Water</p>
-                        <p className={styles.tour__include__item__desc}>You will receive a bottle of water for each day of the excursion</p>
-                      </div>
-                    </li>
+                    {
+                      data?.excludes?.map((item, index) => (
+                        <li className={styles.tour__include__item} key={index}>
+                          <Image src={item.icon} width={24} height={24} alt={item.title} />
+                          <div className={styles.tour__include__item__content}>
+                            <p className={styles.tour__include__item__title}>{item.title}</p>
+                            <p className={styles.tour__include__item__desc}>{item.description}</p>
+                          </div>
+                        </li>
+                      ))
+                    }
                   </ul>
                 </div>
               </div>
@@ -255,10 +194,10 @@ const TourDetailPage = () => {
             <h2 className="section-title">Azerbaijan best travel tours</h2>
             <p className="section-text">Discover Azerbaijan</p>
             <div className={styles.moreTour__list}>
+              {/* <TourCard />
               <TourCard />
               <TourCard />
-              <TourCard />
-              <TourCard />
+              <TourCard /> */}
             </div>
           </div>
         </div>

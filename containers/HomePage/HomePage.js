@@ -23,8 +23,8 @@ const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) =>
     const [data, setData] = useState({
         bestToursData: [],
         DailyToursData: [],
-        HotelListData: [],
-        ReviewListData: [],
+        hotelListData: [],
+        reviewListData: [],
         NewsListData: [],
     });
 
@@ -41,8 +41,8 @@ const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) =>
             const keys = [
                 "bestToursData",
                 "DailyToursData",
-                "HotelListData",
-                "ReviewListData",
+                "hotelListData",
+                "reviewListData",
                 "NewsListData",
             ];
 
@@ -84,10 +84,10 @@ const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) =>
             <GoogleRating />
             <VisaBanner />
             <BestTours data={data.bestToursData} />
-          {/*   <DailyTours />
-            <HotelList />
-            <ReviewList />
-            <NewsList /> */}
+            {/* <DailyTours /> */}
+            <HotelList data={data.hotelListData} />
+            <ReviewList data={data.reviewListData} />
+            {/*   <NewsList /> */}
         </>
     )
 }

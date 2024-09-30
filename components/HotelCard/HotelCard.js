@@ -4,13 +4,13 @@ import Image from 'next/image';
 import SvgHeart from '@/assets/icons/Heart';
 import LazyImage from '../LazyImage/LazyImage';
 
-const HotelCard = ({ isFavourite }) => {
+const HotelCard = ({ hotel, chips, isFavourite }) => {
     return (
-        <Link href='/hotel-bookings/example' className={styles.card}>
+        <Link href={`/hotel-bookings/${hotel.slug}`} className={styles.card}>
             <div className={styles.card__top}>
                 <LazyImage
-                    src='https://www.alisontravelgroup.com/uploads/e31dac66c74c92e4adb9.webp'
-                    alt=''
+                    src={hotel.cover_image}
+                    alt={hotel.title}
                 />
                 <div className={styles.card__top__content}>
                     <button
@@ -25,44 +25,35 @@ const HotelCard = ({ isFavourite }) => {
                 </div>
             </div>
             <div className={styles.card__content}>
-                <h4 className={styles.card__title}>White Boutique Hotel</h4>
+                <h4 className={styles.card__title}>{hotel.title}</h4>
                 <div className={styles.card__wrapper}>
                     <div className={styles.card__stars}>
-                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
-                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
-                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
-                        <Image src='/images/star3.svg' width={16} height={16} alt='' />
+                        <Image src='/images/star3.svg' width={16} height={16} alt='star' />
+                        <Image src='/images/star3.svg' width={16} height={16} alt='star' />
+                        <Image src='/images/star3.svg' width={16} height={16} alt='star' />
+                        <Image src='/images/star3.svg' width={16} height={16} alt='star' />
                     </div>
                     <div className={styles.card__services}>
-                        <div className={styles.card__services__item}>
-                            <Image src='/images/wifi.svg' width={16} height={16} alt='' />
-                            <span className={styles.card__services__text}>Free wifi</span>
-                        </div>
-                        <div className={styles.card__services__item}>
-                            <Image src='/images/meal.svg' width={16} height={16} alt='' />
-                            <span className={styles.card__services__text}>Restaurant</span>
-                        </div>
-                        <div className={styles.card__services__item}>
-                            <Image src='/images/car.svg' width={16} height={16} alt='' />
-                            <span className={styles.card__services__text}>Free parking</span>
-                        </div>
-                        <div className={`${styles.card__services__item} ${styles.deactive}`}>
-                            <Image src='/images/room.svg' width={16} height={16} alt='' />
-                            <span className={styles.card__services__text}>Room service</span>
-                        </div>
-                        <div className={`${styles.card__services__item} ${styles.deactive}`}>
-                            <Image src='/images/pool.svg' width={16} height={16} alt='' />
-                            <span className={styles.card__services__text}>Pool</span>
-                        </div>
-                        <div className={`${styles.card__services__item} ${styles.deactive}`}>
-                            <Image src='/images/baby.svg' width={16} height={16} alt='' />
-                            <span className={styles.card__services__text}>Babysitting</span>
-                        </div>
+                        {
+                            chips?.sort((a, b) => {
+                                const isActiveA = hotel.chips.some(chip => chip.title === a.title);
+                                const isActiveB = hotel.chips.some(chip => chip.title === b.title);
+                                return isActiveA === isActiveB ? 0 : isActiveA ? -1 : 1;
+                            }).map((item, index) => {
+                                const isActive = hotel.chips.some(chip => chip.title === item.title);
+                                return (
+                                    <div className={`${styles.card__services__item} ${!isActive ? styles.deactive : ''}`} key={index}>
+                                        <Image src={item.image} width={16} height={16} alt={item.title} />
+                                        <span className={styles.card__services__text}>{item.title}</span>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                     <div className={styles.card__footer}>
                         <div className={styles.card__location}>
-                            <Image src='/images/flag-georgia.svg' width={21} height={15} alt='location' />
-                            <span className={styles.card__location__text}>Georgia</span>
+                            <Image src={hotel.country.flag} width={21} height={15} alt={hotel.country.title} />
+                            <span className={styles.card__location__text}>{hotel.country.title}</span>
                         </div>
                         <div className={styles.card__rating}>
                             <Image src='/images/star.svg' width={16} height={16} alt='star' />

@@ -7,8 +7,9 @@ import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 import SvgArrowRight from '@/assets/icons/ArrowRight';
 import ShowMore from '../UI/ShowMore/ShowMore';
 
-const HotelList = () => {
+const HotelList = ({ data }) => {
     const swiperRef = useRef(null);
+    console.log(data, "asdasd");
 
     const goPrev = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
@@ -33,12 +34,11 @@ const HotelList = () => {
                 </p>
                 <div className={styles.mobile}>
                     <div className={styles.hotel__list}>
-                        <HotelCard />
-                        <HotelCard />
-                        <HotelCard />
-                        <HotelCard />
-                        <HotelCard />
-                        <HotelCard />
+                        {
+                            data?.hotels?.map((item, i) => (
+                                <HotelCard key={i} hotel={item} chips={data.active_chips} />
+                            ))
+                        }
                     </div>
                 </div>
                 <div className="hotelList__slider">
@@ -58,21 +58,14 @@ const HotelList = () => {
                             }
                         }}
                     >
-                        <SwiperSlide>
-                            <HotelCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <HotelCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <HotelCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <HotelCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <HotelCard />
-                        </SwiperSlide>
+                        {
+                            data?.hotels?.map((item, i) => (
+                                <SwiperSlide key={i}>
+                                    <HotelCard hotel={item} chips={data.active_chips} />
+                                </SwiperSlide>
+                            ))
+                        }
+
                     </Swiper>
                     <button id='hotelPrevBtn' className="custom-arrow custom-arrow-prev" onClick={goPrev}>
                         <SvgArrowLeft />

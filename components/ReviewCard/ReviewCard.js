@@ -1,12 +1,33 @@
-import Link from '@/components/Link/Link'
+import formatDate from '@/utils/formatDate';
 import styles from './ReviewCard.module.scss'
 import Image from 'next/image'
 
-const ReviewCard = () => {
+const StarRating = ({ score }) => {
+  // Score-u yuvarlaqlaşdırmaq (ən yaxın tam ədədi əldə etmək üçün)
+  const roundedScore = Math.round(score);
+
+  // Ulduzları yaratmaq
+  const stars = [];
+  for (let i = 0; i < roundedScore; i++) {
+    stars.push(
+      <Image
+        key={i}
+        src='/images/star2.svg'
+        width={14}
+        height={13}
+        alt='star'
+      />
+    );
+  }
+
+  return <div className={styles.card__stars}>{stars}</div>;
+};
+
+const ReviewCard = ({ data }) => {
   return (
-    <Link href='/' className={styles.card}>
+    <div className={styles.card}>
       <h4 className={styles.card__title}>
-        Sam Atman
+        {data.name}
       </h4>
       <div className={styles.card__location}>
         <Image
@@ -15,24 +36,18 @@ const ReviewCard = () => {
           height={12}
           alt=''
         />
-        <span className={styles.card__location__text}>Azerbaijan</span>
+        <span className={styles.card__location__text}>{data.country_name}</span>
       </div>
       <p className={styles.card__desc}>
-        We had the most spectacular view. Unfortunately it was very hot in the room from 2-830 pm due to no air conditioning and no shade. Unfortunately it was very hot in the room from 2-830 pm due to no air conditioning and no shade.
+        {data.review}
       </p>
       <div className={styles.card__footer}>
-        <div className={styles.card__stars}>
-          <Image src='/images/star2.svg' width={14} height={13} alt='star' />
-          <Image src='/images/star2.svg' width={14} height={13} alt='star' />
-          <Image src='/images/star2.svg' width={14} height={13} alt='star' />
-          <Image src='/images/star2.svg' width={14} height={13} alt='star' />
-          <Image src='/images/star2.svg' width={14} height={13} alt='star' />
-        </div>
+        <StarRating score={data.score} />
         <p className={styles.card__date}>
-          about 1 hour ago
+          {formatDate(data.created_at)}
         </p>
       </div>
-    </Link>
+    </div>
   )
 }
 

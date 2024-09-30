@@ -2,9 +2,7 @@ import TourCard from '../TourCard/TourCard'
 import ShowMore from '../UI/ShowMore/ShowMore'
 import styles from './BestTours.module.scss'
 
-const BestTours = ({data}) => {
-    console.log(data);
-    
+const BestTours = ({ data }) => {
     return (
         <div className={styles.tour}>
             <div className='g-container'>
@@ -15,9 +13,11 @@ const BestTours = ({data}) => {
                     Discover Azerbaijan
                 </p>
                 <div className={styles.tour__list}>
-                    {/* {
-                        Array.from({ length: 12 }).map((_, i) => <TourCard key={i} />)
-                    } */}
+                    {
+                        data.map((item, i) => (
+                            <TourCard key={i} data={item} />
+                        ))
+                    }
                 </div>
                 <ShowMore />
             </div>
