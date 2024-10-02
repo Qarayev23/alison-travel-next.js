@@ -235,6 +235,7 @@
                 font-size: rem(12);
                 line-height: rem(20);
                 color: $gray;
+                transform: translateY(rem(1));
             }
 
             &__images {

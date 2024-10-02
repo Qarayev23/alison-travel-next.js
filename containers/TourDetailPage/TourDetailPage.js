@@ -27,19 +27,27 @@ const TourDetailPage = ({ data }) => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [hotelOptionsData, setHotelOptionsData] = useState(data.hotel_options);
+  const [selectedOption, setSelectedOption] = useState(data.hotel_options[0]);
+
   const [openReviewModal, setOpenReviewModal] = useState(false);
   const onOpenReviewModal = () => setOpenReviewModal(true);
   const closeReviewModal = () => setOpenReviewModal(false)
+
   const [openBookingModal, setOpenBookingModal] = useState(false);
   const onOpenBookingModal = () => setOpenBookingModal(true);
   const closeBookingModal = () => setOpenBookingModal(false)
 
   const images = [...data?.images, data?.image];
-console.log(images, "images");
 
   const handleShow = () => {
     setIsShow(!isShow);
   };
+
+  const handleSelectedOption = (title) => {
+    const option = hotelOptionsData.find(item => item.title === title);
+    setSelectedOption(option);
+  }
 
   return (
     <>
@@ -138,12 +146,14 @@ console.log(images, "images");
                   <span>{data?.nights_duration} nights</span>
                 </div>
               </div>
-              <div className={styles.tour__cancel}>
-                <Image src='/images/line-10.svg' width={16} height={16} alt='Calendar' />
-                <span>Free cancellation available</span>
-              </div>
-              {/* <div className={`${styles.tour__description} rich-content`}>
-              </div> */}
+              {
+                data?.has_free_cancellation && (
+                  <div className={styles.tour__cancel}>
+                    <Image src='/images/line-10.svg' width={16} height={16} alt='Calendar' />
+                    <span>Free cancellation available</span>
+                  </div>
+                )
+              }
               <HtmlContent html={data?.overview} className={`${styles.tour__description} rich-content`} />
               <div className={styles.tour__includes}>
                 <div className={styles.tour__include}>
@@ -179,39 +189,48 @@ console.log(images, "images");
                   </ul>
                 </div>
               </div>
-              <ItineraryAccordion />
-              <HotelOptions />
+              <ItineraryAccordion data={data?.itinerary} />
+              <HotelOptions data={hotelOptionsData} selectedOption={selectedOption} handleSelectedOption={handleSelectedOption} />
               <GoodToKnowAccordion />
             </div>
             <div className={styles.card}>
-              <BookingCard type="tour" onOpenBookingModal={onOpenBookingModal} />
+              <BookingCard type="tour" selectedOption={selectedOption} data={data} onOpenBookingModal={onOpenBookingModal} />
             </div>
           </div>
-          <Comment onOpenReviewModal={onOpenReviewModal} />
+          <Comment data={data} onOpenReviewModal={onOpenReviewModal} />
         </div>
-        <div className={styles.moreTour}>
-          <div className="g-container">
-            <h2 className="section-title">Azerbaijan best travel tours</h2>
-            <p className="section-text">Discover Azerbaijan</p>
-            <div className={styles.moreTour__list}>
-              {/* <TourCard />
-              <TourCard />
-              <TourCard />
-              <TourCard /> */}
+        {
+          !!data?.best_tours.length && (
+            <div className={styles.moreTour}>
+              <div className="g-container">
+                <h2 className="section-title">Azerbaijan best travel tours</h2>
+                <p className="section-text">Discover Azerbaijan</p>
+                <div className={styles.moreTour__list}>
+                  {
+                    data?.best_tours?.map((item, index) => (
+                      <TourCard key={index} data={item} />
+                    ))
+                  }
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )
+        }
         <BottomBar type="tour" isHide={isShow} handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
-          <BookingCard type="tour" handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
+          <BookingCard type="tour" selectedOption={selectedOption} data={data} onOpenBookingModal={onOpenBookingModal} />
         </div>
         <div
           className={`${styles.overlay} ${isShow ? styles.show : ''}`}
           onClick={handleShow}
         />
       </div>
-      <ReviewModal openReviewModal={openReviewModal} closeReviewModal={closeReviewModal} />
-      <TourBookingModal openBookingModal={openBookingModal} closeBookingModal={closeBookingModal} />
+      <ReviewModal slug={data.slug} openReviewModal={openReviewModal} closeReviewModal={closeReviewModal} />
+      <TourBookingModal
+        data={data}
+        selectedOption={selectedOption}
+        openBookingModal={openBookingModal}
+        closeBookingModal={closeBookingModal} />
     </>
   );
 };

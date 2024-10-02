@@ -472,3 +472,28 @@ textarea {
         }
     }
 }
+
+.comment__rating__item {
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+
+    &__bar {
+        width: rem(229);
+        height: rem(8);
+        background-color: $border-color;
+        border-radius: rem(4);
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            border-radius: rem(4);
+            background-color: #FFD166;
+        }
+    }
+}

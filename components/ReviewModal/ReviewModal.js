@@ -3,23 +3,49 @@ import { Modal } from 'react-responsive-modal';
 import styles from './ReviewModal.module.scss'
 import Select from 'react-select';
 import Image from 'next/image';
+import { Controller, useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const options = [
     { value: 'newest', label: 'Newest' },
     { value: 'oldest', label: 'Oldest' },
 ];
 
-const ReviewModal = ({ openReviewModal, closeReviewModal }) => {
-    const [rating, setRating] = useState(null);
-    const [selectedOption, setSelectedOption] = useState(null);
+const ReviewModal = ({ slug, openReviewModal, closeReviewModal }) => {
+    const { register, handleSubmit, watch, control, reset, setValue, formState: { errors } } = useForm();
+    const rating = watch('rating');
+    const [images, setImages] = useState([]);
+    const [imageUploadError, setImageUploadError] = useState('');
 
-    const handleCloseModal = () => {
-        closeReviewModal();
-        setRating(null);
-    };
+    const onSubmit = async (data) => {
+        
+        if (images.length === 0) {
+            setImageUploadError('At least one image is required.');
+            return;
+        }
 
-    const handleChange = (event) => {
-        setRating(parseInt(event.target.value, 10));
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}tour-review/`, {
+                tour_slug: slug,
+                full_name: data.full_name,
+                rating: Number(rating),
+                country: data.country.value,
+                message: data.message,
+                image_1: images[0].file
+            }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Accept-Language': 'en'
+                }
+            });
+
+            reset();
+            setImages([]);
+            setImageUploadError('');
+            closeReviewModal();
+        } catch (error) {
+            console.error('Error posting review:', error);
+        }
     };
 
     const starIcon = (filled) => (
@@ -29,12 +55,13 @@ const ReviewModal = ({ openReviewModal, closeReviewModal }) => {
         </svg>
     );
 
-    const [images, setImages] = useState([]);
-
     const handleImageChange = (event) => {
+        setImageUploadError('');
+
         const files = Array.from(event.target.files);
         const newImages = files.map(file => ({
             url: URL.createObjectURL(file),
+            file: file,
             id: URL.createObjectURL(file)
         }));
 
@@ -46,85 +73,99 @@ const ReviewModal = ({ openReviewModal, closeReviewModal }) => {
     };
 
     return (
-        <Modal open={openReviewModal} onClose={handleCloseModal} center>
-            <div className={styles.modal}>
+        <Modal open={openReviewModal} onClose={closeReviewModal} center>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.modal}>
                 <p className={styles.modal__title}>Add a review</p>
                 <div className={styles.modal__rating}>
-                    <p className={styles.modal__rating__text}>Give rate</p>
-                    <div className={styles.modal__rating__stars}>
-                        {[1, 2, 3, 4, 5].map((num) => (
-                            <label key={num} className={styles.modal__rating__star}>
-                                {starIcon(rating >= num)}
-                                <input
-                                    type="radio"
-                                    value={num}
-                                    checked={rating === num}
-                                    onChange={handleChange}
-                                    style={{ display: 'none' }}
-                                />
-                            </label>
-                        ))}
+                    <div className={styles.modal__rating__wrapper}>
+                        <p className={styles.modal__rating__text}>Give rate</p>
+                        <div className={styles.modal__rating__stars}>
+                            {[1, 2, 3, 4, 5].map((num) => (
+                                <label key={num} className={styles.modal__rating__star}>
+                                    {starIcon(rating >= num)}
+                                    <input
+                                        type="radio"
+                                        value={num}
+                                        checked={rating === num}
+                                        {...register('rating', { required: "Rating is required" })}
+                                        onChange={() => setValue('rating', num)}
+                                        style={{ display: 'none' }}
+                                    />
+                                </label>
+                            ))}
+                        </div>
                     </div>
+                    {errors.rating && <p className={styles.error}>Rating is required.</p>}
                 </div>
-                <form className={styles.modal__wrapper}>
+                <div className={styles.modal__wrapper}>
                     <div>
-                        <input type='text' placeholder='Full name' className="g-input" />
+                        <input type='text' placeholder='Full name' {...register('full_name', { required: 'Full name is required.' })} className="g-input" />
+                        {errors.full_name && <p className={styles.error}>{errors.full_name.message}</p>}
                     </div>
                     <div>
-                        <Select
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={options}
-                            isSearchable={false}
-                            placeholder="Country"
-                            styles={{
-                                control: (baseStyles, state) => ({
-                                    ...baseStyles,
-                                    border: '0.2rem solid #E6E8EC !important',
-                                    boxShadow: 'none !important',
-                                    borderRadius: '2.4rem',
-                                    width: '100%',
-                                    height: '4.8rem',
-                                    background: "#FCFCFD",
-                                    "div": {
-                                        "div": {
-                                            color: "#23262F",
+                        <Controller
+                            name="country"
+                            control={control}
+                            rules={{ required: 'Country is required.' }}
+                            render={({ field }) => (
+                                <Select
+                                    {...field}
+                                    options={options}
+                                    isSearchable={false}
+                                    placeholder="Country"
+                                    onChange={(value) => field.onChange(value)}
+                                    value={field.value}
+                                    styles={{
+                                        control: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            border: '0.2rem solid #E6E8EC !important',
+                                            boxShadow: 'none !important',
+                                            borderRadius: '2.4rem',
+                                            width: '100%',
+                                            height: '4.8rem',
+                                            background: "#FCFCFD",
+                                            "div": {
+                                                "div": {
+                                                    color: "#23262F",
+                                                    fontSize: "1.4rem",
+                                                    lineHeight: "2.4rem",
+                                                    fontWeight: "400",
+                                                    marginLeft: "0.8rem",
+                                                    marginRight: "0.8rem",
+                                                }
+                                            }
+                                        }),
+                                        placeholder: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            paddingLeft: "0",
                                             fontSize: "1.4rem",
                                             lineHeight: "2.4rem",
-                                            fontWeight: "400",
-                                            marginLeft: "0.8rem",
-                                            marginRight: "0.8rem",
-                                        }
-                                    }
-                                }),
-                                placeholder: (baseStyles, state) => ({
-                                    ...baseStyles,
-                                    paddingLeft: "0",
-                                    fontSize: "1.4rem",
-                                    lineHeight: "2.4rem",
-                                    fontWeight: "500",
-                                    margin: "0",
-                                    color: "#777E90 !important",
-                                }),
-                                indicatorsContainer: (baseStyles, state) => ({
-                                    ...baseStyles,
-                                    "svg": {
-                                        fill: "#B1B5C3",
-                                        width: "1.5rem",
-                                        height: "1.5rem",
-                                    },
-                                    "span": {
-                                        display: 'none'
-                                    }
-                                }),
-                                option: (provided) => ({
-                                    ...provided,
-                                    fontSize: "1.2rem",
-                                    lineHeight: "2rem",
-                                    fontWeight: "500",
-                                }),
-                            }}
+                                            fontWeight: "500",
+                                            margin: "0",
+                                            color: "#777E90 !important",
+                                        }),
+                                        indicatorsContainer: (baseStyles, state) => ({
+                                            ...baseStyles,
+                                            "svg": {
+                                                fill: "#B1B5C3",
+                                                width: "1.5rem",
+                                                height: "1.5rem",
+                                            },
+                                            "span": {
+                                                display: 'none'
+                                            }
+                                        }),
+                                        option: (provided) => ({
+                                            ...provided,
+                                            fontSize: "1.2rem",
+                                            lineHeight: "2rem",
+                                            fontWeight: "500",
+                                        }),
+                                    }}
+                                />
+                            )}
                         />
+                        {errors.country && <p className={styles.error}>{errors.country.message}</p>}
                     </div>
                     <div className={styles.upload}>
                         <label className={styles.upload__box}>
@@ -138,6 +179,7 @@ const ReviewModal = ({ openReviewModal, closeReviewModal }) => {
                             <span className={styles.upload__icon}>+</span>
                             <span className={styles.upload__text}>Upload photo (max 4)</span>
                         </label>
+                        {imageUploadError && <p className={styles.error}>{imageUploadError}</p>}
                         {
                             !!images.length && (
                                 <div className={styles.preview}>
@@ -158,11 +200,12 @@ const ReviewModal = ({ openReviewModal, closeReviewModal }) => {
                         }
                     </div>
                     <div>
-                        <textarea placeholder='Message' className="g-textarea" />
+                        <textarea placeholder='Message' {...register('message', { required: 'Message is required.' })} className="g-textarea" />
+                        {errors.message && <p className={styles.error}>{errors.message.message}</p>}
                     </div>
                     <button className={styles.modal__submit}>Submit</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </Modal>
     )
 }

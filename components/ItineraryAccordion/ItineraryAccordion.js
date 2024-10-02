@@ -1,31 +1,9 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import styles from "./ItineraryAccordion.module.scss";
+import { HtmlContent } from "@/utils/HTMLcontent";
 
-const data = [
-    {
-        question: "Day 1: Arrive in Tbilisi. Transfer to hotel",
-        answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
-    },
-    {
-        question: "Day 2: Full day Tbilisi city tour",
-        answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
-    },
-    {
-        question: "Day 3: Day excursion to Kakheti region",
-        answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
-    },
-    {
-        question: "Day 4: Full day tour to Uplistikhe and Borjomi",
-        answer:
-            'Breakfast at the hotel. Around 10am we will drive to Old Tbilisi and start a walking tour to discover the beauty of the ancient city. The walking tour will start from Europe Square, Meteki Church, Funicular to Narikala Fortress ( cable car), the "Mother of Kartli" and the descent to the Abano area. Afterwards, walk to Legtahevi Waterfall.'
-    }
-];
-
-const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
+const AccordionItem = ({data, question, answer, isOpen, onClick, index }) => {
     const contentHeight = useRef();
 
     return (
@@ -64,15 +42,13 @@ const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
                         : { height: "0px" }
                 }
             >
-                <div className={styles.accordion__content}>
-                    <p>{answer}</p>
-                </div>
+                <HtmlContent html={answer} className={`${styles.accordion__content__text} rich-content`} />
             </div>
         </div>
     );
 };
 
-const ItineraryAccordion = () => {
+const ItineraryAccordion = ({ data }) => {
     const [activeIndexes, setActiveIndexes] = useState([]);
 
     const handleItemClick = (index) => {
@@ -93,8 +69,9 @@ const ItineraryAccordion = () => {
                 {data.map((item, index) => (
                     <AccordionItem
                         key={index}
-                        question={item.question}
-                        answer={item.answer}
+                        question={item.title}
+                        answer={item.body}
+                        data={data}
                         isOpen={activeIndexes.includes(index)}
                         onClick={handleItemClick}
                         index={index}

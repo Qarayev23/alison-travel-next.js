@@ -3,10 +3,8 @@ import styles from './ReviewCard.module.scss'
 import Image from 'next/image'
 
 const StarRating = ({ score }) => {
-  // Score-u yuvarlaqlaşdırmaq (ən yaxın tam ədədi əldə etmək üçün)
   const roundedScore = Math.round(score);
 
-  // Ulduzları yaratmaq
   const stars = [];
   for (let i = 0; i < roundedScore; i++) {
     stars.push(

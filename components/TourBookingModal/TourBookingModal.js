@@ -46,8 +46,8 @@ const formatOptionLabel = ({ label, phoneCode, flagUrl }, { context }) => {
     }
 };
 
-const TourBookingModal = ({ openBookingModal, closeBookingModal }) => {
-    const [selectedOption, setSelectedOption] = useState(null);
+const TourBookingModal = ({ data, selectedOption, openBookingModal, closeBookingModal }) => {
+    const [selectedCountryOption, setSelectedCountryOption] = useState(null);
     const [selectedHotelOption, setSelectedHotelOption] = useState(null);
     const [selectedCodeOption, setSelectedCodeOption] = useState(countryCodeOptions[0]);
 
@@ -59,15 +59,17 @@ const TourBookingModal = ({ openBookingModal, closeBookingModal }) => {
                         <div className={styles.option__left}>
                             <div className={styles.option__icon}>
                                 <Image src="/images/option.svg" width={24} height={24} alt="Option" />
-                                <span className={styles.option__icon__text}>S</span>
+                                <span className={styles.option__icon__text}>{selectedOption.title.charAt(0)}</span>
                             </div>
                             <div className={styles.option__content}>
-                                <p className={styles.option__title}>Standard</p>
+                                <p className={styles.option__title}>{selectedOption.title}</p>
                                 <p className={styles.option__desc}>Description text will be here</p>
                             </div>
                         </div>
                         <div className={styles.option__right}>
-                            <p className={styles.option__price}>$293</p>
+                            <p className={styles.option__price}>
+                                ${(selectedOption.price - (selectedOption.discount_price ? selectedOption.discount_price : 0))}
+                            </p>
                         </div>
                     </div>
                     <form className={styles.modal__wrapper}>
@@ -144,8 +146,8 @@ const TourBookingModal = ({ openBookingModal, closeBookingModal }) => {
                         </div>
                         <div>
                             <Select
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
+                                defaultValue={selectedCountryOption}
+                                onChange={setSelectedCountryOption}
                                 options={options}
                                 isSearchable={false}
                                 placeholder="Country"
@@ -262,7 +264,7 @@ const TourBookingModal = ({ openBookingModal, closeBookingModal }) => {
                     </form>
                 </div>
                 <div className={styles.modal__right}>
-                    <TourCard isRow />
+                    {/* <TourCard isRow /> */}
                     <div className={styles.tour}>
                         <p className={styles.tour__title}>2 x Standart ticket</p>
                         <div className={styles.tour__info}>
