@@ -2,28 +2,26 @@ import AngleRight from '@/assets/icons/AngleRight'
 import styles from './Breadcrumb.module.scss'
 import Link from '@/components/Link/Link'
 
-const Breadcrumb = () => {
+const Breadcrumb = ({data}) => {
     return (
         <div className='g-container'>
             <ul className={styles.breadcrumb}>
-                <li className={styles.breadcrumb__item}>
-                    <Link href="" className={styles.breadcrumb__link}>
+               <li className={styles.breadcrumb__item}>
+                    <Link href="/" className={styles.breadcrumb__link}>
                         Home
                         <AngleRight />
                     </Link>
                 </li>
-                <li className={styles.breadcrumb__item}>
-                    <Link href="" className={styles.breadcrumb__link}>
-                        Azerbaijan Travel
-                        <AngleRight />
-                    </Link>
-                </li>
-                <li className={styles.breadcrumb__item}>
-                    <Link href="" className={styles.breadcrumb__link}>
-                        Beautiful Gabala Tour Package from Alison
-                        <AngleRight />
-                    </Link>
-                </li>
+                {
+                    data.map((item, i) => (
+                        <li className={styles.breadcrumb__item} key={i}>
+                            <Link href={item.url} className={styles.breadcrumb__link}>
+                                {item.name}
+                                <AngleRight />
+                            </Link>
+                        </li>
+                    ))
+                }
             </ul>
         </div>
 

@@ -53,7 +53,7 @@ const ContactPage = () => {
 
     return (
         <>
-            <Breadcrumb />
+            <Breadcrumb data={[{ name: "Contact Us", url: "/contact" }]} />
             <div className={styles.contact}>
                 <div className={styles.contact__wrapper}>
                     <div className={styles.contact__heading}>

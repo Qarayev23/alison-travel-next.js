@@ -8,7 +8,7 @@ import OurTeam from '@/components/OurTeam/OurTeam'
 const AboutUsPage = () => {
     return (
         <>
-        <Breadcrumb />
+        <Breadcrumb data={[{name: 'About us', url: '/about-us'}]} />
             <div className={styles.about}>
                 <div className='g-container'>
                     <h1 className='page-title'>

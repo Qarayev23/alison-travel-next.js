@@ -17,45 +17,6 @@
         gap: rem(24) rem(16);
     }
 
-    .notResult {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: rem(90);
-
-        &__img {
-            width: rem(185);
-            height: rem(152);
-            margin-bottom: rem(40);
-            position: relative;
-
-            img {
-                object-fit: contain;
-            }
-        }
-
-        &__title {
-            font-weight: 700;
-            font-size: rem(24);
-            line-height: rem(32);
-            color: $black-2;
-            margin-bottom: rem(8);
-        }
-
-        &__text {
-            font-size: rem(14);
-            line-height: rem(24);
-            text-align: center;
-            color: $gray;
-            width: rem(283);
-        }
-
-        &__btn {
-            display: none;
-        }
-    }
-
     .filterBtn {
         display: none;
     }
@@ -82,26 +43,6 @@
         &__list {
             grid-template-columns: repeat(1, 1fr);
             gap: rem(16);
-        }
-
-        .notResult {
-            margin-top: rem(70);
-
-            &__btn {
-                display: flex;
-                width: rem(260);
-                height: rem(48);
-                align-items: center;
-                justify-content: center;
-                background: $red;
-                color: $white;
-                border-radius: rem(90);
-                font-size: rem(16);
-                line-height: rem(16);
-                font-weight: 700;
-                font-family: $font-family-secondary;
-                margin-top: rem(40);
-            }
         }
     }
 }

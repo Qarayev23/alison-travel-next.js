@@ -9,7 +9,6 @@ import ShowMore from '../UI/ShowMore/ShowMore';
 
 const HotelList = ({ data }) => {
     const swiperRef = useRef(null);
-    console.log(data, "asdasd");
 
     const goPrev = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
@@ -36,7 +35,7 @@ const HotelList = ({ data }) => {
                     <div className={styles.hotel__list}>
                         {
                             data?.hotels?.map((item, i) => (
-                                <HotelCard key={i} hotel={item} chips={data.active_chips} />
+                                <HotelCard key={i} data={item} chips={data.active_chips} />
                             ))
                         }
                     </div>
@@ -61,7 +60,7 @@ const HotelList = ({ data }) => {
                         {
                             data?.hotels?.map((item, i) => (
                                 <SwiperSlide key={i}>
-                                    <HotelCard hotel={item} chips={data.active_chips} />
+                                    <HotelCard data={item} chips={data.active_chips} />
                                 </SwiperSlide>
                             ))
                         }

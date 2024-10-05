@@ -4,7 +4,7 @@ import styles from './CancellationPolicyPage.module.scss'
 const CancellationPolicyPage = () => {
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb data={[{name: 'Cancellation policy', url: '/cancellation-policy'}]} />
       <div className={styles.page}>
         <div className='g-container'>
           <h1 class="page-title">

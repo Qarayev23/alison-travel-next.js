@@ -22,7 +22,7 @@ import 'swiper/css/navigation';
 const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) => {
     const [data, setData] = useState({
         bestToursData: [],
-        DailyToursData: [],
+        dailyToursData: [],
         hotelListData: [],
         reviewListData: [],
         NewsListData: [],
@@ -40,7 +40,7 @@ const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) =>
 
             const keys = [
                 "bestToursData",
-                "DailyToursData",
+                "dailyToursData",
                 "hotelListData",
                 "reviewListData",
                 "NewsListData",
@@ -80,13 +80,23 @@ const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) =>
             <Search />
             <Destination data={destinationsData} />
             <WeProvide data={weProvideData} />
-            <AzerbaijanTours data={cityToursData} locale={locale} />
+            {
+                cityToursData && <AzerbaijanTours data={cityToursData} locale={locale} />
+            }
             <GoogleRating />
             <VisaBanner />
-            <BestTours data={data.bestToursData} />
-            {/* <DailyTours /> */}
-            <HotelList data={data.hotelListData} />
-            <ReviewList data={data.reviewListData} />
+            {
+                !!data?.bestToursData.length && <BestTours data={data.bestToursData} />
+            }
+            {
+                !!data?.dailyToursData.length && <DailyTours data={data.dailyToursData} />
+            }
+            {
+                data?.hotelListData && <HotelList data={data.hotelListData} />
+            }
+            {
+                !!data?.reviewListData.length && <ReviewList data={data.reviewListData} />
+            }
             {/*   <NewsList /> */}
         </>
     )

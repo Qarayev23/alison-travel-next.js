@@ -22,7 +22,6 @@ const Page = async ({ params: { locale } }) => {
   unstable_setRequestLocale(locale);
 
   const guestsData = await getGuestsData(locale);
-  console.log("guestsData", guestsData);
 
   return (
     <GuestsPage data={guestsData} />

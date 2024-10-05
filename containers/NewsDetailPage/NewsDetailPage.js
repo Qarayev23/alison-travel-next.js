@@ -15,7 +15,7 @@ import formatDate from '@/utils/formatDate'
 const NewsDetailPage = ({ data }) => {
     return (
         <>
-            <Breadcrumb />
+            <Breadcrumb data={[{ name: "News", url: "/news" }]} />
             <div className={styles.news}>
                 <div className="g-container">
                     <div className={styles.news__wrapper}>

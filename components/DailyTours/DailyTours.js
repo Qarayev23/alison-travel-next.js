@@ -7,7 +7,7 @@ import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 import TourCard from '../TourCard/TourCard';
 import ShowMore from '../UI/ShowMore/ShowMore';
 
-const DailyTours = () => {
+const DailyTours = ({ data }) => {
     const swiperRef = useRef(null);
 
     const goPrev = () => {
@@ -48,24 +48,13 @@ const DailyTours = () => {
                             }
                         }}
                     >
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <TourCard />
-                        </SwiperSlide>
+                        {
+                            data?.map((item, i) => (
+                                <SwiperSlide key={i}>
+                                    <TourCard data={item} />
+                                </SwiperSlide>
+                            ))
+                        }
                     </Swiper>
                     <button id='dailyToursPrevBtn' className="custom-arrow custom-arrow-prev" onClick={goPrev}>
                         <SvgArrowLeft />

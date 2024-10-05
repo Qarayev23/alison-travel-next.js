@@ -15,7 +15,7 @@ const ToursPage = () => {
 
     return (
         <>
-            <Breadcrumb />
+            <Breadcrumb data={[{ name: "Tours", url: "/tours" }]} />
             <div className={styles.tours}>
                 <div className='g-container'>
                     <div className={styles.tours__wrapper}>

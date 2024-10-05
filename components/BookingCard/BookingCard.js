@@ -6,7 +6,7 @@ const BookingCard = ({ selectedOption, data, handleShow, type, onOpenBookingModa
     return (
         <div className={styles.card}>
             {
-                type === 'tour' && (
+                type === 'tour' && selectedOption && (
                     <div className={styles.card__name}>
                         <div className={styles.card__name__icon}>
                             <Image src="/images/option.svg" width={32} height={32} alt="Option" />

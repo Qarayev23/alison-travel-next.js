@@ -36,7 +36,7 @@ const HotelOptions = ({ data, selectedOption, handleSelectedOption }) => {
                             </div>
                             <div className={styles.collapse__label__content}>
                                 <p className={styles.collapse__label__content__title}>{item.title}</p>
-                                <p className={styles.collapse__label__content__price}>Price ${item.price}</p>
+                                <p className={styles.collapse__label__content__price}>Price ${item.price - item.discount_price}</p>
                             </div>
                             <span className={styles.collapse__label__arrow}></span>
                         </label>

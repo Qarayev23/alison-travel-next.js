@@ -4,7 +4,7 @@ import NotFoundPage from '@/containers/NotFoundPage/NotFoundPage'
 const NotFound = () => {
   return (
     <>
-      <Breadcrumb />   
+      <Breadcrumb data={[{ name: "Not found", url: "/" }]} />   
       <NotFoundPage />
     </>
   )

@@ -8,7 +8,7 @@ import ShowMore from '@/components/UI/ShowMore/ShowMore'
 const NewsPage = ({ data, locale }) => {
     return (
         <>
-            <Breadcrumb />
+            <Breadcrumb data={[{ name: "News", url: "/news" }]}  />
             <div className={styles.news}>
                 <div className="g-container">
                     <h1 className="page-title">Tour news</h1>

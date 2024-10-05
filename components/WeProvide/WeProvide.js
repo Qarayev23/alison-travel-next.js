@@ -13,7 +13,7 @@ const WeProvide = ({ data }) => {
                 </p>
                 <div className={styles.weProvide__list}>
                     {
-                        data.map((item, index) => (
+                        data?.map((item, index) => (
                             <div className={styles.weProvide__item} key={index}>
                                 <Image src={item.icon} width={32} height={32} alt={item.title} />
                                 <div className={styles.weProvide__item__content}>

@@ -1,12 +1,15 @@
 @import "@/assets/styles/utilities";
 
 .card {
-    display: flex;
-    flex-direction: column;
-    border: rem(1) solid $border-color;
-    border-radius: rem(8);
     position: relative;
-    height: 100%;
+
+    a {
+        display: flex;
+        flex-direction: column;
+        border: rem(1) solid $border-color;
+        border-radius: rem(8);
+        height: 100%;
+    }
 
     &__top {
         position: relative;

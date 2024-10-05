@@ -27,8 +27,7 @@ const TourDetailPage = ({ data }) => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [hotelOptionsData, setHotelOptionsData] = useState(data.hotel_options);
-  const [selectedOption, setSelectedOption] = useState(data.hotel_options[0]);
+  const [selectedOption, setSelectedOption] = useState(data?.hotel_options ? data?.hotel_options[0] : null);
 
   const [openReviewModal, setOpenReviewModal] = useState(false);
   const onOpenReviewModal = () => setOpenReviewModal(true);
@@ -45,13 +44,13 @@ const TourDetailPage = ({ data }) => {
   };
 
   const handleSelectedOption = (title) => {
-    const option = hotelOptionsData.find(item => item.title === title);
+    const option = data?.hotel_options.find(item => item.title === title);
     setSelectedOption(option);
   }
 
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb data={[{ name: 'Tours', url: '/tours' }, { name: data?.title, url: '' }]} />
       <div className={styles.tour}>
         <div className="g-container">
           <h1 className={styles.tour__title}>{data?.title}</h1>
@@ -190,7 +189,14 @@ const TourDetailPage = ({ data }) => {
                 </div>
               </div>
               <ItineraryAccordion data={data?.itinerary} />
-              <HotelOptions data={hotelOptionsData} selectedOption={selectedOption} handleSelectedOption={handleSelectedOption} />
+              {
+                !!data?.hotel_options?.length > 0 && (
+                  <HotelOptions
+                    data={data?.hotel_options}
+                    selectedOption={selectedOption}
+                    handleSelectedOption={handleSelectedOption} />
+                )
+              }
               <GoodToKnowAccordion />
             </div>
             <div className={styles.card}>
@@ -216,21 +222,36 @@ const TourDetailPage = ({ data }) => {
             </div>
           )
         }
-        <BottomBar type="tour" isHide={isShow} handleShow={handleShow} onOpenBookingModal={onOpenBookingModal} />
+        <BottomBar
+          type="tour"
+          isHide={isShow}
+          handleShow={handleShow}
+          onOpenBookingModal={onOpenBookingModal}
+        />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
-          <BookingCard type="tour" selectedOption={selectedOption} data={data} onOpenBookingModal={onOpenBookingModal} />
+          <BookingCard
+            type="tour"
+            selectedOption={selectedOption}
+            data={data}
+            onOpenBookingModal={onOpenBookingModal}
+          />
         </div>
         <div
           className={`${styles.overlay} ${isShow ? styles.show : ''}`}
           onClick={handleShow}
         />
       </div>
-      <ReviewModal slug={data.slug} openReviewModal={openReviewModal} closeReviewModal={closeReviewModal} />
+      <ReviewModal
+        slug={data.slug}
+        openReviewModal={openReviewModal}
+        closeReviewModal={closeReviewModal}
+      />
       <TourBookingModal
         data={data}
         selectedOption={selectedOption}
         openBookingModal={openBookingModal}
-        closeBookingModal={closeBookingModal} />
+        closeBookingModal={closeBookingModal}
+      />
     </>
   );
 };

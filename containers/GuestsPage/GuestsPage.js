@@ -26,7 +26,7 @@ const GuestsPage = ({ data }) => {
 
     return (
         <>
-            <Breadcrumb />
+            <Breadcrumb data={[{name: 'Our guests', url: '/guests'}]} />
             <div className={styles.guests}>
                 <div className="g-container">
                     <h1 className='page-title'>{data?.page?.title}</h1>
