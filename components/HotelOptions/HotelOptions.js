@@ -25,18 +25,19 @@ const HotelOptions = ({ data, selectedOption, handleSelectedOption }) => {
                     <SwiperSlide className={styles.collapse__item} key={index}>
                         <input
                             type="radio"
-                            id={item.title}
-                            defaultChecked={selectedOption.title === item.title}
+                            id={item.category.title}
+                            defaultChecked={selectedOption.category.title === item.category.title}
                             name="radio"
-                            onChange={() => handleSelectedOption(item.title)} />
-                        <label htmlFor={item.title} className={styles.collapse__label}>
+                            onChange={() => handleSelectedOption(item.category.title)}
+                        />
+                        <label htmlFor={item.category.title} className={styles.collapse__label}>
                             <div className={styles.collapse__label__icon}>
                                 <Image src='/images/option.svg' width={32} height={32} alt='Option' />
-                                <span>{item.title.charAt(0)}</span>
+                                <span>{item.category.title.charAt(0)}</span>
                             </div>
                             <div className={styles.collapse__label__content}>
-                                <p className={styles.collapse__label__content__title}>{item.title}</p>
-                                <p className={styles.collapse__label__content__price}>Price ${item.price - item.discount_price}</p>
+                                <p className={styles.collapse__label__content__title}>{item.category.title}</p>
+                                <p className={styles.collapse__label__content__price}>Price ${item.price_per_person - item.discount_per_person}</p>
                             </div>
                             <span className={styles.collapse__label__arrow}></span>
                         </label>
@@ -46,10 +47,10 @@ const HotelOptions = ({ data, selectedOption, handleSelectedOption }) => {
 
             {data.map(item => (
                 <div
-                    key={`content-${item.title}`}
-                    ref={el => contentRefs.current[item.title] = el}
+                    key={`content-${item.category.title}`}
+                    ref={el => contentRefs.current[item.category.title] = el}
                     style={{
-                        maxHeight: selectedOption.title === item.title ? `${contentRefs.current[item.title]?.scrollHeight}px` : '0',
+                        maxHeight: selectedOption.category.title === item.category.title ? `${contentRefs.current[item.category.title]?.scrollHeight}px` : '0',
                     }}
                     className={styles.collapse__content}
                 >
@@ -67,7 +68,7 @@ const HotelOptions = ({ data, selectedOption, handleSelectedOption }) => {
                                     </div>
                                     <div className={styles.collapse__content__item__wrapper}>
                                         <p className={styles.collapse__content__item__title}>{hotel.title}</p>
-                                        <p className={styles.collapse__content__item__location}>{hotel.country}</p>
+                                        <p className={styles.collapse__content__item__location}>{hotel.country.title}</p>
                                         <div className={styles.collapse__content__item__rating}>
                                             <Image src='/images/star3.svg' width={20} height={19} alt='Star' />
                                             <Image src='/images/star3.svg' width={20} height={19} alt='Star' />

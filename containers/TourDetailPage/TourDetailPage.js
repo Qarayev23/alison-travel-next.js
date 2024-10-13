@@ -27,7 +27,7 @@ const TourDetailPage = ({ data }) => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(data?.hotel_options ? data?.hotel_options[0] : null);
+  const [selectedOption, setSelectedOption] = useState(data?.options ? data?.options[0] : null);
 
   const [openReviewModal, setOpenReviewModal] = useState(false);
   const onOpenReviewModal = () => setOpenReviewModal(true);
@@ -44,7 +44,7 @@ const TourDetailPage = ({ data }) => {
   };
 
   const handleSelectedOption = (title) => {
-    const option = data?.hotel_options.find(item => item.title === title);
+    const option = data?.options?.find(item => item.category.title === title);
     setSelectedOption(option);
   }
 
@@ -72,7 +72,9 @@ const TourDetailPage = ({ data }) => {
               <Image src='/images/location.svg' width={20} height={20} alt='Location' />
               {
                 data?.countries?.map((item, index) => (
-                  <span key={index} className={styles.tour__heading__item__text}>{item}</span>
+                  <span key={index} className={styles.tour__heading__item__text}>
+                    {item} {data.countries?.length - 1 !== index ? ", " : ""}
+                  </span>
                 ))
               }
             </div>
@@ -134,79 +136,113 @@ const TourDetailPage = ({ data }) => {
               <div className={styles.tour__content__heading}>
                 <div className={styles.tour__content__heading__item}>
                   <Image src='/images/home.svg' width={20} height={20} alt='Home' />
-                  <span>2 guests</span>
+                  <span>{data?.limit_adults} guests</span>
                 </div>
-                <div className={styles.tour__content__heading__item}>
-                  <Image src='/images/day.svg' width={20} height={20} alt='Day' />
-                  <span>{data?.days_duration} days</span>
-                </div>
-                <div className={styles.tour__content__heading__item}>
-                  <Image src='/images/night.svg' width={20} height={20} alt='Night' />
-                  <span>{data?.nights_duration} nights</span>
-                </div>
+                {
+                  data?.days_duration && (
+                    <div className={styles.tour__content__heading__item}>
+                      <Image src='/images/day.svg' width={20} height={20} alt='Day' />
+                      <span>{data?.days_duration} days</span>
+                    </div>
+                  )
+                }
+                {
+                  data?.nights_duration && (
+                    <div className={styles.tour__content__heading__item}>
+                      <Image src='/images/night.svg' width={20} height={20} alt='Night' />
+                      <span>{data?.nights_duration} nights</span>
+                    </div>
+                  )
+                }
+                {
+                  data?.hours_duration && (
+                    <div className={styles.tour__content__heading__item}>
+                      <Image src='/images/hour-2.svg' width={20} height={20} alt='Night' />
+                      <span>{data?.hours_duration} hours</span>
+                    </div>
+                  )
+                }
               </div>
-              {
-                data?.has_free_cancellation && (
-                  <div className={styles.tour__cancel}>
-                    <Image src='/images/line-10.svg' width={16} height={16} alt='Calendar' />
-                    <span>Free cancellation available</span>
-                  </div>
-                )
-              }
+              <div className={styles.tour__cancel}>
+                <Image src='/images/line-10.svg' width={16} height={16} alt='Calendar' />
+                <span>Free cancellation available</span>
+              </div>
               <HtmlContent html={data?.overview} className={`${styles.tour__description} rich-content`} />
               <div className={styles.tour__includes}>
-                <div className={styles.tour__include}>
-                  <h3 className={styles.tour__include__title}>Tour Includes</h3>
-                  <ul className={styles.tour__include__list}>
-                    {
-                      data?.includes?.map((item, index) => (
-                        <li className={styles.tour__include__item} key={index}>
-                          <Image src={item.icon} width={24} height={24} alt={item.title} />
-                          <div className={styles.tour__include__item__content}>
-                            <p className={styles.tour__include__item__title}>{item.title}</p>
-                            <p className={styles.tour__include__item__desc}>{item.description}</p>
-                          </div>
-                        </li>
-                      ))
-                    }
-                  </ul>
-                </div>
-                <div className={styles.tour__include}>
-                  <h3 className={styles.tour__include__title}>Tour excludes</h3>
-                  <ul className={styles.tour__include__list}>
-                    {
-                      data?.excludes?.map((item, index) => (
-                        <li className={styles.tour__include__item} key={index}>
-                          <Image src={item.icon} width={24} height={24} alt={item.title} />
-                          <div className={styles.tour__include__item__content}>
-                            <p className={styles.tour__include__item__title}>{item.title}</p>
-                            <p className={styles.tour__include__item__desc}>{item.description}</p>
-                          </div>
-                        </li>
-                      ))
-                    }
-                  </ul>
-                </div>
+                {
+                  !!data?.includes?.length && (
+                    <div className={styles.tour__include}>
+                      <h3 className={styles.tour__include__title}>Tour Includes</h3>
+                      <ul className={styles.tour__include__list}>
+                        {
+                          data?.includes?.map((item, index) => (
+                            <li className={styles.tour__include__item} key={index}>
+                              <Image src={item.icon} width={24} height={24} alt={item.title} />
+                              <div className={styles.tour__include__item__content}>
+                                <p className={styles.tour__include__item__title}>{item.title}</p>
+                                <p className={styles.tour__include__item__desc}>{item.description}</p>
+                              </div>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  )
+                }
+                {
+                  !!data?.excludes?.length && (
+                    <div className={styles.tour__include}>
+                      <h3 className={styles.tour__include__title}>Tour excludes</h3>
+                      <ul className={styles.tour__include__list}>
+                        {
+                          data?.excludes?.map((item, index) => (
+                            <li className={styles.tour__include__item} key={index}>
+                              <Image src={item.icon} width={24} height={24} alt={item.title} />
+                              <div className={styles.tour__include__item__content}>
+                                <p className={styles.tour__include__item__title}>{item.title}</p>
+                                <p className={styles.tour__include__item__desc}>{item.description}</p>
+                              </div>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  )
+                }
               </div>
-              <ItineraryAccordion data={data?.itinerary} />
               {
-                !!data?.hotel_options?.length > 0 && (
-                  <HotelOptions
-                    data={data?.hotel_options}
-                    selectedOption={selectedOption}
-                    handleSelectedOption={handleSelectedOption} />
+                !!data?.itinerary?.length && (
+                  <ItineraryAccordion data={data?.itinerary} />
                 )
               }
-              <GoodToKnowAccordion />
+              {
+                (!!data?.options?.length > 0 && !data.is_daily) && (
+                  <HotelOptions
+                    data={data?.options}
+                    selectedOption={selectedOption}
+                    handleSelectedOption={handleSelectedOption}
+                  />
+                )
+              }
+              {
+                !!data?.good_to_know.length && (
+                  <GoodToKnowAccordion data={data?.good_to_know} />
+                )
+              }
             </div>
             <div className={styles.card}>
-              <BookingCard type="tour" selectedOption={selectedOption} data={data} onOpenBookingModal={onOpenBookingModal} />
+              <BookingCard
+                isHoliday={!data.is_daily}
+                selectedOption={selectedOption}
+                data={data}
+                onOpenBookingModal={onOpenBookingModal}
+              />
             </div>
           </div>
           <Comment data={data} onOpenReviewModal={onOpenReviewModal} />
         </div>
         {
-          !!data?.best_tours.length && (
+          !!data?.related_tours.length && (
             <div className={styles.moreTour}>
               <div className="g-container">
                 <h2 className="section-title">Azerbaijan best travel tours</h2>
@@ -223,18 +259,20 @@ const TourDetailPage = ({ data }) => {
           )
         }
         <BottomBar
-          type="tour"
+          isHoliday={!data.is_daily}
           isHide={isShow}
+          selectedOption={selectedOption}
           handleShow={handleShow}
+          data={data}
           onOpenBookingModal={onOpenBookingModal}
         />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
-          <BookingCard
-            type="tour"
+          {/* <BookingCard
+            isHoliday={!data.is_daily}
             selectedOption={selectedOption}
             data={data}
             onOpenBookingModal={onOpenBookingModal}
-          />
+          /> */}
         </div>
         <div
           className={`${styles.overlay} ${isShow ? styles.show : ''}`}
@@ -246,12 +284,12 @@ const TourDetailPage = ({ data }) => {
         openReviewModal={openReviewModal}
         closeReviewModal={closeReviewModal}
       />
-      <TourBookingModal
+      {/* <TourBookingModal
         data={data}
         selectedOption={selectedOption}
         openBookingModal={openBookingModal}
         closeBookingModal={closeBookingModal}
-      />
+      /> */}
     </>
   );
 };

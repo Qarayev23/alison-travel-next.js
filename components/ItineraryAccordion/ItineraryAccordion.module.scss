@@ -6,6 +6,7 @@
     gap: rem(32);
     position: relative;
     margin-top: rem(32);
+    margin-bottom: rem(40);
 
     &::after {
         content: '';
@@ -103,7 +104,7 @@
             justify-content: center;
             border-radius: 50%;
             border: rem(7) solid $green;
-            margin:  rem(4);
+            margin: rem(4);
             background-color: $white;
             position: relative;
             z-index: 1;
@@ -178,6 +179,8 @@
     }
 
     @media screen and (max-width: 700px) {
+        margin-bottom: rem(32);
+
         &__container {
             padding-right: 0;
         }

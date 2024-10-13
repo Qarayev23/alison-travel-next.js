@@ -2,7 +2,7 @@ import AngleUp from '@/assets/icons/AngleUp'
 import Image from 'next/image'
 import styles from './BottomBar.module.scss'
 
-const BottomBar = ({ isHide, handleShow, onOpenBookingModal, type }) => {
+const BottomBar = ({data, selectedOption, isHide, handleShow, onOpenBookingModal, isHoliday }) => {
     return (
         <div className={`${styles.bottomBar} ${isHide ? styles.hide : ""}`}>
             <div className={styles.bottomBar__wrapper}>
@@ -12,25 +12,35 @@ const BottomBar = ({ isHide, handleShow, onOpenBookingModal, type }) => {
                     </button>
                     <div className={styles.bottomBar__content}>
                         {
-                            type === 'tour' && (
+                           isHoliday && (
                                 <div className={styles.bottomBar__name}>
                                     <div className={styles.bottomBar__name__icon}>
                                         <Image src="/images/option.svg" width={32} height={32} alt="Option" />
-                                        <span>E</span>
+                                        <span>{selectedOption.category.title.charAt(0)}</span>
                                     </div>
-                                    <p className={styles.bottomBar__name__text}>Economy</p>
+                                    <p className={styles.bottomBar__name__text}>
+                                        {selectedOption.category.title}
+                                    </p>
                                 </div>
                             )
                         }
                         <div className={styles.bottomBar__price}>
-                            <p className={styles.bottomBar__price__old}>$119</p>
-                            <p className={styles.bottomBar__price__original}>$102</p>
+                            {
+                                selectedOption.discount_per_person && (
+                                    <p className={styles.bottomBar__price__old}>
+                                        ${selectedOption.price_per_person}
+                                    </p>
+                                )
+                            }
+                            <p className={styles.bottomBar__price__original}>
+                                ${selectedOption.price_per_person - selectedOption.discount_per_person}
+                            </p>
                             <p className={styles.bottomBar__price__person}>/person</p>
                         </div>
                         {
-                            type === 'tour' && (
+                           isHoliday && (
                                 <p className={styles.bottomBar__duration}>
-                                    5 days - 6 nights
+                                    {data?.days_duration} days - {data?.nights_duration} nights
                                 </p>
                             )
                         }

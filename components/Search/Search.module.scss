@@ -75,29 +75,26 @@
         border: rem(1) solid $border-color;
         position: relative;
         background: $white;
+        position: relative;
 
         &__left {
             display: flex;
             flex-grow: 1;
-            position: relative;
+        }
 
-            &::after {
-                content: "Place to go, things to do, daily tours...";
-                position: absolute;
-                left: rem(65);
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: rem(16);
-                line-height: rem(24);
-                color: $gray;
-                font-family: $font-family-main;
-                pointer-events: none;
-            }
+        &__placeholder {
+            position: absolute;
+            left: rem(73);
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: rem(16);
+            line-height: rem(24);
+            color: $gray;
+            font-family: $font-family-main;
+            pointer-events: none;
 
-            &.active {
-                &::after {
-                    display: none;
-                }
+            &.hidden {
+                display: none;
             }
         }
 
@@ -275,16 +272,21 @@
             box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 5px;
             border-radius: rem(12);
 
+            &__placeholder {
+                font-weight: 500;
+                font-size: rem(14);
+                top: rem(20);
+                left: rem(59);
+                transform: none;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
             &__left {
                 width: 100%;
                 border-bottom: rem(1) solid $border-color;
-
-                &::after {
-                    content: "Places to visit, hotels";
-                    left: rem(42);
-                    font-weight: 500;
-                    font-size: rem(14);
-                }
             }
 
             &__right {

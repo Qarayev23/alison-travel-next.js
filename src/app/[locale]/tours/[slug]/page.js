@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 const getTourData = async (locale, slug) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}tour-detail/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours/${slug}`, {
       method: 'GET',
       headers: {
         'Accept-Language': locale,

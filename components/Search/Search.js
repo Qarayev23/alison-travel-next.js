@@ -14,6 +14,13 @@ import axios from 'axios'
 import { ClipLoader } from 'react-spinners'
 
 const Search = ({ data }) => {
+    const [placeHolders, setPlaceHolders] = useState({
+        holidays: data.search_holidays_placeholder,
+        hotels: data.search_hotels_placeholder,
+        transfers: data.search_transfer_placeholder,
+        dailyTours: data.search_daily_placeholder,
+    })
+    const [acticePlaceholder, setActivePlaceholder] = useState(placeHolders.holidays)
     const [results, setResults] = useState([])
     const [value, setValue] = useState("")
     const [isLoading, setIsLoading] = useState(false)
@@ -31,7 +38,7 @@ const Search = ({ data }) => {
             if (tab === "holidays") {
                 setIsLoading(true)
 
-                axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours?q=${newValue}&is_daily=${false}`,)
+                axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours?q=${newValue}&is_daily=${false}&size=5`,)
                     .then((res) => {
                         setResults(res.data.results.tours)
                     })
@@ -43,7 +50,7 @@ const Search = ({ data }) => {
             } else if (tab === "hotels") {
                 setIsLoading(true)
 
-                axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}hotels?q=${newValue}`,)
+                axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}hotels?q=${newValue}&size=5`,)
                     .then((res) => {
                         setResults(res.data.results.hotels)
                     })
@@ -53,7 +60,7 @@ const Search = ({ data }) => {
                         setIsLoading(false)
                     })
             } else if (tab === "dailyTours") {
-                axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours?q=${newValue}&is_daily=${true}`,)
+                axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours?q=${newValue}&is_daily=${true}&size=5`,)
                     .then((res) => {
                         setResults(res.data.results.tours)
                     })
@@ -70,6 +77,7 @@ const Search = ({ data }) => {
 
     const handleChangeTab = (e) => {
         setTab(e.target.id)
+        setActivePlaceholder(placeHolders[e.target.id])
         setValue("")
         setResults([])
     }
@@ -156,7 +164,7 @@ const Search = ({ data }) => {
                             </Swiper>
                         </div>
                         <div className={styles.search__field}>
-                            <div className={`${styles.search__field__left} ${value ? styles.active : ""}`}>
+                            <div className={styles.search__field__left}>
                                 <span className={styles.search__field__icon} onClick={focusInput}>
                                     <SvgSearch />
                                 </span>
@@ -169,6 +177,9 @@ const Search = ({ data }) => {
                                     onBlur={handleFocus}
                                     onChange={handleChangeInput}
                                 />
+                                <span className={`${styles.search__field__placeholder} ${value ? styles.hidden : ""}`}>
+                                    {acticePlaceholder}
+                                </span>
                             </div>
                             <div className={styles.search__field__right}>
                                 <button className={styles.search__field__btn} type='submit'>Search</button>
@@ -176,38 +187,33 @@ const Search = ({ data }) => {
 
                             <div className={`${styles.autocomplete} ${(isFocus && value.length > 2) ? styles.show : ""}`}>
                                 {
-                                    isLoading ? (
-                                        <div className={styles.autocomplete__loader}>
-                                            <ClipLoader color="#E63561" />
-                                        </div>
-                                    ) : !!results.length && (
-                                            <ul className={styles.autocomplete__list}>
-                                                {
-                                                    results?.map((item, index) => (
-                                                        <li className={styles.autocomplete__item} key={index}>
-                                                            <Link
-                                                                href={`${(tab === "holidays" || tab === "dailyTours") ? `/tours/${item.slug}` : tab === "transfers" ? `/transfers/${item.slug}` : `/hotels/${item.slug}`}`}
-                                                                className={styles.autocomplete__link}
-                                                            >
-                                                                <span className={styles.autocomplete__img}>
-                                                                    <LazyImage
-                                                                        src={item.image || item.cover_image}
-                                                                        alt={item.title}
-                                                                        type="small"
-                                                                    />
-                                                                </span>
-                                                                <span className={styles.autocomplete__text}>
-                                                                    {item.title}
-                                                                </span>
-                                                            </Link>
-                                                        </li>
-                                                    ))
-                                                }
-                                            </ul>
-                                        )
+                                    !!results.length && (
+                                        <ul className={styles.autocomplete__list}>
+                                            {
+                                                results?.map((item, index) => (
+                                                    <li className={styles.autocomplete__item} key={index}>
+                                                        <Link
+                                                            href={`${(tab === "holidays" || tab === "dailyTours") ? `/tours/${item.slug}` : tab === "transfers" ? `/transfers/${item.slug}` : `/hotels/${item.slug}`}`}
+                                                            className={styles.autocomplete__link}
+                                                        >
+                                                            <span className={styles.autocomplete__img}>
+                                                                <LazyImage
+                                                                    src={item.image || item.cover_image}
+                                                                    alt={item.title}
+                                                                    type="small"
+                                                                />
+                                                            </span>
+                                                            <span className={styles.autocomplete__text}>
+                                                                {item.title}
+                                                            </span>
+                                                        </Link>
+                                                    </li>
+                                                ))
+                                            }
+                                        </ul>
+                                    )
                                 }
-                                <div
-                                    className={`${styles.autocomplete__more} ${results.length === 0 ? styles.hidden : ""}`}>
+                                <div className={`${styles.autocomplete__more} ${results.length === 0 ? styles.hidden : ""}`}>
                                     <Link href='/' className={styles.autocomplete__more__link}>
                                         See all results for &quot;{value}&quot;
                                         <SvgArrowRight />
