@@ -1,10 +1,11 @@
 "use client"
+
 import Image from 'next/image'
 import styles from './Footer.module.scss'
 import Link from '@/components/Link/Link'
 import { usePathname } from 'next/navigation'
 
-const Footer = () => {
+const Footer = ({ data }) => {
     const router = usePathname()
     const isTourDetail = (router.split('/').length === 4 && router.split('/')[1] === 'tours') ||
         (router.split('/').length === 3 && router.split('/')[1] === 'hotel-bookings')
@@ -50,30 +51,26 @@ const Footer = () => {
                                 <li className={styles.footer__title}>
                                     Contact us
                                 </li>
-                                <li className={styles.footer__item}>
-                                    <Link href='tel:+994702729499' className={styles.footer__link}>
-                                        <Image src="/images/wp.svg" alt="whatsapp" width={20} height={20} />
-                                        +994 70 272 94 99
-                                    </Link>
-                                </li>
-                                <li className={styles.footer__item}>
-                                    <Link href='tel:+994702729499' className={styles.footer__link}>
-                                        <Image src="/images/wp.svg" alt="whatsapp" width={20} height={20} />
-                                        +994 70 272 94 99
-                                    </Link>
-                                </li>
-                                <li className={styles.footer__item}>
-                                    <Link href='tel:+994702729499' className={styles.footer__link}>
-                                        <Image src="/images/wp.svg" alt="whatsapp" width={20} height={20} />
-                                        +994 70 272 94 99
-                                    </Link>
-                                </li>
-                                <li className={styles.footer__item}>
-                                    <Link href='mailto:booking@alisontravelgroup.com' className={styles.footer__link}>
-                                        <Image src="/images/sms.svg" alt="whatsapp" width={20} height={20} />
-                                        booking@alisontravelgroup.com
-                                    </Link>
-                                </li>
+                                {
+                                    data?.contact_info?.phone?.map((item, i) => (
+                                        <li className={styles.footer__link} key={i}>
+                                            <Image src="/images/wp.svg" alt="whatsapp" width={20} height={20} />
+                                            <Link href={`https://wa.me/${item.replaceAll(' ', '')}`} className={styles.footer__link}>
+                                                {item}
+                                            </Link>
+                                        </li>
+                                    ))
+                                }
+                                {
+                                    data?.contact_info?.email?.map((item, i) => (
+                                        <li className={styles.footer__item} key={i}>
+                                            <Link href={`mailto:${item}`} className={styles.footer__link}>
+                                                <Image src="/images/sms.svg" alt="whatsapp" width={20} height={20} />
+                                                {item}
+                                            </Link>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                         </div>
                         <div className={styles.footer__right}>
@@ -82,21 +79,15 @@ const Footer = () => {
                                     Follow us
                                 </p>
                                 <ul className={styles.footer__social__list}>
-                                    <li className={styles.footer__social__item}>
-                                        <Link href='/' className={styles.footer__social__link}>
-                                            <Image src="/images/facebook.svg" alt="facebook" width={40} height={40} />
-                                        </Link>
-                                    </li>
-                                    <li className={styles.footer__social__item}>
-                                        <Link href='/' className={styles.footer__social__link}>
-                                            <Image src="/images/youtube.svg" alt="youtube" width={40} height={40} />
-                                        </Link>
-                                    </li>
-                                    <li className={styles.footer__social__item}>
-                                        <Link href='/' className={styles.footer__social__link}>
-                                            <Image src="/images/instagram.svg" alt="instagram" width={40} height={40} />
-                                        </Link>
-                                    </li>
+                                    {
+                                        data?.social_links?.map((item, index) => (
+                                            <li key={index} className={styles.footer__social__item}>
+                                                <Link href={item.link} target="_blank" className={styles.footer__social__link}>
+                                                    <Image src={item.image} alt="social link" width={40} height={40} />
+                                                </Link>
+                                            </li>
+                                        ))
+                                    }
                                 </ul>
                             </div>
                             <div className={styles.footer__payment}>

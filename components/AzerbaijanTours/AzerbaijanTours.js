@@ -33,7 +33,7 @@ const AzerbaijanTours = ({ data, locale }) => {
         setActiveBtn(slug);
 
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}home-city-detail/${slug}`, {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}home/azerbaijan-tours-by-cities?city=${slug}`, {
                 headers: {
                     'Accept-Language': locale,
                 },
@@ -49,10 +49,10 @@ const AzerbaijanTours = ({ data, locale }) => {
         <div className={styles.tour}>
             <div className="g-container">
                 <h2 className="section-title">
-                    Azerbaijan best travel tours
+                    {data?.section_title}
                 </h2>
                 <p className="section-text">
-                    Discover Azerbaijan
+                    {data?.section_subtitle}
                 </p>
                 <Swiper
                     slidesPerView='auto'

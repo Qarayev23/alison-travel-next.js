@@ -5,6 +5,7 @@ import styles from './ContactPage.module.scss'
 import { useState } from 'react';
 import Select from 'react-select';
 import Image from 'next/image';
+import { Controller, useForm } from 'react-hook-form';
 
 const countryCodeOptions = [
     { value: 'us', label: 'USA', phoneCode: '+1', flagUrl: '/images/flag.svg' },
@@ -13,7 +14,8 @@ const countryCodeOptions = [
 ];
 
 const ContactPage = () => {
-    const [fileName, setFileName] = useState('International Passport Front Side');
+    const { register, handleSubmit, watch, control, reset, setValue, formState: { errors } } = useForm();
+    const [file, setFile] = useState(null);
     const [selectedCodeOption, setSelectedCodeOption] = useState(countryCodeOptions[0]);
     const [selectedCountry, setSelectedCountry] = useState(null);
 
@@ -45,9 +47,38 @@ const ContactPage = () => {
     ];
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
+        const file = {
+            name: event.target.files[0].name,
+            url: URL.createObjectURL(event.target.files[0]),
+        };
+
         if (file) {
-            setFileName(file.name);
+            setFile(file);
+        }
+    };
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}contact-us/`, {
+                full_name: data.full_name,
+                email: data.email,
+                country_code: data.country.value,
+                phone: data.phone,
+                message: data.message,
+                country: data.country.value,
+            }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Accept-Language': 'en'
+                }
+            });
+
+            reset();
+            closeReviewModal();
+        } catch (error) {
+            console.error('Error posting review:', error);
         }
     };
 
@@ -60,83 +91,92 @@ const ContactPage = () => {
                         <h1 className="page-title">Contact Us</h1>
                         <p className="section-text">Let’s contact!</p>
                     </div>
-
-                    <form className={styles.contact__form}>
+                    <form className={styles.contact__form} onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles.contact__form__group}>
                             <div className={styles.contact__form__group__item}>
-                                <input type="text" className='g-input' placeholder="Full Name" />
+                                <input {...register('full_name', { required: 'Full name is required.' })} type="text" className='g-input' placeholder="Full Name" />
                             </div>
                             <div className={styles.contact__form__group__item}>
-                                <input type="email" placeholder="Email" className='g-input' />
+                                <input type="email" {...register('email', { required: 'Email is required.' })} placeholder="Email" className='g-input' />
                             </div>
                         </div>
 
                         <div className="g-phone-input">
-                            <Select
-                                instanceId="country-code"
-                                defaultValue={selectedCodeOption}
-                                onChange={setSelectedCodeOption}
-                                formatOptionLabel={formatOptionLabel}
-                                options={countryCodeOptions}
-                                isSearchable={false}
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        border: 'none !important',
-                                        boxShadow: 'none !important',
-                                        borderRadius: '2.4rem',
-                                        width: '100%',
-                                        height: '4.8rem',
-                                        width: '10.1rem',
-                                        background: "#FCFCFD",
-                                        borderTopRightRadius: "0",
-                                        borderBottomRightRadius: "0",
-                                        "div": {
-                                            paddingRight: "0",
-                                            "div": {
-                                                color: "#23262F",
+                            <Controller
+                                name="country"
+                                control={control}
+                                rules={{ required: 'Country is required.' }}
+                                render={({ field }) => (
+                                    <Select
+                                        instanceId="country-code"
+                                        defaultValue={selectedCodeOption}
+                                        formatOptionLabel={formatOptionLabel}
+                                        options={countryCodeOptions}
+                                        isSearchable={false}
+                                        {...field}
+                                        onChange={(value) => field.onChange(value)}
+                                        value={field.value}
+                                        styles={{
+                                            control: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                border: 'none !important',
+                                                boxShadow: 'none !important',
+                                                borderRadius: '2.4rem',
+                                                width: '100%',
+                                                height: '4.8rem',
+                                                width: '10.1rem',
+                                                background: "#FCFCFD",
+                                                borderTopRightRadius: "0",
+                                                borderBottomRightRadius: "0",
+                                                "div": {
+                                                    paddingRight: "0",
+                                                    "div": {
+                                                        color: "#23262F",
+                                                        fontSize: "1.4rem",
+                                                        lineHeight: "2.4rem",
+                                                        fontWeight: "400",
+                                                        margin: "0",
+                                                        padding: "0",
+                                                    }
+                                                }
+                                            }),
+                                            placeholder: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                paddingLeft: "0",
                                                 fontSize: "1.4rem",
                                                 lineHeight: "2.4rem",
-                                                fontWeight: "400",
+                                                fontWeight: "500",
                                                 margin: "0",
-                                                padding: "0",
-                                            }
-                                        }
-                                    }),
-                                    placeholder: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        paddingLeft: "0",
-                                        fontSize: "1.4rem",
-                                        lineHeight: "2.4rem",
-                                        fontWeight: "500",
-                                        margin: "0",
-                                        whiteSpace: "nowrap"
-                                    }),
-                                    indicatorsContainer: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        "svg": {
-                                            fill: "#777E90",
-                                            width: "1.5rem",
-                                            height: "1.5rem",
-                                            marginRight: "0.5rem"
-                                        },
-                                        "span": {
-                                            display: 'none'
-                                        }
-                                    }),
-                                    menu: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        width: '14.1rem',
-                                    }),
-                                    option: (provided) => ({
-                                        ...provided,
-                                        fontSize: "1.2rem",
-                                        lineHeight: "2rem",
-                                        fontWeight: "500",
-                                    }),
-                                }}
+                                                whiteSpace: "nowrap"
+                                            }),
+                                            indicatorsContainer: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                "svg": {
+                                                    fill: "#777E90",
+                                                    width: "1.5rem",
+                                                    height: "1.5rem",
+                                                    marginRight: "0.5rem"
+                                                },
+                                                "span": {
+                                                    display: 'none'
+                                                }
+                                            }),
+                                            menu: (baseStyles, state) => ({
+                                                ...baseStyles,
+                                                width: '14.1rem',
+                                            }),
+                                            option: (provided) => ({
+                                                ...provided,
+                                                fontSize: "1.2rem",
+                                                lineHeight: "2rem",
+                                                fontWeight: "500",
+                                            }),
+                                        }}
+                                    />
+                                )}
                             />
-                            <input type="text" placeholder="Phone" className='g-input' />
+
+                            <input type="text" {...register('phone', { required: 'Phone is required.' })} placeholder="Phone" className='g-input' />
                         </div>
 
                         <div>
@@ -200,7 +240,7 @@ const ContactPage = () => {
                         </div>
 
                         <div className={styles.contact__form__group}>
-                            <textarea placeholder="Your message" className='g-textarea'></textarea>
+                            <textarea placeholder="Your message" {...register('message', { required: 'Message is required.' })} className='g-textarea'></textarea>
                         </div>
                         <div className={styles.contact__form__group}>
                             <div className={styles.fileUpload}>
@@ -212,7 +252,7 @@ const ContactPage = () => {
                                         onChange={handleFileChange}
                                     />
                                 </label>
-                                <span className={styles.fileUpload__name}>{fileName}</span>
+                                <span className={styles.fileUpload__name}>{file?.name ? file.name : 'International Passport Front Side'}</span>
                             </div>
                         </div>
                         <button type='submit' className={styles.contact__form__submit}>

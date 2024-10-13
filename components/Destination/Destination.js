@@ -25,10 +25,10 @@ const Destination = ({ data }) => {
         <div className={styles.destination}>
             <div className="g-container">
                 <h2 className='section-title'>
-                    The most popular destinations
+                    {data?.section_title}
                 </h2>
                 <p className='section-text'>
-                    The most popular tour packages
+                    {data?.section_subtitle}
                 </p>
                 <div className="destination__slider">
                     <Swiper
@@ -48,7 +48,7 @@ const Destination = ({ data }) => {
                         }}
                     >
                         {
-                            data?.countries?.map((item, index) => (
+                            data?.data?.map((item, index) => (
                                 <SwiperSlide key={index}>
                                     <DestinationCard data={item} />
                                 </SwiperSlide>

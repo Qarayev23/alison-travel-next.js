@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import styles from './PriceRange.module.scss';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { debounce } from 'lodash';
 
-const PriceRange = () => {
-    const [inputValues, setInputValues] = useState(['$1000', '$5000']); // Daxil edilən dəyərlər üçün ayrı state
-    const [values, setValues] = useState([1000, 5000]); // Slider dəyərləri üçün state
-    const min = 1000;
-    const max = 5000;
+const PriceRange = ({ priceRange }) => {
+    const [inputValues, setInputValues] = useState([`${priceRange.min}`, `${priceRange.max}`]);
+    const [values, setValues] = useState([priceRange.min, priceRange.max]);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const min = priceRange.min;
+    const max = priceRange.max;
 
-    // Input dəyərlərini yeniləmək üçün funksiya
     const handleInputChange = (index, value) => {
         const numericValue = parseInt(value.replace(/[^0-9]/g, ''), 10) || 0;
         const formattedValue = `$${numericValue}`;
@@ -18,12 +22,24 @@ const PriceRange = () => {
         newInputValues[index] = formattedValue;
         setInputValues(newInputValues);
 
-        // Dəyər sliderin min və max aralığında olduqda slider dəyərlərini yeniləyir
         const newValues = [...values];
         const intValue = Math.max(min, Math.min(max, numericValue));
         newValues[index] = intValue;
         setValues(newValues);
+        debouncedUpdateRouter(newValues);
     };
+
+    const createQueryString = useCallback((name, value) => {
+        const params = new URLSearchParams(searchParams.toString())
+        params.set(name, value)
+        params.delete('page');
+
+        return params.toString()
+    }, [searchParams])
+
+    const debouncedUpdateRouter = useCallback(debounce((newValue) => {
+        router.push(pathname + '?' + createQueryString('prices', `${newValue[0]},${newValue[1]}`), { scroll: false });
+    }, 700), []);
 
     return (
         <div className={styles.priceRange}>
@@ -54,6 +70,7 @@ const PriceRange = () => {
                     setValues(newRangeValues);
                     setInputValues(newRangeValues.map(value => `$${value}`));
                 }}
+                onFinalChange={(newValue) => debouncedUpdateRouter(newValue)}
                 renderTrack={({ props, children }) => (
                     <div
                         onMouseDown={props.onMouseDown}
@@ -82,7 +99,7 @@ const PriceRange = () => {
                         </div>
                     </div>
                 )}
-                renderThumb={({ index, props, isDragged }) => (
+                renderThumb={({ props }) => (
                     <div
                         {...props}
                         key={props.key}

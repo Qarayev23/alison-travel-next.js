@@ -19,10 +19,28 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+const getData = async (locale) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}home/header-and-footer`, {
+      method: 'GET',
+      headers: {
+        'Accept-Language': locale,
+        'Content-Type': 'application/json'
+      },
+      cache: 'no-store'
+    });
+    return await res.json();
+  } catch (error) {
+    console.error("Error in getCityTours", error.message);
+    return null;
+  }
+}
+
 export default async function RootLayout({ children, params: { locale } }) {
   unstable_setRequestLocale(locale);
 
   const messages = await getMessages();
+  const data = await getData(locale);
 
   return (
     <html lang={locale}>
@@ -36,9 +54,9 @@ export default async function RootLayout({ children, params: { locale } }) {
               shadow="none"
             />
             <NextIntlClientProvider messages={messages}>
-              <Navbar />
+              <Navbar data={data} />
               {children}
-              <Footer />
+              <Footer data={data} />
             </NextIntlClientProvider>
           </ClientProvider>
         </ReduxProvider>

@@ -3,26 +3,41 @@
 import { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import styles from './TimesIntervalRange.module.scss';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const TimesIntervalRange = () => {
-    const [inputValues, setInputValues] = useState(['1 night', '10 nights']); // Daxil edilən dəyərlər üçün ayrı state
-    const [values, setValues] = useState([1, 10]); // Slider dəyərləri üçün state
+    const [inputValues, setInputValues] = useState(['1 night', '10 nights']);
+    const [values, setValues] = useState([1, 10]);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
     const min = 1;
     const max = 10;
 
-    // Input dəyərlərini idarə etmək üçün funksiya
     const handleInputChange = (index, value) => {
-        const numericValue = parseInt(value, 10) || min; // Rəqəmləri çıxarır və min ilə müqayisə edir
-        const newValue = `${numericValue} night${numericValue > 1 ? 's' : ''}`; // Pluralization dəstəyi
+        const numericValue = parseInt(value, 10) || min;
+        const newValue = `${numericValue} night${numericValue > 1 ? 's' : ''}`;
         const newInputValues = [...inputValues];
         newInputValues[index] = newValue;
         setInputValues(newInputValues);
 
-        // Slider dəyərlərini tənzimləyir
         const newValues = [...values];
         newValues[index] = Math.max(min, Math.min(max, numericValue));
         setValues(newValues);
+        debouncedUpdateRouter(newValues);
     };
+
+    const createQueryString = useCallback((name, value) => {
+        const params = new URLSearchParams(searchParams.toString())
+        params.set(name, value)
+        params.delete('page');
+
+        return params.toString()
+    }, [searchParams])
+
+    const debouncedUpdateRouter = useCallback(debounce((newValue) => {
+        router.push(pathname + '?' + createQueryString('nights', `${newValue[0]},${newValue[1]}`), { scroll: false });
+    }, 700), []);
 
     return (
         <div className={styles.timesIntervalRange}>
@@ -51,7 +66,7 @@ const TimesIntervalRange = () => {
                 values={values}
                 onChange={(newValues) => {
                     setValues(newValues);
-                    setInputValues(newValues.map(value => `${value} night${value > 1 ? 's' : ''}`)); // Slider dəyərlərini yeniləyir
+                    setInputValues(newValues.map(value => `${value} night${value > 1 ? 's' : ''}`));
                 }}
                 renderTrack={({ props, children }) => (
                     <div
@@ -81,7 +96,7 @@ const TimesIntervalRange = () => {
                         </div>
                     </div>
                 )}
-                renderThumb={({ index, props, isDragged }) => (
+                renderThumb={({ props }) => (
                     <div
                         {...props}
                         key={props.key}

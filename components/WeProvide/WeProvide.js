@@ -6,14 +6,14 @@ const WeProvide = ({ data }) => {
         <div className={styles.weProvide}>
             <div className="g-container">
                 <h2 className="section-title">
-                    Options we provide
+                    {data?.section_title}
                 </h2>
                 <p className="section-text">
-                    Keep calm & travel on
+                    {data?.section_subtitle}
                 </p>
                 <div className={styles.weProvide__list}>
                     {
-                        data?.map((item, index) => (
+                        data?.data?.map((item, index) => (
                             <div className={styles.weProvide__item} key={index}>
                                 <Image src={item.icon} width={32} height={32} alt={item.title} />
                                 <div className={styles.weProvide__item__content}>

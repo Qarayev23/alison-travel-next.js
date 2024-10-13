@@ -4,7 +4,9 @@ import PriceRange from '../PriceRange/PriceRange'
 import TimesIntervalRange from '../TimesIntervalRange/TimesIntervalRange'
 import styles from './FilterBar.module.scss'
 
-const FilterBar = ({ show, handleShow }) => {
+const FilterBar = ({ data, show, handleShow }) => {
+  console.log(data);
+  
   return (
     <div className={`${styles.filter} ${show ? styles.show : ''}`}>
       <div className={styles.filter__header}>
@@ -28,7 +30,7 @@ const FilterBar = ({ show, handleShow }) => {
       <div className={styles.filter__wrapper}>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>price range</p>
-          <PriceRange />
+          <PriceRange priceRange={data?.results?.filter_param?.price_range} />
         </div>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>Times interval</p>

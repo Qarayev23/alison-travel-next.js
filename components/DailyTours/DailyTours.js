@@ -26,10 +26,10 @@ const DailyTours = ({ data }) => {
         <div className={styles.DailyTours}>
             <div className="g-container">
                 <h2 className='section-title'>
-                    Discover the best daily tour packages
+                    {data?.section_title}
                 </h2>
                 <p className='section-text'>
-                    The best sightseeing tour packages | Holiday Packages
+                    {data?.section_subtitle}
                 </p>
                 <div className="dailyTours__slider">
                     <Swiper
@@ -49,7 +49,7 @@ const DailyTours = ({ data }) => {
                         }}
                     >
                         {
-                            data?.map((item, i) => (
+                            data?.data?.map((item, i) => (
                                 <SwiperSlide key={i}>
                                     <TourCard data={item} />
                                 </SwiperSlide>

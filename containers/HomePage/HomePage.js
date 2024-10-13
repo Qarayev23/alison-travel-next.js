@@ -18,9 +18,13 @@ const NewsList = dynamic(() => import('@/components/NewsList/NewsList'));
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useLocale } from 'use-intl';
 
-const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) => {
+const HomePage = ({ homeBannerData, destinationsData, weProvideData, cityToursData }) => {
+    const locale = useLocale();
+
     const [data, setData] = useState({
+        visaData: {},
         bestToursData: [],
         dailyToursData: [],
         hotelListData: [],
@@ -31,14 +35,16 @@ const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) =>
     useEffect(() => {
         const fetchDataSequentially = async () => {
             const endpoints = [
-                `${process.env.NEXT_PUBLIC_BASE_API_URL}home-best-tours`,
-                `${process.env.NEXT_PUBLIC_BASE_API_URL}home-daily-tours`,
-                `${process.env.NEXT_PUBLIC_BASE_API_URL}home-hotels-and-chips`,
-                `${process.env.NEXT_PUBLIC_BASE_API_URL}home-testimonials`,
-                `${process.env.NEXT_PUBLIC_BASE_API_URL}home-news`,
+                `${process.env.NEXT_PUBLIC_BASE_API_URL}home/visa`,
+                `${process.env.NEXT_PUBLIC_BASE_API_URL}home/best-tours`,
+                `${process.env.NEXT_PUBLIC_BASE_API_URL}home/daily-tours`,
+                `${process.env.NEXT_PUBLIC_BASE_API_URL}home/hotels`,
+                `${process.env.NEXT_PUBLIC_BASE_API_URL}home/testimonials`,
+                `${process.env.NEXT_PUBLIC_BASE_API_URL}home/news`,
             ];
 
             const keys = [
+                "visaData",
                 "bestToursData",
                 "dailyToursData",
                 "hotelListData",
@@ -77,25 +83,31 @@ const HomePage = ({ destinationsData, weProvideData, cityToursData, locale }) =>
 
     return (
         <>
-            <Search />
-            <Destination data={destinationsData} />
-            <WeProvide data={weProvideData} />
+            <Search data={homeBannerData} />
             {
-                cityToursData && <AzerbaijanTours data={cityToursData} locale={locale} />
+                !!destinationsData.data?.length && <Destination data={destinationsData} />
+            }
+            {
+                !!weProvideData.data?.length && <WeProvide data={weProvideData} />
+            }
+            {
+               !!cityToursData.cities.length && <AzerbaijanTours data={cityToursData} locale={locale} />
             }
             <GoogleRating />
-            <VisaBanner />
             {
-                !!data?.bestToursData.length && <BestTours data={data.bestToursData} />
+                !!Object.keys(data.visaData).length && <VisaBanner data={data?.visaData} />
             }
             {
-                !!data?.dailyToursData.length && <DailyTours data={data.dailyToursData} />
+                !!data.bestToursData.data?.length && <BestTours data={data.bestToursData} />
             }
             {
-                data?.hotelListData && <HotelList data={data.hotelListData} />
+                !!data?.dailyToursData?.data?.length && <DailyTours data={data.dailyToursData} />
             }
             {
-                !!data?.reviewListData.length && <ReviewList data={data.reviewListData} />
+                !!data?.hotelListData.data?.length && <HotelList data={data.hotelListData} />
+            }
+            {
+                !!data?.reviewListData.data?.length && <ReviewList data={data.reviewListData} />
             }
             {/*   <NewsList /> */}
         </>

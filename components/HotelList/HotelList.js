@@ -26,15 +26,15 @@ const HotelList = ({ data }) => {
         <div className={styles.hotel}>
             <div className="g-container">
                 <h2 className="section-title">
-                    Best hotel bookings
+                    {data?.section_title}
                 </h2>
                 <p className="section-text">
-                    The best staying hotels
+                    {data?.section_subtitle}
                 </p>
                 <div className={styles.mobile}>
                     <div className={styles.hotel__list}>
                         {
-                            data?.hotels?.map((item, i) => (
+                            data?.data?.map((item, i) => (
                                 <HotelCard key={i} data={item} chips={data.active_chips} />
                             ))
                         }
@@ -58,7 +58,7 @@ const HotelList = ({ data }) => {
                         }}
                     >
                         {
-                            data?.hotels?.map((item, i) => (
+                            data?.data?.map((item, i) => (
                                 <SwiperSlide key={i}>
                                     <HotelCard data={item} chips={data.active_chips} />
                                 </SwiperSlide>

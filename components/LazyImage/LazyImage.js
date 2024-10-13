@@ -7,8 +7,15 @@ const LazyImage = ({ src, alt, sizes, className, type, borderRadius = "0.8rem" }
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-  }, []);
+    if (src) {
+      setIsLoading(true);
+      const img = new window.Image();
+      img.src = src;
+      img.onload = () => {
+        setIsLoading(false);
+      };
+    }
+  }, [src]);
 
   return (
     <div
@@ -18,20 +25,20 @@ const LazyImage = ({ src, alt, sizes, className, type, borderRadius = "0.8rem" }
       {isLoading && (
         <div
           className={`${styles.spinner} 
-                      ${type === 'small' ? styles.small : ''}
+                      ${type === 'small' ? styles.small : ''} 
                       ${type === 'middle' ? styles.middle : ''}`}
         >
           <ClipLoader color="#E63561" />
         </div>
       )}
       <Image
-        src={src}
+        src={src || ''}
         alt={alt}
         sizes={sizes}
         fill
         onLoad={() => setIsLoading(false)}
         className={`${isLoading ? styles.hidden : ''} ${className ? className : ''}`}
-        key={`${src}-${Date.now()}`}
+        key={src}
       />
     </div>
   );

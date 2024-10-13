@@ -24,11 +24,8 @@ const ReviewList = ({ data }) => {
     return (
         <div className={styles.review}>
             <div className='g-container'>
-                <h2 className="section-title">Ratings & Reviews</h2>
-                <p className='section-text'>
-                    Customer reviews
-                </p>
-
+                <h2 className="section-title">{data?.section_title}</h2>
+                <p className='section-text'>{data?.section_subtitle}</p>
                 <div className="review__slider">
                     <Swiper
                         ref={swiperRef}
@@ -47,7 +44,7 @@ const ReviewList = ({ data }) => {
                         }}
                     >
                         {
-                            data?.map((item, i) => (
+                            data?.data?.map((item, i) => (
                                 <SwiperSlide className={styles.slide} key={i}>
                                     <ReviewCard data={item} />
                                 </SwiperSlide>

@@ -59,8 +59,8 @@ const HotelCard = ({ data, chips }) => {
                             </div>
                             <div className={styles.card__rating}>
                                 <Image src='/images/star.svg' width={16} height={16} alt='star' />
-                                <span className={styles.card__rating__text}>4.8</span>
-                                <span className={styles.card__rating__review}>(12 reviews)</span>
+                                <span className={styles.card__rating__text}>{data.rate ? data.rate : data.score}</span>
+                                <span className={styles.card__rating__review}>({data.review_count} reviews)</span>
                             </div>
                         </div>
                     </div>

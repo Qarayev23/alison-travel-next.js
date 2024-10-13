@@ -222,6 +222,10 @@
         &__more {
             box-shadow: 0 -3px 8px #0000000d;
 
+            &.hidden {
+                box-shadow: none;
+            }
+
             &__link {
                 font-size: rem(16);
                 line-height: rem(24);

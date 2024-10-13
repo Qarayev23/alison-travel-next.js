@@ -4,7 +4,8 @@ import styles from './TourList.module.scss'
 import SvgFilter from '@/assets/icons/Filter'
 import NoResult from '../NoResult/NoResult'
 
-const TourList = ({ handleShow }) => {
+const TourList = ({ data, handleShow }) => {
+  
   return (
     <div className={styles.tour}>
       <h1 className={styles.tour__title}>
@@ -15,20 +16,22 @@ const TourList = ({ handleShow }) => {
         <SvgFilter />
       </button>
 
-      <div className={styles.tour__list}>
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-        <TourCard />
-      </div>
-      <ShowMore />
-
-      <NoResult text='There is no search result for your filter choices' page="tours" />
+      {
+        !!data?.results?.tours?.length ? (
+          <>
+            <div className={styles.tour__list}>
+              {
+                data?.results?.tours?.map((item, i) => (
+                  <TourCard key={i} data={item} />
+                ))
+              }
+            </div>
+            <ShowMore />
+          </>
+        ) : (
+          <NoResult text='There is no search result for your filter choices' page="tours" />
+        )
+      }
     </div>
   )
 }

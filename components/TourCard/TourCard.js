@@ -56,16 +56,14 @@ const TourCard = ({ data, isRow }) => {
                             }
                         </div>
                         {
-                            data.has_free_cancellation && (
-                                <div className={styles.card__cancel}>
-                                    <Image src='/images/line-10.svg' width={12} height={12} alt='cancel' />
-                                    <span className={styles.card__cancel__text}>Free cancellation available</span>
-                                </div>
-                            )
+                            <div className={styles.card__cancel}>
+                                <Image src='/images/line-10.svg' width={12} height={12} alt='cancel' />
+                                <span className={styles.card__cancel__text}>Free cancellation available</span>
+                            </div>
                         }
                         <div className={styles.card__footer}>
                             <div className={styles.card__price}>
-                                <span>${data.price}</span>
+                                <span>${data.price_per_person}</span>
                                 <span> /person</span>
                             </div>
                             <div className={styles.card__rating}>

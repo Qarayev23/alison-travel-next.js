@@ -7,14 +7,14 @@ const BestTours = ({ data }) => {
         <div className={styles.tour}>
             <div className='g-container'>
                 <h2 className="section-title">
-                    Azerbaijan best travel tours
+                    {data?.section_title}
                 </h2>
                 <p className="section-text">
-                    Discover Azerbaijan
+                    {data?.section_subtitle}
                 </p>
                 <div className={styles.tour__list}>
                     {
-                        data.map((item, i) => (
+                        data?.data?.map((item, i) => (
                             <TourCard key={i} data={item} />
                         ))
                     }

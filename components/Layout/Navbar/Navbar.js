@@ -26,7 +26,7 @@ const languages = [
     },
 ]
 
-const Navbar = () => {
+const Navbar = ({data}) => {
     const [showLangDropDown, setShowLangDropDown] = useState(false);
     const [showNavbar, setShowNavbar] = useState(false);
     const dropdownRef = useRef(null);
@@ -75,16 +75,16 @@ const Navbar = () => {
                         <Image src="/images/menu.svg" alt="menu" width={24} height={24} priority />
                     </button>
                     <Link href='/' className={styles.navMob__logo}>
-                        <Image src="/images/logo.svg" alt="Alison Travel" width={89} height={48} priority />
+                        <Image src={data.header.logo || ""} alt="Alison Travel" width={89} height={48} priority />
                     </Link>
-                    <Link href="/contact" className={styles.navMob__call}>
+                    <Link href={`https://wa.me/${data.header.header_mobile_phone}`} className={styles.navMob__call}>
                         <Image src="/images/call.svg" alt="call" width={24} height={24} priority />
                     </Link>
                 </div>
                 <nav className={`${styles.nav} ${showNavbar ? styles.show : ''}`}>
                     <div className={styles.nav__wrapper}>
                         <Link href='/' className={styles.nav__logo}>
-                            <Image src="/images/logo.svg" alt="Alison Travel" fill priority />
+                            <Image src={data.header.logo || ""} alt="Alison Travel" fill priority />
                         </Link>
 
                         <div className={styles.nav__links}>

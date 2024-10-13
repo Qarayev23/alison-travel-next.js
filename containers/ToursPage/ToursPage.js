@@ -6,7 +6,7 @@ import styles from './ToursPage.module.scss';
 import TourList from '@/components/TourList/TourList';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-const ToursPage = () => {
+const ToursPage = ({ data }) => {
     const [show, setShow] = useState(false);
 
     const handleShow = () => {
@@ -19,8 +19,8 @@ const ToursPage = () => {
             <div className={styles.tours}>
                 <div className='g-container'>
                     <div className={styles.tours__wrapper}>
-                        <FilterBar show={show} handleShow={handleShow} />
-                        <TourList handleShow={handleShow} />
+                        <FilterBar data={data} show={show} handleShow={handleShow} />
+                        <TourList data={data} handleShow={handleShow} />
                     </div>
                     <div className={`${styles.tours__description} rich-content`}>
                         <h2><strong>Is Azerbaijan worth a visit?</strong></h2>
