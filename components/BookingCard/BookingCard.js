@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './BookingCard.module.scss'
 import AngleUp from '@/assets/icons/AngleUp'
 
-const BookingCard = ({ selectedOption, data, handleShow, isHoliday, onOpenBookingModal }) => {
+const BookingCard = ({ selectedOption, data, reservationData, handleShow, isHoliday, onOpenBookingModal }) => {
     return (
         <div className={styles.card}>
             {
@@ -63,34 +63,17 @@ const BookingCard = ({ selectedOption, data, handleShow, isHoliday, onOpenBookin
                 <Image src="/images/basket.svg" width={16} height={16} alt="Basket" />
             </button>
             <div className={styles.card__list}>
-                <div className={styles.card__list__item}>
-                    <Image src="/images/safety.svg" width={24} height={24} alt="Safety" />
-                    <div className={styles.card__list__item__content}>
-                        <p className={styles.card__list__item__title}>Safety holiday</p>
-                        <p className={styles.card__list__item__desc}>Description text will be here for info</p>
-                    </div>
-                </div>
-                <div className={styles.card__list__item}>
-                    <Image src="/images/lock.svg" width={24} height={24} alt="Lock" />
-                    <div className={styles.card__list__item__content}>
-                        <p className={styles.card__list__item__title}>Trustable tourism</p>
-                        <p className={styles.card__list__item__desc}>Description text will be here for info</p>
-                    </div>
-                </div>
-                <div className={styles.card__list__item}>
-                    <Image src="/images/calendar.svg" width={24} height={24} alt="Calendar" />
-                    <div className={styles.card__list__item__content}>
-                        <p className={styles.card__list__item__title}>Credit up to 12 months</p>
-                        <p className={styles.card__list__item__desc}>Description text will be here for info</p>
-                    </div>
-                </div>
-                <div className={styles.card__list__item}>
-                    <Image src="/images/refund.svg" width={24} height={24} alt="Refund" />
-                    <div className={styles.card__list__item__content}>
-                        <p className={styles.card__list__item__title}>Warranty for refund</p>
-                        <p className={styles.card__list__item__desc}>Description text will be here for info</p>
-                    </div>
-                </div>
+                {
+                    reservationData.map((reservation, index) => (
+                        <div className={styles.card__list__item} key={index}>
+                            <Image src={reservation.icon} width={24} height={24} alt={reservation.title} />
+                            <div className={styles.card__list__item__content}>
+                                <p className={styles.card__list__item__title}>{reservation.title}</p>
+                                <p className={styles.card__list__item__desc}>{reservation.subtitle}</p>
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
             <button className={styles.card__close} onClick={handleShow}>
                 <AngleUp />

@@ -58,8 +58,6 @@ const ContactPage = () => {
     };
 
     const onSubmit = async (data) => {
-        console.log(data);
-        
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}contact-us/`, {
                 full_name: data.full_name,

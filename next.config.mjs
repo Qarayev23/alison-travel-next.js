@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: '142.93.161.255',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+        pathname: '**',
+      },
     ],
   },
   eslint: {

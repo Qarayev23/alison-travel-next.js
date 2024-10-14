@@ -23,7 +23,7 @@ import ReviewModal from '@/components/ReviewModal/ReviewModal';
 import TourBookingModal from '@/components/TourBookingModal/TourBookingModal';
 import { HtmlContent } from '@/utils/HTMLcontent';
 
-const TourDetailPage = ({ data }) => {
+const TourDetailPage = ({ data, reservationData }) => {
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -43,8 +43,8 @@ const TourDetailPage = ({ data }) => {
     setIsShow(!isShow);
   };
 
-  const handleSelectedOption = (title) => {
-    const option = data?.options?.find(item => item.category.title === title);
+  const handleSelectedOption = (id) => {
+    const option = data?.options?.find(item => item.category.id === id);
     setSelectedOption(option);
   }
 
@@ -236,6 +236,7 @@ const TourDetailPage = ({ data }) => {
                 selectedOption={selectedOption}
                 data={data}
                 onOpenBookingModal={onOpenBookingModal}
+                reservationData={reservationData}
               />
             </div>
           </div>
@@ -267,12 +268,14 @@ const TourDetailPage = ({ data }) => {
           onOpenBookingModal={onOpenBookingModal}
         />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
-          {/* <BookingCard
+          <BookingCard
             isHoliday={!data.is_daily}
             selectedOption={selectedOption}
             data={data}
+            reservationData={reservationData}
             onOpenBookingModal={onOpenBookingModal}
-          /> */}
+            handleShow={handleShow}
+          />
         </div>
         <div
           className={`${styles.overlay} ${isShow ? styles.show : ''}`}
@@ -284,12 +287,13 @@ const TourDetailPage = ({ data }) => {
         openReviewModal={openReviewModal}
         closeReviewModal={closeReviewModal}
       />
-      {/* <TourBookingModal
+      <TourBookingModal
         data={data}
         selectedOption={selectedOption}
         openBookingModal={openBookingModal}
         closeBookingModal={closeBookingModal}
-      /> */}
+        handleSelectedOption={handleSelectedOption}
+      />
     </>
   );
 };

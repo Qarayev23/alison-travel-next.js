@@ -5,8 +5,6 @@ import TimesIntervalRange from '../TimesIntervalRange/TimesIntervalRange'
 import styles from './FilterBar.module.scss'
 
 const FilterBar = ({ data, show, handleShow }) => {
-  console.log(data);
-  
   return (
     <div className={`${styles.filter} ${show ? styles.show : ''}`}>
       <div className={styles.filter__header}>

@@ -28,7 +28,7 @@ const HotelOptions = ({ data, selectedOption, handleSelectedOption }) => {
                             id={item.category.title}
                             defaultChecked={selectedOption.category.title === item.category.title}
                             name="radio"
-                            onChange={() => handleSelectedOption(item.category.title)}
+                            onChange={() => handleSelectedOption(item.category.id)}
                         />
                         <label htmlFor={item.category.title} className={styles.collapse__label}>
                             <div className={styles.collapse__label__icon}>

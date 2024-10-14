@@ -258,7 +258,7 @@
         flex-grow: 1;
         height: fit-content;
         position: sticky;
-        top: 0;
+        top: rem(10);
     }
 
     .overlay {
