@@ -54,7 +54,13 @@
         }
     }
 
-    &__thumb {
-        transform: translate(-50%, -50%);
+   &__thumb {
+        &:first-of-type {
+            transform: translate(-50%, -50%);
+        }
+
+        &:last-of-type {
+            transform: translate(calc(100% * 9.5), rem(-11));
+        }
     }
 }

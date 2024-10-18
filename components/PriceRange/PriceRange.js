@@ -32,14 +32,13 @@ const PriceRange = ({ priceRange }) => {
     const createQueryString = useCallback((name, value) => {
         const params = new URLSearchParams(searchParams.toString())
         params.set(name, value)
-        params.delete('page');
 
         return params.toString()
     }, [searchParams])
 
     const debouncedUpdateRouter = useCallback(debounce((newValue) => {
         router.push(pathname + '?' + createQueryString('prices', `${newValue[0]},${newValue[1]}`), { scroll: false });
-    }, 700), []);
+    }, 700), [createQueryString, pathname, router]);
 
     return (
         <div className={styles.priceRange}>

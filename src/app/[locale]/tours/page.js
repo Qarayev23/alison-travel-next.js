@@ -1,9 +1,9 @@
 import ToursPage from "@/containers/ToursPage/ToursPage"
 import { unstable_setRequestLocale } from "next-intl/server";
 
-const getToursData = async (locale) => {
+const getToursData = async (locale, searchParams) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours?${new URLSearchParams(searchParams)}`, {
       method: 'GET',
       headers: {
         'Accept-Language': locale,
@@ -18,10 +18,10 @@ const getToursData = async (locale) => {
   }
 }
 
-const Page = async ({ params: { locale } }) => {
+const Page = async ({ params: {locale}, searchParams }) => {
   unstable_setRequestLocale(locale);
 
-  const toursData = await getToursData(locale);
+  const toursData = await getToursData(locale, searchParams);
 
   return (
     <ToursPage data={toursData} />

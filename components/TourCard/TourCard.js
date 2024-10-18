@@ -67,7 +67,7 @@ const TourCard = ({ data, isRow }) => {
                             <div className={styles.card__rating}>
                                 <Image src='/images/star.svg' width={12} height={12} alt='star' />
                                 <span className={styles.card__rating__text}>
-                                    {data.rate ? data.rate : data.score}
+                                    {data.rate ? data.rate.toFixed(1) : data.score}
                                 </span>
                                 <span className={styles.card__rating__review}>
                                     ({data.review_count} reviews)
