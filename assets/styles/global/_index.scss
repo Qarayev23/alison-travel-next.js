@@ -497,3 +497,13 @@ textarea {
         }
     }
 }
+
+.Toastify {
+    &__toast {
+        &-body {
+            font-family: $font-family-main !important;
+            font-size: rem(14) !important;
+            padding: rem(10) !important;
+        }
+    }
+}

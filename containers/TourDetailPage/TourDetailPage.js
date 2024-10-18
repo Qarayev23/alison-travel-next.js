@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Image from "next/image";
 import LazyImage from "@/components/LazyImage/LazyImage";
@@ -11,19 +11,24 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'react-image-lightbox/style.css';
 import 'react-responsive-modal/styles.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './TourDetailPage.module.scss';
 import ItineraryAccordion from '@/components/ItineraryAccordion/ItineraryAccordion';
 import HotelOptions from '@/components/HotelOptions/HotelOptions';
 import GoodToKnowAccordion from '@/components/GoodToKnowAccordion/GoodToKnowAccordion';
-import BookingCard from '@/components/BookingCard/BookingCard';
-import BottomBar from '@/components/BottomBar/BottomBar';
+import TourBookingCard from '@/components/TourBookingCard/TourBookingCard';
 import Comment from '@/components/Comment/Comment';
 import TourCard from '@/components/TourCard/TourCard';
 import ReviewModal from '@/components/ReviewModal/ReviewModal';
 import TourBookingModal from '@/components/TourBookingModal/TourBookingModal';
 import { HtmlContent } from '@/utils/HTMLcontent';
+import axios from 'axios';
+import TourBottomBar from '@/components/TourBottomBar/TourBottomBar';
 
 const TourDetailPage = ({ data, reservationData }) => {
+  const [countries, setCountries] = useState([]);
+  const [countryCodes, setCountryCodes] = useState([]);
   const [isShow, setIsShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -47,6 +52,28 @@ const TourDetailPage = ({ data, reservationData }) => {
     const option = data?.options?.find(item => item.category.id === id);
     setSelectedOption(option);
   }
+
+  useEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}all-countries`)
+      .then(res => {
+        const formatedCountryCodes = res.data.map(country => ({
+          label: country.code,
+          value: country.phone_prefix,
+          flag: country.flag
+        }));
+
+        const formatedCountries = res.data.map(country => ({
+          label: country.name,
+          value: country.code,
+        }));
+
+        setCountryCodes(formatedCountryCodes);
+        setCountries(formatedCountries)
+      })
+      .catch(err => {
+        console.error('Error fetching countries:', err);
+      });
+  }, []);
 
   return (
     <>
@@ -84,9 +111,9 @@ const TourDetailPage = ({ data, reservationData }) => {
               <LazyImage src={data?.image} borderRadius="1.6rem" alt={data?.title} />
             </div>
             <div className={styles.tour__images__right}>
-              {data?.images?.map((image, index) => (
+              {data?.images?.slice(0, 4)?.map((image, index) => (
                 <div key={index} onClick={() => { setIsOpen(true); setPhotoIndex(index + 1); }} className={styles.tour__images__right__item}>
-                  <LazyImage src={image} borderRadius="1.6rem" alt='' />
+                  <LazyImage src={image} borderRadius="1.6rem" alt={data?.title} />
                   {
                     index === 0 && (
                       <span className={styles.zoom}>
@@ -231,7 +258,7 @@ const TourDetailPage = ({ data, reservationData }) => {
               }
             </div>
             <div className={styles.card}>
-              <BookingCard
+              <TourBookingCard
                 isHoliday={!data.is_daily}
                 selectedOption={selectedOption}
                 data={data}
@@ -240,17 +267,20 @@ const TourDetailPage = ({ data, reservationData }) => {
               />
             </div>
           </div>
-          <Comment data={data} onOpenReviewModal={onOpenReviewModal} />
+          <Comment
+            data={data}
+            onOpenReviewModal={onOpenReviewModal}
+          />
         </div>
         {
           !!data?.related_tours.length && (
             <div className={styles.moreTour}>
               <div className="g-container">
-                <h2 className="section-title">Azerbaijan best travel tours</h2>
-                <p className="section-text">Discover Azerbaijan</p>
+                <h2 className="section-title">Related tours</h2>
+                <p className="section-text">Discover related tours</p>
                 <div className={styles.moreTour__list}>
                   {
-                    data?.best_tours?.map((item, index) => (
+                    data?.related_tours?.map((item, index) => (
                       <TourCard key={index} data={item} />
                     ))
                   }
@@ -259,7 +289,7 @@ const TourDetailPage = ({ data, reservationData }) => {
             </div>
           )
         }
-        <BottomBar
+        <TourBottomBar
           isHoliday={!data.is_daily}
           isHide={isShow}
           selectedOption={selectedOption}
@@ -268,7 +298,7 @@ const TourDetailPage = ({ data, reservationData }) => {
           onOpenBookingModal={onOpenBookingModal}
         />
         <div className={`${styles.bottomBar} ${isShow ? styles.show : ''}`}>
-          <BookingCard
+          <TourBookingCard
             isHoliday={!data.is_daily}
             selectedOption={selectedOption}
             data={data}
@@ -284,6 +314,7 @@ const TourDetailPage = ({ data, reservationData }) => {
       </div>
       <ReviewModal
         slug={data.slug}
+        countries={countries}
         openReviewModal={openReviewModal}
         closeReviewModal={closeReviewModal}
       />
@@ -293,7 +324,10 @@ const TourDetailPage = ({ data, reservationData }) => {
         openBookingModal={openBookingModal}
         closeBookingModal={closeBookingModal}
         handleSelectedOption={handleSelectedOption}
+        countries={countries}
+        countryCodes={countryCodes}
       />
+      <ToastContainer />
     </>
   );
 };

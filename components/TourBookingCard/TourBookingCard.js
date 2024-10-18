@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import styles from './BookingCard.module.scss'
+import styles from './TourBookingCard.module.scss'
 import AngleUp from '@/assets/icons/AngleUp'
 
-const BookingCard = ({ selectedOption, data, reservationData, handleShow, isHoliday, onOpenBookingModal }) => {
+const TourBookingCard = ({ selectedOption, data, reservationData, handleShow, isHoliday, onOpenBookingModal }) => {
     return (
         <div className={styles.card}>
             {
@@ -82,4 +82,4 @@ const BookingCard = ({ selectedOption, data, reservationData, handleShow, isHoli
     )
 }
 
-export default BookingCard
+export default TourBookingCard

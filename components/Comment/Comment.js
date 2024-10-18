@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import styles from './Comment.module.scss'
 import Select from 'react-select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LazyImage from '../LazyImage/LazyImage';
 import formatDate from '@/utils/formatDate';
+import axios from 'axios';
 
-const options = [
+const sortOptions = [
     { value: 'newest', label: 'Newest' },
     { value: 'oldest', label: 'Oldest' },
 ];
@@ -29,8 +30,31 @@ const StarRating = ({ score }) => {
     return <div className={styles.review__item__rating}>{stars}</div>
 };
 
-const Comment = ({ data, onOpenReviewModal }) => {
-    const [selectedOption, setSelectedOption] = useState(null);
+const Comment = ({ data, onOpenReviewModal, isHotel }) => {
+    const [page, setPage] = useState(1);
+    const [reviews, setReviews] = useState([]);
+    const [nextPage, setNextPage] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(sortOptions[0]);
+    const size = 3;
+
+    useEffect(() => {
+        axios.get(`
+        ${process.env.NEXT_PUBLIC_BASE_API_URL}${isHotel ? 'hotels' : 'tours'}/${data?.slug}/reviews?sort_by=${selectedOption?.value}&size=${size}&page=${page}
+    `).then(response => {
+            if (page === 1) {
+                setReviews(response.data.results)
+            } else {
+                setReviews(prev => [...prev, ...response.data.results])
+            }
+            setNextPage(response.data.next)
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [data.slug, page, selectedOption.value])
+
+    const handlePagination = () => {
+        setPage((prev) => prev + 1);
+    }
 
     return (
         <div className={styles.comment}>
@@ -73,13 +97,15 @@ const Comment = ({ data, onOpenReviewModal }) => {
                                 </p>
                                 <Select
                                     instanceId={'sorting-select'}
-                                    defaultValue={selectedOption}
-                                    onChange={setSelectedOption}
-                                    options={options}
+                                    onChange={(option) => {
+                                        setSelectedOption(option)
+                                        setPage(1)
+                                    }}
+                                    options={sortOptions}
                                     isSearchable={false}
                                     placeholder="Newst"
                                     styles={{
-                                        control: (baseStyles, state) => ({
+                                        control: (baseStyles) => ({
                                             ...baseStyles,
                                             border: '0.2rem solid #E6E8EC !important',
                                             boxShadow: 'none !important',
@@ -137,14 +163,14 @@ const Comment = ({ data, onOpenReviewModal }) => {
                             </div>
                             <div className={styles.review__list}>
                                 {
-                                    data?.reviews?.map((review, index) => (
+                                    reviews?.map((review, index) => (
                                         <div className={styles.review__item} key={index}>
                                             <p className={styles.review__item__name}>
                                                 {review.full_name}
                                             </p>
                                             <div className={styles.review__item__location}>
-                                                <Image src="/images/flag.svg" width={16} height={12} alt="Azerbaijan" />
-                                                <span>{review.country.name}</span>
+                                                <Image src={review.country?.flag || ''} width={16} height={12} alt={review.country?.name} />
+                                                <span>{review.country?.name}</span>
                                             </div>
                                             <p className={styles.review__item__text}>
                                                 {review.message}
@@ -156,14 +182,34 @@ const Comment = ({ data, onOpenReviewModal }) => {
                                                     {formatDate(review.created_at)}
                                                 </span>
                                             </div>
+                                            {
+                                                !!review?.images.length && (
+                                                    <div className={styles.review__item__images}>
+                                                        {
+                                                            review?.images.map((image, imgIndex) => (
+                                                                <div className={styles.review__item__image} key={imgIndex}>
+                                                                    <LazyImage
+                                                                        src={image}
+                                                                        alt={data.title}
+                                                                    />
+                                                                </div>
+                                                            ))
+                                                        }
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     ))
                                 }
                             </div>
-                            <button className={styles.review__showMore}>
-                                <Image src='/images/showMore.svg' width={16} height={16} alt='Show More' />
-                                Loading comment
-                            </button>
+                            {
+                                nextPage && (
+                                    <button className={styles.review__showMore} onClick={handlePagination}>
+                                        <Image src='/images/showMore.svg' width={16} height={16} alt='Show More' />
+                                        Loading comment
+                                    </button>
+                                )
+                            }
                         </div>
                     )
                 }

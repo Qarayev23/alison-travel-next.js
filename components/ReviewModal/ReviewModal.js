@@ -5,46 +5,50 @@ import Select from 'react-select';
 import Image from 'next/image';
 import { Controller, useForm } from 'react-hook-form';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const options = [
-    { value: 'newest', label: 'Newest' },
-    { value: 'oldest', label: 'Oldest' },
-];
-
-const ReviewModal = ({ slug, openReviewModal, closeReviewModal }) => {
+const ReviewModal = ({ countries, slug, openReviewModal, closeReviewModal, isHotel }) => {
     const { register, handleSubmit, watch, control, reset, setValue, formState: { errors } } = useForm();
     const rating = watch('rating');
     const [images, setImages] = useState([]);
     const [imageUploadError, setImageUploadError] = useState('');
 
     const onSubmit = async (data) => {
-        
-        if (images.length === 0) {
-            setImageUploadError('At least one image is required.');
-            return;
+        const payload = {
+            full_name: data.full_name,
+            rating: Number(rating),
+            country: data.country.label,
+            message: data.message,
+            image_1: images[0] ? images[0].file : "",
+            image_2: images[1] ? images[1].file : "",
+            image_3: images[2] ? images[2].file : "",
+            image_4: images[3] ? images[3].file : "",
+        }
+
+        if (isHotel) {
+            payload.hotel_slug = slug;
+        } else {
+            payload.tour_slug = slug;
         }
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}tour-review/`, {
-                tour_slug: slug,
-                full_name: data.full_name,
-                rating: Number(rating),
-                country: data.country.value,
-                message: data.message,
-                image_1: images[0].file
-            }, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Accept-Language': 'en'
-                }
-            });
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}${isHotel ? 'hotels' : 'tours'}/${isHotel ? 'create-reviews' : 'create-review'}`,
+                payload,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Accept-Language': 'en'
+                    }
+                });
 
+            toast.success('Thanks for your review!');
             reset();
             setImages([]);
             setImageUploadError('');
             closeReviewModal();
         } catch (error) {
             console.error('Error posting review:', error);
+            toast.error('Oops, request failed!');
         }
     };
 
@@ -110,11 +114,11 @@ const ReviewModal = ({ slug, openReviewModal, closeReviewModal }) => {
                             render={({ field }) => (
                                 <Select
                                     {...field}
-                                    options={options}
-                                    isSearchable={false}
+                                    onChange={(newValue) => {
+                                        field.onChange(newValue)
+                                    }}
+                                    options={countries}
                                     placeholder="Country"
-                                    onChange={(value) => field.onChange(value)}
-                                    value={field.value}
                                     styles={{
                                         control: (baseStyles, state) => ({
                                             ...baseStyles,
@@ -165,7 +169,7 @@ const ReviewModal = ({ slug, openReviewModal, closeReviewModal }) => {
                                 />
                             )}
                         />
-                        {errors.country && <p className={styles.error}>{errors.country.message}</p>}
+                        {(errors.country) && <p className={styles.error}>{errors?.country?.message}</p>}
                     </div>
                     <div className={styles.upload}>
                         <label className={styles.upload__box}>

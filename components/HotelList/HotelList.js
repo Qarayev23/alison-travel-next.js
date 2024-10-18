@@ -35,7 +35,7 @@ const HotelList = ({ data }) => {
                     <div className={styles.hotel__list}>
                         {
                             data?.data?.map((item, i) => (
-                                <HotelCard key={i} data={item} chips={data.active_chips} />
+                                <HotelCard key={i} data={item} />
                             ))
                         }
                     </div>
@@ -60,7 +60,7 @@ const HotelList = ({ data }) => {
                         {
                             data?.data?.map((item, i) => (
                                 <SwiperSlide key={i}>
-                                    <HotelCard data={item} chips={data.active_chips} />
+                                    <HotelCard data={item} />
                                 </SwiperSlide>
                             ))
                         }

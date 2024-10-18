@@ -1,8 +1,8 @@
 import AngleUp from '@/assets/icons/AngleUp'
 import Image from 'next/image'
-import styles from './BottomBar.module.scss'
+import styles from './TourBottomBar.module.scss'
 
-const BottomBar = ({data, selectedOption, isHide, handleShow, onOpenBookingModal, isHoliday }) => {
+const TourBottomBar = ({ data, selectedOption, isHide, handleShow, onOpenBookingModal, isHoliday }) => {
     return (
         <div className={`${styles.bottomBar} ${isHide ? styles.hide : ""}`}>
             <div className={styles.bottomBar__wrapper}>
@@ -12,7 +12,7 @@ const BottomBar = ({data, selectedOption, isHide, handleShow, onOpenBookingModal
                     </button>
                     <div className={styles.bottomBar__content}>
                         {
-                           isHoliday && (
+                            isHoliday && (
                                 <div className={styles.bottomBar__name}>
                                     <div className={styles.bottomBar__name__icon}>
                                         <Image src="/images/option.svg" width={32} height={32} alt="Option" />
@@ -38,7 +38,7 @@ const BottomBar = ({data, selectedOption, isHide, handleShow, onOpenBookingModal
                             <p className={styles.bottomBar__price__person}>/person</p>
                         </div>
                         {
-                           isHoliday && (
+                            isHoliday && (
                                 <p className={styles.bottomBar__duration}>
                                     {data?.days_duration} days - {data?.nights_duration} nights
                                 </p>
@@ -57,4 +57,4 @@ const BottomBar = ({data, selectedOption, isHide, handleShow, onOpenBookingModal
     )
 }
 
-export default BottomBar
+export default TourBottomBar

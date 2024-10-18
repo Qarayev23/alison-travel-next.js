@@ -32,7 +32,7 @@ const FilterBar = ({ data, show, handleShow }) => {
         </div>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>Times interval</p>
-          <TimesIntervalRange />
+          <TimesIntervalRange timesIntervalRange={data?.results?.filter_param?.times_interval} />
         </div>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>popular filters</p>

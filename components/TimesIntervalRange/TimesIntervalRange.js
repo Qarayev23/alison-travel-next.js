@@ -1,18 +1,19 @@
 "use client";
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import styles from './TimesIntervalRange.module.scss';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { debounce } from 'lodash';
 
-const TimesIntervalRange = () => {
-    const [inputValues, setInputValues] = useState(['1 night', '10 nights']);
-    const [values, setValues] = useState([1, 10]);
+const TimesIntervalRange = ({ timesIntervalRange }) => {
+    const [inputValues, setInputValues] = useState([`${timesIntervalRange.min} ${timesIntervalRange.min > 1 ? 'nights' : ''}`, `${timesIntervalRange.max} nights`]);
+    const [values, setValues] = useState([timesIntervalRange.min, timesIntervalRange.max]);
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const min = 1;
-    const max = 10;
+    const min = timesIntervalRange.min;
+    const max = timesIntervalRange.max;
 
     const handleInputChange = (index, value) => {
         const numericValue = parseInt(value, 10) || min;

@@ -2,29 +2,6 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import styles from "./GoodToKnowAccordion.module.scss";
 
-const data = [
-    {
-        question: "What are the top places to visit in Georgia Tbilisi?",
-        answer:
-            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
-    },
-    {
-        question: "What are the top places to visit in Georgia Tbilisi?",
-        answer:
-            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
-    },
-    {
-        question: "What are the top places to visit in Georgia Tbilisi?",
-        answer:
-            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
-    },
-    {
-        question: "What are the top places to visit in Georgia Tbilisi?",
-        answer:
-            'The best 16 passenger small group, intimate and unique, Milford Sound tour. Travel in unparalleled style and comfort in a premium Mercedes van equipped with large panoramic windows, leather reclining seats, quirky on board videos, free wifi and complimentary bottled water. From your accommodation enjoy the stunning scenic drive'
-    }
-];
-
 const AccordionItem = ({ question, answer, isOpen, onClick }) => {
     const contentHeight = useRef();
 
@@ -57,16 +34,16 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
     );
 };
 
-const GoodToKnowAccordion = () => {
+const GoodToKnowAccordion = ({ data }) => {
     const [activeIndexes, setActiveIndexes] = useState([]);
 
     const handleItemClick = (index) => {
         setActiveIndexes(prevIndexes => {
             const currentIndex = prevIndexes.indexOf(index);
             if (currentIndex === -1) {
-                return [...prevIndexes, index]; // Add index to array
+                return [...prevIndexes, index];
             } else {
-                return prevIndexes.filter(i => i !== index); // Remove index from array
+                return prevIndexes.filter(i => i !== index);
             }
         });
     };

@@ -3,9 +3,10 @@ import Select from 'react-select';
 import Image from 'next/image';
 import styles from './TourBookingModal.module.scss'
 import TourCard from '../TourCard/TourCard';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { Controller, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const formatOptionLabel = ({ label, value, flag }, { context }) => {
     if (context === 'value') {
@@ -29,7 +30,7 @@ const formatOptionLabel = ({ label, value, flag }, { context }) => {
     }
 };
 
-const TourBookingModal = ({ data, selectedOption, openBookingModal, closeBookingModal, handleSelectedOption }) => {
+const TourBookingModal = ({ data, countries, countryCodes, selectedOption, openBookingModal, closeBookingModal, handleSelectedOption }) => {
     const { register, handleSubmit, control, reset, formState: { errors } } = useForm();
 
     const formatedHotels = data?.options?.map(hotel => ({
@@ -38,36 +39,11 @@ const TourBookingModal = ({ data, selectedOption, openBookingModal, closeBooking
         price: hotel.price_per_person - hotel.discount_per_person
     }))
 
-    const [countries, setCountries] = useState([]);
-    const [countryCodes, setCountryCodes] = useState([]);
-
     const [selectedHotelOption, setSelectedHotelOption] = useState({
         label: selectedOption.category.title,
         value: selectedOption.category.id,
         price: selectedOption.price_per_person - selectedOption.discount_per_person
     });
-
-    useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}all-countries`)
-            .then(res => {
-                const formatedCountryCodes = res.data.map(country => ({
-                    label: country.code,
-                    value: country.phone_prefix,
-                    flag: country.flag
-                }));
-
-                const formatedCountries = res.data.map(country => ({
-                    label: country.name,
-                    value: country.code,
-                }));
-
-                setCountryCodes(formatedCountryCodes);
-                setCountries(formatedCountries)
-            })
-            .catch(err => {
-                console.error('Error fetching countries:', err);
-            });
-    }, []);
 
     const onSubmit = async (form_data) => {
         try {
@@ -76,20 +52,22 @@ const TourBookingModal = ({ data, selectedOption, openBookingModal, closeBooking
                     full_name: form_data.full_name,
                     email: form_data.email,
                     country_code: form_data["country-code"].label,
-                    phone: form_data.phone,
+                    phone: form_data.phone ? `${form_data["country-code"].value}${form_data.phone}` : null,
                     message: form_data.message,
                     country: form_data.country.label,
                     category: selectedHotelOption.value,
                     tour_slug: data.slug
                 }), {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 }
             });
 
+            toast.success('Your request has been sent successfully!');
             reset();
         } catch (error) {
             console.error('Error posting review:', error);
+            toast.error('Oops, request failed');
         }
     };
 

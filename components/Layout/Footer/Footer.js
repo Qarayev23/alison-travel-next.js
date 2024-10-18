@@ -15,9 +15,9 @@ const Footer = ({ data }) => {
             <div className="g-container">
                 <div className={styles.footer__wrapper}>
                     <div className={styles.footer__top}>
-                        <div className={styles.footer__logo}>
+                        <Link href='/' className={styles.footer__logo}>
                             <Image src='/images/logo.svg' fill alt='Alison Travel' />
-                        </div>
+                        </Link>
                         <div className={styles.footer__links}>
                             <ul className={styles.footer__list}>
                                 <li className={styles.footer__title}>

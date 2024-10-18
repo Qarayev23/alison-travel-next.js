@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleWishlist } from '@/redux/features/wishlistSlice';
 
-const HotelCard = ({ data, chips }) => {
+const HotelCard = ({ data }) => {
     const hotels = useSelector(state => state.wishlist.hotels);
+    const chips = useSelector(state => state.globalData.chips);
     const [isFavorite, setIsFavorite] = useState(false);
     const dispatch = useDispatch();
 
