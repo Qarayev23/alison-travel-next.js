@@ -20,7 +20,7 @@ const ToursPage = ({ data }) => {
                 <div className='g-container'>
                     <div className={styles.tours__wrapper}>
                         <FilterBar data={data} show={show} handleShow={handleShow} />
-                        <TourList data={data} handleShow={handleShow} />
+                        <TourList tourData={data} handleShow={handleShow} />
                     </div>
                     <div className={`${styles.tours__description} rich-content`}>
                         <h2><strong>Is Azerbaijan worth a visit?</strong></h2>

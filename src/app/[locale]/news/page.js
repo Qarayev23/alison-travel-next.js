@@ -3,7 +3,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 
 const getNews = async (locale) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}news`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}pages/news`, {
       method: 'GET',
       headers: {
         'Accept-Language': locale,
@@ -24,7 +24,7 @@ const Page = async ({params: {locale}}) => {
   const newsData = await getNews(locale);
 
   return (
-    <NewsPage data={newsData} locale={locale}/>
+    <NewsPage data={newsData} />
   )
 }
 

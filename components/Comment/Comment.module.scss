@@ -83,6 +83,7 @@
             line-height: rem(16);
             font-weight: 700;
             font-family: $font-family-secondary;
+            flex-shrink: 0;
 
             &:hover {
                 background: darken($blue, 10%);

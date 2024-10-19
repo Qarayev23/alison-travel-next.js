@@ -3,7 +3,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 
 const getGuestsData = async (locale) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}guest-page`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}pages/guest`, {
       method: 'GET',
       headers: {
         'Accept-Language': locale,

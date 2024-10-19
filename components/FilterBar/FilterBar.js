@@ -28,11 +28,11 @@ const FilterBar = ({ data, show, handleShow }) => {
       <div className={styles.filter__wrapper}>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>price range</p>
-          <PriceRange priceRange={data?.results?.filter_param?.price_range} />
+          {/* <PriceRange priceRange={data?.results?.filter_param?.price_range} /> */}
         </div>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>Times interval</p>
-          <TimesIntervalRange timesIntervalRange={data?.results?.filter_param?.times_interval} />
+          {/* <TimesIntervalRange timesIntervalRange={data?.results?.filter_param?.times_interval} /> */}
         </div>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>popular filters</p>

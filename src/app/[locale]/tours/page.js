@@ -2,6 +2,10 @@ import ToursPage from "@/containers/ToursPage/ToursPage"
 import { unstable_setRequestLocale } from "next-intl/server";
 
 const getToursData = async (locale, searchParams) => {
+  if (!searchParams.size) {
+    searchParams.size = 1
+  }
+
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours?${new URLSearchParams(searchParams)}`, {
       method: 'GET',
@@ -18,7 +22,7 @@ const getToursData = async (locale, searchParams) => {
   }
 }
 
-const Page = async ({ params: {locale}, searchParams }) => {
+const Page = async ({ params: { locale }, searchParams }) => {
   unstable_setRequestLocale(locale);
 
   const toursData = await getToursData(locale, searchParams);
