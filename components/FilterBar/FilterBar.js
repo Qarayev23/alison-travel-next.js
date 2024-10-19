@@ -8,23 +8,23 @@ const FilterBar = ({ data, show, handleShow }) => {
   return (
     <div className={`${styles.filter} ${show ? styles.show : ''}`}>
       <div className={styles.filter__header}>
-          <div className={styles.filter__header__desk}>
-            <p className={styles.filter__title}>FILTER BY:</p>
-            <button className={styles.filter__reset}>
-              <SvgClose />
-              Reset filter
-            </button>
-          </div>
-          <div className={styles.filter__header__mob}>
-            <button className={styles.filter__close} onClick={handleShow}>
-              <SvgClose />
-            </button>
-            <p className={styles.filter__title}>FILTER</p>
-            <button className={styles.filter__reset}>
-              Reset
-            </button>
-          </div>
+        <div className={styles.filter__header__desk}>
+          <p className={styles.filter__title}>FILTER BY:</p>
+          <button className={styles.filter__reset}>
+            <SvgClose />
+            Reset filter
+          </button>
         </div>
+        <div className={styles.filter__header__mob}>
+          <button className={styles.filter__close} onClick={handleShow}>
+            <SvgClose />
+          </button>
+          <p className={styles.filter__title}>FILTER</p>
+          <button className={styles.filter__reset}>
+            Reset
+          </button>
+        </div>
+      </div>
       <div className={styles.filter__wrapper}>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>price range</p>
@@ -37,62 +37,70 @@ const FilterBar = ({ data, show, handleShow }) => {
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>popular filters</p>
           <div className={styles.filter__content}>
-            <Checkbox name="Best Seller" />
+            <Checkbox title="Best Seller" />
             <span className={styles.filter__count}>568</span>
-          </div>
-          <div className={styles.filter__content}>
-            <Checkbox name="Free cancellation" />
-            <span className={styles.filter__count}>123</span>
           </div>
         </div>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>locations</p>
           <div className={styles.filter__content}>
-            <Checkbox name="Baku" />
+            <Checkbox title="Baku" />
             <span className={styles.filter__count}>37</span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="Gabala" />
+            <Checkbox title="Gabala" />
             <span className={styles.filter__count}>19</span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="Shaki" />
+            <Checkbox title="Shaki" />
             <span className={styles.filter__count}>4</span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="Ganja" />
+            <Checkbox title="Ganja" />
             <span className={styles.filter__count}>6</span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="Lankaran" />
+            <Checkbox title="Lankaran" />
             <span className={styles.filter__count}>28</span>
           </div>
         </div>
         <div className={styles.filter__item}>
           <p className={styles.filter__subtitle}>Rating</p>
           <div className={styles.filter__content}>
-            <Checkbox name="5 stars" />
-            <span className={styles.filter__count}>201</span>
+            <Checkbox title="4-5 stars" param="ratings" value={[4, 5]} />
+            <span className={styles.filter__count}>
+              {data?.results?.filter_param?.rating["5_star"]}
+            </span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="4 stars" />
-            <span className={styles.filter__count}>501</span>
+            <Checkbox title="3-4 stars" param="ratings" value={[3, 4]} />
+            <span className={styles.filter__count}>
+              {data?.results?.filter_param?.rating["4_star"]}
+            </span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="3 stars" />
-            <span className={styles.filter__count}>574</span>
+            <Checkbox title="2-3 stars" param="ratings" value={[2, 3]} />
+            <span className={styles.filter__count}>
+              {data?.results?.filter_param?.rating["3_star"]}
+            </span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="2 stars" />
-            <span className={styles.filter__count}>86</span>
+            <Checkbox title="1-2 stars" param="ratings" value={[2, 1]} />
+            <span className={styles.filter__count}>
+              {data?.results?.filter_param?.rating["2_star"]}
+            </span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="1 stars" />
-            <span className={styles.filter__count}>155</span>
+            <Checkbox title="0-1 stars" param="ratings" value={[1, 0]} />
+            <span className={styles.filter__count}>
+              {data?.results?.filter_param?.rating["1_star"]}
+            </span>
           </div>
           <div className={styles.filter__content}>
-            <Checkbox name="Unrated" />
-            <span className={styles.filter__count}>450</span>
+            <Checkbox title="Unrated" />
+            <span className={styles.filter__count}>
+              {data?.results?.filter_param?.rating["unrated"]}
+            </span>
           </div>
         </div>
       </div>
