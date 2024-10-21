@@ -25,7 +25,7 @@ const AboutUsPage = ({ aboutUsData, weProvideData, teamMembersData }) => {
                     !!weProvideData.data?.length && <WeProvide data={weProvideData} />
                 }
                 {
-                    !!teamMembersData?.length && <OurTeam data={teamMembersData} />
+                    !!teamMembersData?.data?.length && <OurTeam data={teamMembersData} />
                 }
             </div>
         </>

@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import FilterBar from '@/components/FilterBar/FilterBar';
-import styles from './ToursPage.module.scss';
+import styles from './HotelsPage.module.scss';
 import TourList from '@/components/TourList/TourList';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { HtmlContent } from '@/utils/HTMLcontent';
 
-const ToursPage = ({ data }) => {
+const HotelsPage = ({ data }) => {
     const [show, setShow] = useState(false);
 
     const handleShow = () => {
@@ -20,7 +20,7 @@ const ToursPage = ({ data }) => {
             <div className={styles.tours}>
                 <div className='g-container'>
                     <div className={styles.tours__wrapper}>
-                        <FilterBar data={data} show={show} handleShow={handleShow} />
+                        <FilterBar isHotel data={data} show={show} handleShow={handleShow} />
                         <TourList tourData={data} handleShow={handleShow} />
                     </div>
                     {
@@ -37,4 +37,4 @@ const ToursPage = ({ data }) => {
     );
 }
 
-export default ToursPage;
+export default HotelsPage;

@@ -1,13 +1,13 @@
-import ToursPage from "@/containers/ToursPage/ToursPage"
+import HotelsPage from "@/containers/HotelsPage/HotelsPage";
 import { unstable_setRequestLocale } from "next-intl/server";
 
-const getToursData = async (locale, searchParams) => {
+const getHotelsData = async (locale, searchParams) => {
   if (!searchParams.size) {
     searchParams.size = 2
   }
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}tours?${new URLSearchParams(searchParams)}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}hotels?${new URLSearchParams(searchParams)}`, {
       method: 'GET',
       headers: {
         'Accept-Language': locale,
@@ -17,7 +17,7 @@ const getToursData = async (locale, searchParams) => {
     })
     return await res.json();
   } catch (error) {
-    console.error("Error in getToursData", error.message);
+    console.error("Error in getHotelsData", error.message);
     return null;
   }
 }
@@ -25,10 +25,10 @@ const getToursData = async (locale, searchParams) => {
 const Page = async ({ params: { locale }, searchParams }) => {
   unstable_setRequestLocale(locale);
 
-  const toursData = await getToursData(locale, searchParams);
+  const hotelsData = await getHotelsData(locale, searchParams);
 
   return (
-    <ToursPage data={toursData} />
+    <HotelsPage data={hotelsData} />
   )
 }
 

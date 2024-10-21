@@ -10,10 +10,12 @@ import ShowMore from '../UI/ShowMore/ShowMore';
 import LazyImage from '../LazyImage/LazyImage';
 import axios from 'axios';
 import { HtmlContent } from '@/utils/HTMLcontent';
+import { useRouter } from '@/src/i18n/routing';
 
 const AzerbaijanTours = ({ data, locale }) => {
     const [tourData, setTourData] = useState(data);
     const [activeBtn, setActiveBtn] = useState("baku");
+    const router = useRouter();
 
     const swiperRef = useRef(null);
 
@@ -43,6 +45,10 @@ const AzerbaijanTours = ({ data, locale }) => {
         } catch (error) {
             console.error("Error in getCityTours", error.message);
         }
+    }
+
+    const handleShowMore = () => {
+        router.push(`/tours?city=${activeBtn}`);
     }
 
     return (
@@ -105,7 +111,7 @@ const AzerbaijanTours = ({ data, locale }) => {
                             ))
                         }
                     </div>
-                    <ShowMore text="Show more" />
+                    <ShowMore text="Show more" handleShowMore={handleShowMore} />
                 </div>
                 <div className="azerbaijanTour__slider">
                     <Swiper

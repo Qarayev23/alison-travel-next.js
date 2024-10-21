@@ -1,8 +1,15 @@
+import { useRouter } from '@/src/i18n/routing';
 import TourCard from '../TourCard/TourCard'
 import ShowMore from '../UI/ShowMore/ShowMore'
 import styles from './BestTours.module.scss'
 
 const BestTours = ({ data }) => {
+    const router = useRouter();
+
+    const handleShowMore = () => {
+        router.push(`/tours?best_seller=true`);
+    }
+
     return (
         <div className={styles.tour}>
             <div className='g-container'>
@@ -19,7 +26,7 @@ const BestTours = ({ data }) => {
                         ))
                     }
                 </div>
-                <ShowMore />
+                <ShowMore handleShowMore={handleShowMore} />
             </div>
         </div>
     )

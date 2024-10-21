@@ -36,6 +36,11 @@ const TimesIntervalRange = ({ timesIntervalRange }) => {
     }, [searchParams])
 
     const debouncedUpdateRouter = useCallback(debounce((newValue) => {
+        if (newValue[0] === min && newValue[1] === max) {
+            router.push(pathname, { scroll: false });
+            return
+        }
+        
         router.push(pathname + '?' + createQueryString('nights', `${newValue[0]},${newValue[1]}`), { scroll: false });
     }, 700), [createQueryString, pathname, router]);
 

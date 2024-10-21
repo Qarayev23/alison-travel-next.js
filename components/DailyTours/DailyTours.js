@@ -6,9 +6,11 @@ import SvgArrowRight from '@/assets/icons/ArrowRight';
 import SvgArrowLeft from '@/assets/icons/ArrowLeft';
 import TourCard from '../TourCard/TourCard';
 import ShowMore from '../UI/ShowMore/ShowMore';
+import { useRouter } from '@/src/i18n/routing';
 
 const DailyTours = ({ data }) => {
     const swiperRef = useRef(null);
+    const router = useRouter();
 
     const goPrev = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
@@ -21,6 +23,10 @@ const DailyTours = ({ data }) => {
             swiperRef.current.swiper.slideNext();
         }
     };
+
+    const handleShowMore = () => {
+        router.push(`/tours?is_daily=true`);
+    }
 
     return (
         <div className={styles.DailyTours}>
@@ -63,7 +69,7 @@ const DailyTours = ({ data }) => {
                         <SvgArrowRight />
                     </button>
                 </div>
-                <ShowMore />
+                <ShowMore handleShowMore={handleShowMore} />
             </div>
         </div>
     )

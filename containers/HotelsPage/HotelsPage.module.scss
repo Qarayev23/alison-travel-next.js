@@ -1,0 +1,22 @@
+@import "@/assets/styles/utilities";
+
+.tours {
+    background-color: $gray-2;
+    padding-top: rem(24);
+    padding-bottom: rem(60);
+
+    &__wrapper {
+        display: flex;
+        gap: rem(32);
+    }
+
+    &__description {
+        margin-top: rem(80);
+    }
+
+    @media screen and (max-width: 700px) {
+        &__description {
+            margin-top: rem(40);
+        }
+    }
+}

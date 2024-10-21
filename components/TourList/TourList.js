@@ -4,7 +4,7 @@ import styles from './TourList.module.scss'
 import SvgFilter from '@/assets/icons/Filter'
 import NoResult from '../NoResult/NoResult'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const TourList = ({ tourData, handleShow }) => {
   const [data, setData] = useState(tourData)
@@ -18,6 +18,11 @@ const TourList = ({ tourData, handleShow }) => {
       console.log(err)
     })
   }
+
+  useEffect(() => {
+    setTours(tourData?.results?.tours)
+    setData(tourData)
+  }, [tourData])
 
   return (
     <div className={styles.tour}>

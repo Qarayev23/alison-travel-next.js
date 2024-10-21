@@ -7,8 +7,8 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { debounce } from 'lodash';
 
 const PriceRange = ({ priceRange }) => {
-    const [inputValues, setInputValues] = useState([`${priceRange.min}`, `${priceRange.max}`]);
-    const [values, setValues] = useState([priceRange.min, priceRange.max]);
+    const [inputValues, setInputValues] = useState([`${priceRange.selected_min}`, `${priceRange.max}`]);
+    const [values, setValues] = useState([priceRange.selected_min, priceRange.max]);
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -37,6 +37,11 @@ const PriceRange = ({ priceRange }) => {
     }, [searchParams])
 
     const debouncedUpdateRouter = useCallback(debounce((newValue) => {
+        if (newValue[0] === min && newValue[1] === max) {
+            router.push(pathname, { scroll: false });
+            return
+        }
+
         router.push(pathname + '?' + createQueryString('prices', `${newValue[0]},${newValue[1]}`), { scroll: false });
     }, 700), [createQueryString, pathname, router]);
 
